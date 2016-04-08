@@ -1,110 +1,91 @@
 @CHARSET "UTF-8";
-/* 왼쪽 메뉴 애니메이션 시작 */
-.openLeftSide {
+
+.menuStyle {
 /* 	float: left; */
 	display: inline-block; 
+    background-color:#080808;
+    color: #3D9D26;
+    opacity: 0.95;
+    border: 3px groove #781706;
+    border-radius: 5px;
+}
+
+/* 왼쪽 메뉴 애니메이션 시작 */
+.openLeftSide {
     position: relative;
     -webkit-animation-name: openLeftSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: openLeftSideMenu;
     animation-duration: 0.5s;
     animation-fill-mode:both;
-    background-color:#080808;
-    color: #3D9D26;
-    opacity: 0.95;
-    border: 3px groove #781706;
-    border-radius: 5px;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openLeftSideMenu {
-    0%   {left:-300px;}
-    100% {left:50px;}
+    0%   {left:-120%;}
+    100% {left:0px;}
 }
 
 /* Standard syntax */
 @keyframes openLeftSideMenu {
     0%   {left:-120%;}
-    100% {left:50px;}
+    100% {left:0px;}
 }
 .closeLeftSide {
-/* 	float: left; */
-	display: inline-block;
     position: relative;
     -webkit-animation-name: openLeftSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: closeLeftSideMenu;
     animation-duration: 0.5s;
     animation-fill-mode:both;
-    background-color:#080808;
-    color: #3D9D26;
-    opacity: 0.95;
-    border: 3px groove #781706;
-    border-radius: 5px;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeLeftSideMenu {
-    0%   {left:50px;}
-    100% {left:-300px;}
+    0%   {left:0px;}
+    100% {left:-120%;}
 }
 
 /* Standard syntax */
 @keyframes closeLeftSideMenu {
-    0%   {left:50px;}
+    0%   {left:0px;}
     100% {left:-120%;}
 }
 /* 왼쪽 메뉴 애니메이션 끝 */
 
 /* 오른쪽 메뉴 애니메이션 시작 */
 .openRightSide {
-/* 	float: right; */
-	display: inline-block; 
-    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: openRightSideMenu;
     animation-duration: 0.5s;
     animation-fill-mode:both;
-    background-color:#080808;
-    color: #3D9D26;
-    opacity: 0.95;
-    border: 3px groove #781706;
-    border-radius: 5px;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openRightSideMenu {
     0%   {right:-120%;}
-    100% {right:50px;}
+    100% {right:0px;}
 }
 
 /* Standard syntax */
 @keyframes openRightSideMenu {
     0%   {right:-120%;}
-    100% {right:50px;}
+    100% {right:0px;}
 }
 .closeRightSide {
-/* 	float: right; */
-	display: inline-block;
-    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: closeRightSideMenu;
     animation-duration: 0.5s;
     animation-fill-mode:both;
-    background-color:#080808;
-    color: #3D9D26;
-    opacity: 0.95;
-    border: 3px groove #781706;
-    border-radius: 5px;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeRightSideMenu {
-    0%   {right:50px;}
+    0%   {right:0px;}
     100% {right:-120%;}
 }
 
 /* Standard syntax */
 @keyframes closeRightSideMenu {
-    0%   {right:50px;}
+    0%   {right:0px;}
     100% {right:-120%;}
 }
 /* 오른쪽 메뉴 애니메이션 끝 */
