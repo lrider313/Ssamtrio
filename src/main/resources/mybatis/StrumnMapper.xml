@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.genius.mapper.StrumnMapper">
+<select id="selectAll" resultType="com.genius.model.Strumn">
+<![CDATA[
+	SELECT STRID,
+		   STRTITLE,
+		   STRCONT,
+		   STRIP,
+		   STRCOUNT,
+		   STRDATE,
+		   BOARDID,
+		   MEMID
+	  FROM STRUMN
+]]>
+</select>
+
+<insert id="insertStr" parameterType="com.genius.model.Strumn">
+<![CDATA[
+	INSERT INTO STRUMN (
+							STRTITLE, 
+							STRCONT, 
+							STRIP, 
+							STRCOUNT, 
+							BOARDID, 
+							MEMID
+						) 
+                VALUES (
+	                		#{strtitle}, 
+	                		#{strcont}, 
+	                		#{strip}, 
+	                		0, 
+	                		#{boardid}, 
+	                		'lrider'
+                		)
+]]>
+</insert>
+</mapper>

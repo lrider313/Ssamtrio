@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+ 
+	<!-- Appender, Layout 설정 -->
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %5p [%c] %m%n"/>
+		</Console>
+		
+<!-- 		<File name="MyFile" fileName="app.log"> -->
+<!-- 	      	<PatternLayout pattern="%d %5p [%c] %m%n"/> -->
+<!-- 	    </File> -->
+	</Appenders>
+ 
+	<!-- Logger 설정 -->
+	<!-- TRACE, DEBUG, INFO, WARN, ERROR, FAFAL -->
+	<Loggers>
+    	<Root level="DEBUG">
+			<AppenderRef ref="console"/>
+<!-- 			<AppenderRef ref="MyFile"/> -->
+		</Root>
+		<Logger name="org.springframework.jdbc.datasource" level="DEBUG">
+    	</Logger>		
+    	<Logger name="com.genius.mapper" level="DEBUG">
+    	</Logger>
+	</Loggers>
+ 
+</Configuration>

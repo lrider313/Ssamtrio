@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+<!-- @Component, @Required, @Autowired, @Inject 처리 -->
+<context:component-scan base-package="com.genius.controller, com.genius.service" />
+
+<!-- 
+DispatcherServlet은 Controller에 Mapping해주는데, 
+해당하는 Controller가 존재하지 않다면, 404 에러를 띄운다. 
+따라서 파일경로로 URL을 지정할 때 해당 경로에 파일이 존재함에도 불구하고 
+해당되는 Controller가 없어서 404에러가 날 수 있다. 
+이런 실존하는 경로에 대한 매핑에 대해 DefaultServlet을 이용하게 하는 옵션이 mvc:default-servlet-handler이다.
+-->
+<mvc:default-servlet-handler />
+
+<!--
+RequestMappingHandlerMapping, RequestMappingHandlerAdapter 두 클래스를 Bean으로 등록.
+위 두 클래스는 @Controller가 적용된 클래스를 컨트롤러로 사용할 수 있도록 해준다.
+이외에도 JSON, XML 등 요청/응답 처리를 위해 필요한 변환 모듈이나 데이터 바인딩 처리를 위한 ConversionService 등을 빈으로 등록.
+-->
+<mvc:annotation-driven />
+
+<!-- contextPath다음의 mapping이 /Ssamtrio/css/**로 시작되면 /WEB-INF/css/폴더에서 해당하는 파일을 실행. -->
+<mvc:resources mapping="/css/*" location="/WEB-INF/css/" />
+<mvc:resources mapping="/js/*" location="/WEB-INF/js/" />
+<mvc:resources mapping="/image/*" location="/WEB-INF/image/" />
+<!-- <mvc:resources mapping="/decorator/**" location="/WEB-INF/decorator/" /> -->
+
+<!-- ViewResolver -->
+<mvc:view-resolvers>
+	<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp" />
+</mvc:view-resolvers>
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+</beans>

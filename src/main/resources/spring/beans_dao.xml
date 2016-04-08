@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- Properties Setting -->
+	<context:property-placeholder location="classpath:/database/db.properties"/>
+	
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${db.className}" />
+		<property name="url" value="${db.jdbcUrl}" />
+		<property name="username" value="${db.user}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	
+	<!-- SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" >
+			<list>
+				<value>classpath:/mybatis/BoardMapper.xml</value>
+				<value>classpath:/mybatis/CartMapper.xml</value>
+				<value>classpath:/mybatis/CsbMapper.xml</value>
+				<value>classpath:/mybatis/CsrpMapper.xml</value>
+				<value>classpath:/mybatis/HistoryMapper.xml</value>
+				<value>classpath:/mybatis/MemberMapper.xml</value>
+				<value>classpath:/mybatis/StrpMapper.xml</value>
+				<value>classpath:/mybatis/StrumfMapper.xml</value>
+				<value>classpath:/mybatis/StrumnMapper.xml</value>
+			</list>
+		</property>
+<!-- 		<property name="typeAliases"> -->
+<!-- 			<list> -->
+<!-- 				<value></value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+	</bean>
+	
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+
+<!-- Mappers -->
+	<!-- MemberMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.MemberMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+	<!-- StrcMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.StrpMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+	<!-- StrumbMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.BoardMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+	<!-- StrumfMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.StrumfMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+	<!-- StrumnMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.StrumnMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+	<!-- CsbMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.CsbMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
+</beans>

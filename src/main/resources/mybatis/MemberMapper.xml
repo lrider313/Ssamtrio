@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.genius.mapper.MemberMapper">
+<select id="signinCheck" parameterType="com.genius.model.Member" resultType="com.genius.model.Member">
+<![CDATA[
+	SELECT MEMNICK,
+		   MEMPW
+	  FROM MEMBER
+	 WHERE MEMID=#{memid}
+	   AND MEMPW=#{mempw}
+]]>
+</select>
+<insert id="signupPro" parameterType="com.genius.model.Member">
+<![CDATA[
+	INSERT INTO MEMBER (
+							MEMID,
+							MEMPW,
+							MEMNAME,
+							MEMNICK,
+							MEMEMAIL,
+							MEMPHONE,
+							MEMADDR
+						)
+				VALUES (
+							#{memid},
+							#{mempw},
+							#{memname},
+							#{memnick},
+							#{mememail},
+							#{memphone, jdbcType=VARCHAR},
+							#{memaddr,  jdbcType=VARCHAR}
+						)
+]]>
+</insert>
+</mapper>
