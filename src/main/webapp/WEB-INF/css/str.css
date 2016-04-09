@@ -1,5 +1,86 @@
 @CHARSET "UTF-8";
 
+
+/* refactoring필요. 중복 많음. */
+/* mainMenu */
+#mainMenu {
+  background: rgba(22, 22, 22, 0.6);
+}
+
+/* leftMenuButton01 */
+.menu01 {
+  display: block;
+  position: relative;
+/*   float: left /* optional */ */
+}
+.menu01 .text {
+  position: absolute;
+  top: 14px; /* in conjunction with left property, decides the text position */
+  left: 80px;
+  width: 160px; /* optional, though better have one */
+  text-align: center;
+/*   첫 글자 색: #96D24B */
+/* 글자 색: #3D9D26 */
+}
+.menu01 .text::first-letter {
+    color: #96D24B;
+    font-size: medium;
+}
+.menu01 .text a:link {text-decoration: none; color: #3D9D26;}
+.menu01 .text a:visited {text-decoration: none; color: #3D9D26;}
+.menu01 .text a:active {text-decoration: none; color: #3D9D26;}
+.menu01 .text a:hover {text-decoration: none; color: #96D24B;}
+
+/* leftMenuButton02 */
+.menu02 {
+  display: block;
+  position: relative;
+/*   float: left /* optional */ */
+}
+.menu02 .text {
+  position: absolute;
+  top: 18px; /* in conjunction with left property, decides the text position */
+  left: 80px;
+  width: 160px; /* optional, though better have one */
+   text-align: center; 
+/*   첫 글자 색: #96D24B */
+/* 글자 색: #3D9D26 */
+}
+.menu02 .text::first-letter {
+    color: #96D24B;
+    font-size: medium;
+}
+.menu02 .text a:link {text-decoration: none; color: #3D9D26;}
+.menu02 .text a:visited {text-decoration: none; color: #3D9D26;}
+.menu02 .text a:active {text-decoration: none; color: #3D9D26;}
+.menu02 .text a:hover {text-decoration: none; color: #96D24B;}
+
+/* leftMenuButton03 */
+.menu03 {
+  display: block;
+  position: relative;
+/*   float: left /* optional */ */
+}
+.menu03 .text {
+  position: absolute;
+  top: 9px; /* in conjunction with left property, decides the text position */
+  left: 80px;
+  width: 160px; /* optional, though better have one */
+   text-align: center; 
+/*   첫 글자 색: #96D24B */
+/* 글자 색: #3D9D26 */
+}
+.menu03 .text::first-letter {
+    color: #96D24B;
+    font-size: medium;
+}
+.menu03 .text a:link {text-decoration: none; color: #3D9D26;}
+.menu03 .text a:visited {text-decoration: none; color: #3D9D26;}
+.menu03 .text a:active {text-decoration: none; color: #3D9D26;}
+.menu03 .text a:hover {text-decoration: none; color: #96D24B;}
+
+/* menuStyle */
+
 .menuStyle {
 /* 	float: left; */
 	display: inline-block; 

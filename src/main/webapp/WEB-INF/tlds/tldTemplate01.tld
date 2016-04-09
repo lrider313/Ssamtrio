@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd ">
+  <!-- (개발자가 정하는)태그 버전 -->
+  <tlib-version>0.0</tlib-version>
+  <!-- 태그명 -->  
+  <short-name></short-name>
+  <!-- 태그설명(옵션) -->
+  <description></description>
+  
+  <tag>
+	<!-- prefix:'tag name' -->
+  	<name></name>
+  	<!-- tag에 관한 java class 설정 -->
+  	<tag-class></tag-class>
+  	<!-- 태그의 타입 설정. 
+  		 empty면 빈태그/
+  		 scriptless면  시작태그, 끝태그. EL요소나 action tag의 처리 결과 사용/
+  		 tagdependent면 태그 핸들러에 의해 처리(다른 커스텀 태그가 올 수 있다)-->
+  	<body-content></body-content>
+  	<!-- tag-class에 지정한 핸들러 java클래스에서 'name' 값의 필드를 갖는 setter메소드를 만들어야함. -->
+  	<attribute>
+  		<!-- tag-class에 지정한 핸들러 java클래스의 필드로 사용 -->
+  		<name></name>
+  		
+  		<!-- 필수로 설정해야하는 속성인가? -->
+  		<required>true</required>
+  		
+  		<!-- 표션식<%=%> 사용 가능 여부 -->
+  		<rtexprvalue>true</rtexprvalue>
+  		
+  		<!-- 전달받는 값의 타입을 지정가능하다. 패키지명을 포함한 풀 경로를 써야함. ex. java.lang.Object, java.lang.Integer, java.lang.String -->
+  		<type></type>
+  	</attribute>
+  	
+  	<!-- attribute를 여러개 지정 가능. -->
+  	<attribute>
+  		<name></name>
+  		<required>true</required>
+  		<rtexprvalue>false</rtexprvalue>
+  	</attribute>
+  </tag>
+</taglib>

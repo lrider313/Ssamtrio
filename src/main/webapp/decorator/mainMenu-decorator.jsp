@@ -13,10 +13,10 @@
 <sitemesh:write property='head'/>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" id="mainMenu">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="../strboard/list.str"><img alt="starcraftLogo" src="/Ssamtrio/image/StarCraft_Logo.png" id="mainLogo" /></a>
+      <a class="navbar-brand" href="../main/"><img alt="starcraftLogo" src="/Ssamtrio/image/StarCraft_Logo.png" id="mainLogo" /></a>
     </div>
     <ul class="nav navbar-nav">
 <!--       <li class="active"><a href="../strboard/list.str">Home</a></li> -->
