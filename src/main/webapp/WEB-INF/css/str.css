@@ -1,86 +1,117 @@
 @CHARSET "UTF-8";
 
+/*
+** a tag style 
+*/
+a:link {text-decoration: none; color: #3D9D26; }
+a:visited {text-decoration: none; color: #3D9D26; }
+a:active {text-decoration: none; color: #3D9D26; }
+a:hover {text-decoration: none; color: #96D24B; }
 
-/* refactoring필요. 중복 많음. */
-/* mainMenu */
+/*
+** mainMenu 
+*/
 #mainMenu {
-  background: rgba(22, 22, 22, 0.6);
+  background: rgba(22, 22, 22, 0.6); /* background에만 opacity를 주기 위해 사용 */
+}
+
+/*
+** mainLogo 
+*/
+#mainLogo {
+  display: block;
+  margin: 0px auto;
+  height: 20px;
+}
+
+/*
+** body 
+*/
+body {
+  background-image: url("../image/background_image.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: black;
+  background-position: 50% 0;
+  background-size: cover;
+  color: #3D9D26; 
+}
+
+/*
+** menuButton 
+*/
+/* menu01, menu02, menu03, menu04, menu05, menu06 공통 */
+.menu01, .menu02, .menu03, .menu04, .menu05, .menu06 {
+    position: relative;
+}
+.menu01 .text, .menu02 .text, .menu03 .text, .menu04 .text, .menu05 .text, .menu06 .text {
+  position: absolute;
+  text-align: center;
+}
+/*   첫 글자 색: #96D24B */
+/* 글자 색: #3D9D26 */
+.menu01 .text::first-letter, .menu02 .text::first-letter, .menu03 .text::first-letter, .menu04 .text::first-letter, .menu05 .text::first-letter, .menu06 .text::first-letter  {
+    color: #96D24B;
+    font-size: medium;
+}
+
+/* leftMenuButton 공통 */
+.menu01, .menu02, .menu03 {
+  clear: left;
+  float: left;
+}
+
+/* rightMenuButton 공통 */
+.menu04, .menu05, .menu06 {
+  clear: right;
+  float: right;
 }
 
 /* leftMenuButton01 */
-.menu01 {
-  display: block;
-  position: relative;
-/*   float: left /* optional */ */
-}
 .menu01 .text {
-  position: absolute;
   top: 14px; /* in conjunction with left property, decides the text position */
   left: 80px;
   width: 160px; /* optional, though better have one */
-  text-align: center;
-/*   첫 글자 색: #96D24B */
-/* 글자 색: #3D9D26 */
 }
-.menu01 .text::first-letter {
-    color: #96D24B;
-    font-size: medium;
-}
-.menu01 .text a:link {text-decoration: none; color: #3D9D26;}
-.menu01 .text a:visited {text-decoration: none; color: #3D9D26;}
-.menu01 .text a:active {text-decoration: none; color: #3D9D26;}
-.menu01 .text a:hover {text-decoration: none; color: #96D24B;}
 
 /* leftMenuButton02 */
-.menu02 {
-  display: block;
-  position: relative;
-/*   float: left /* optional */ */
-}
 .menu02 .text {
-  position: absolute;
-  top: 18px; /* in conjunction with left property, decides the text position */
+  top: 18px;
   left: 80px;
-  width: 160px; /* optional, though better have one */
-   text-align: center; 
-/*   첫 글자 색: #96D24B */
-/* 글자 색: #3D9D26 */
+  width: 180px;
 }
-.menu02 .text::first-letter {
-    color: #96D24B;
-    font-size: medium;
-}
-.menu02 .text a:link {text-decoration: none; color: #3D9D26;}
-.menu02 .text a:visited {text-decoration: none; color: #3D9D26;}
-.menu02 .text a:active {text-decoration: none; color: #3D9D26;}
-.menu02 .text a:hover {text-decoration: none; color: #96D24B;}
 
 /* leftMenuButton03 */
-.menu03 {
-  display: block;
-  position: relative;
-/*   float: left /* optional */ */
-}
 .menu03 .text {
-  position: absolute;
-  top: 9px; /* in conjunction with left property, decides the text position */
-  left: 80px;
-  width: 160px; /* optional, though better have one */
-   text-align: center; 
-/*   첫 글자 색: #96D24B */
-/* 글자 색: #3D9D26 */
+  top: 9px;
+  left: 65px;
+  width: 160px;
 }
-.menu03 .text::first-letter {
-    color: #96D24B;
-    font-size: medium;
+
+/* rightMenuButton01 */
+.menu04 .text {
+  top: 14px;
+  left: 7px;
+  width: 170px;
 }
-.menu03 .text a:link {text-decoration: none; color: #3D9D26;}
-.menu03 .text a:visited {text-decoration: none; color: #3D9D26;}
-.menu03 .text a:active {text-decoration: none; color: #3D9D26;}
-.menu03 .text a:hover {text-decoration: none; color: #96D24B;}
 
-/* menuStyle */
+/* rightMenuButton02 */
+.menu05 .text {
+  top: 18px;
+  left: 7px;
+  width: 225px;
+}
 
+/* rightMenuButton03 */
+.menu06 .text {
+  top: 10px;
+  left: 7px;
+  width: 185px;
+}
+
+/*
+** menuStyle 
+*/
 .menuStyle {
 /* 	float: left; */
 	display: inline-block; 
@@ -91,6 +122,14 @@
     border-radius: 5px;
 }
 
+.menuStyle::first-letter {
+  color: #96D24B;
+  font-size: medium;
+}
+
+/*
+** Animation
+*/
 /* 왼쪽 메뉴 애니메이션 시작 */
 .openLeftSide {
     position: relative;
@@ -103,13 +142,13 @@
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openLeftSideMenu {
     0%   {left:-120%;}
-    100% {left:0px;}
+    100% {left:0%;}
 }
 
 /* Standard syntax */
 @keyframes openLeftSideMenu {
     0%   {left:-120%;}
-    100% {left:0px;}
+    100% {left:0%;}
 }
 .closeLeftSide {
     position: relative;
@@ -121,19 +160,20 @@
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeLeftSideMenu {
-    0%   {left:0px;}
+    0%   {left:0%;}
     100% {left:-120%;}
 }
 
 /* Standard syntax */
 @keyframes closeLeftSideMenu {
-    0%   {left:0px;}
+    0%   {left: 0%;}
     100% {left:-120%;}
 }
 /* 왼쪽 메뉴 애니메이션 끝 */
 
 /* 오른쪽 메뉴 애니메이션 시작 */
 .openRightSide {
+    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: openRightSideMenu;
@@ -143,15 +183,16 @@
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openRightSideMenu {
     0%   {right:-120%;}
-    100% {right:0px;}
+    100% {right:0%;}
 }
 
 /* Standard syntax */
 @keyframes openRightSideMenu {
     0%   {right:-120%;}
-    100% {right:0px;}
+    100% {right:0%;}
 }
 .closeRightSide {
+    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
     animation-name: closeRightSideMenu;
@@ -160,32 +201,13 @@
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeRightSideMenu {
-    0%   {right:0px;}
+    0%   {right:0%;}
     100% {right:-120%;}
 }
 
 /* Standard syntax */
 @keyframes closeRightSideMenu {
-    0%   {right:0px;}
+    0%   {right:0%;}
     100% {right:-120%;}
 }
 /* 오른쪽 메뉴 애니메이션 끝 */
-
-body {
-  background-image: url("../image/background_image.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-color: black;
-  background-position: 50% 0;
-  background-size: cover;
-  color: #3D9D26; 
-}
-label {
-  width: 300px;
-}
-
-#mainLogo {
-  display: block;
-  margin: 0px auto;
-  height: 20px;
-}

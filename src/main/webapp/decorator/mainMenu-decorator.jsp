@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쌈박한트리오<sitemesh:write property='title'/></title>
+<title>쌈박한트리오 - <sitemesh:write property='title'/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/Ssamtrio/css/str.css" />

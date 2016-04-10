@@ -20,6 +20,7 @@ $(document).ready(function() {
 <body>
 <form name="strumnForm" action="insertStrumn.str" id="insertStrumn">
 <div class="openLeftSide">
+<div class="menuStyle">
 	<label id="strtitle">맵이름</label>
 		<input type="text" name="strtitle" id="strtitle" /><br>
 	<label id="strcont">맵설명</label>
@@ -30,6 +31,7 @@ $(document).ready(function() {
 				<option value="${bId.boardid}">${bId.boardtitle}</option>
 			</c:forEach>
 		</select><br>
+</div>
 </div>
 <br><br>
 <div class="openLeftSide">

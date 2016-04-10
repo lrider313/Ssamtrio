@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	$("#changePage").click(function() {
+	$(".changePage").click(function() {
 		$(".openLeftSide").attr("class", "closeLeftSide");
 		$(".openRightSide").attr("class", "closeRightSide");
 	});
@@ -18,7 +18,7 @@ $(document).ready(function() {
 </head>
 <body>
 <div class="openLeftSide">
-	<table>
+	<table class="menuStyle">
 		<c:forEach items="${list}" var="l">
 		<tr>
 			<td>${l.strtitle}</td>
@@ -30,7 +30,9 @@ $(document).ready(function() {
 </div>
 <br><br>
 <div class="openLeftSide">
-	<a href="write.str" id="changePage">글작성</a>
+	<div class="menuStyle">
+		<a href="write.str" class="changePage">글작성</a>
+	</div>
 </div>
 </body>
 </html>

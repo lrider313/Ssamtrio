@@ -33,7 +33,6 @@
   		<rtexprvalue>true</rtexprvalue>
   		<type>java.lang.String</type>
   	</attribute>
-  	
   	<attribute>
   		<name>value</name>
   		<required>true</required>
@@ -52,7 +51,60 @@
   		<rtexprvalue>true</rtexprvalue>
   		<type>java.lang.String</type>
   	</attribute>
-  	
+  	<attribute>
+  		<name>value</name>
+  		<required>true</required>
+  		<rtexprvalue>false</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
+  </tag>
+  
+  <tag>
+  	<name>rightMenuButton01</name>
+  	<tag-class>com.genius.tags.menu04</tag-class>
+  	<body-content>empty</body-content>
+  	<attribute>
+  		<name>uri</name>
+  		<required>true</required>
+  		<rtexprvalue>true</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
+  	<attribute>
+  		<name>value</name>
+  		<required>true</required>
+  		<rtexprvalue>false</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
+  </tag>
+  
+  <tag>
+  	<name>rightMenuButton02</name>
+  	<tag-class>com.genius.tags.menu05</tag-class>
+  	<body-content>empty</body-content>
+  	<attribute>
+  		<name>uri</name>
+  		<required>true</required>
+  		<rtexprvalue>true</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
+  	<attribute>
+  		<name>value</name>
+  		<required>true</required>
+  		<rtexprvalue>false</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
+  </tag>
+  
+  <tag>
+  	<name>rightMenuButton03</name>
+  	<tag-class>com.genius.tags.menu06</tag-class>
+  	<body-content>empty</body-content>
+  	<attribute>
+  		<name>uri</name>
+  		<required>true</required>
+  		<rtexprvalue>true</rtexprvalue>
+  		<type>java.lang.String</type>
+  	</attribute>
   	<attribute>
   		<name>value</name>
   		<required>true</required>
