@@ -23,6 +23,11 @@ a:hover {text-decoration: none; color: #96D24B; }
   margin: 0px auto;
   height: 20px;
 }
+#mainLogo:hover {
+  filter: brightness(150%);
+  -moz-filter: brightness(150%);
+  -webkit-filter: brightness(150%);
+}
 
 /*
 ** body 
@@ -114,12 +119,21 @@ body {
 */
 .menuStyle {
 /* 	float: left; */
-	display: inline-block; 
-    background-color:#080808;
-    color: #3D9D26;
-    opacity: 0.95;
-    border: 3px groove #781706;
-    border-radius: 5px;
+  margin-left: 50px;
+  display: inline-block; 
+  background-color:#080808;
+  color: #3D9D26;
+  opacity: 0.95;
+  border: 3px groove #781706;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.menuStyle label span {
+  display: inline-block;
+  width: 100px;
+  clear: left;
+  float: left;
 }
 
 .menuStyle::first-letter {
@@ -127,17 +141,22 @@ body {
   font-size: medium;
 }
 
+.openLeftSide, .closeLeftSide, .openRightSide, .closeRightSide {
+  position: relative;
+  -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+  -moz-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode:both;
+}
+
 /*
 ** Animation
 */
 /* 왼쪽 메뉴 애니메이션 시작 */
 .openLeftSide {
-    position: relative;
     -webkit-animation-name: openLeftSideMenu; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+    -moz-animation-name: openLeftSideMenu;
     animation-name: openLeftSideMenu;
-    animation-duration: 0.5s;
-    animation-fill-mode:both;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openLeftSideMenu {
@@ -151,12 +170,9 @@ body {
     100% {left:0%;}
 }
 .closeLeftSide {
-    position: relative;
     -webkit-animation-name: openLeftSideMenu; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+    -moz-animation-name: openLeftSideMenu;
     animation-name: closeLeftSideMenu;
-    animation-duration: 0.5s;
-    animation-fill-mode:both;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeLeftSideMenu {
@@ -173,12 +189,9 @@ body {
 
 /* 오른쪽 메뉴 애니메이션 시작 */
 .openRightSide {
-    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+    -moz-animation-name: openRightSidemenu;
     animation-name: openRightSideMenu;
-    animation-duration: 0.5s;
-    animation-fill-mode:both;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes openRightSideMenu {
@@ -192,12 +205,9 @@ body {
     100% {right:0%;}
 }
 .closeRightSide {
-    position: relative;
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+    -moz-animation-name: openRightSideMenu;
     animation-name: closeRightSideMenu;
-    animation-duration: 0.5s;
-    animation-fill-mode:both;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes closeRightSideMenu {
