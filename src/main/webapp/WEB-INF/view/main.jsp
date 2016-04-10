@@ -30,7 +30,6 @@
 .menu04 .text a:active {text-decoration: none; color: #3D9D26;}
 .menu04 .text a:hover {text-decoration: none; color: #96D24B;}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
 	$(".changePage").click(function() {
@@ -41,9 +40,10 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<menu:leftMenuButton01 uri="../strboard/list.str" value="입력해주세요1."/>
-<menu:rightMenuButton01 uri="../strboard/list.str" value="입력해주세요4."/>
+<!-- 좌우 번갈아서 써야한다. -->
 <menu:leftMenuButton02 uri="../strboard/list.str" value="입력해주세요2."/>
+<menu:rightMenuButton01 uri="../strboard/list.str" value="입력해주세요4."/>
+<menu:leftMenuButton01 uri="../strboard/list.str" value="입력해주세요1."/>
 <menu:rightMenuButton02 uri="../strboard/list.str" value="입력해주세요5."/>
 <menu:leftMenuButton03 uri="../strboard/list.str" value="입력해주세요3."/>
 <menu:rightMenuButton03 uri="../strboard/list.str" value="입력해주세요6."/>
