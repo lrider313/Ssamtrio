@@ -16,6 +16,9 @@ public class Csb {
 	public void setCsid(Integer csid) {
 		this.csid = csid;
 	}
+	public Integer getCsid() {
+		return csid;
+	}
 	public Integer getCstype() {
 		return cstype;
 	}
