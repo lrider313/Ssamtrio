@@ -23,12 +23,12 @@
 <!--       <li class="active"><a href="../strboard/list.str">Home</a></li> -->
       <li><a href="../main/" class="changePage">공지사항</a></li> 
       <li><a href="../strboard/list.str" class="changePage">맵자료실</a></li> 
-      <li><a href="../main/" class="changePage">프리보드</a></li> 
-      <li><a href="../main/" class="changePage">포토보드</a></li> 
+      <li><a href="../gallery/view_gallery" class="changePage">프리보드</a></li> 
+      <li><a href="../gallery/view_igallery" class="changePage">포토보드</a></li> 
       <li><a href="../main/" class="changePage">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    	<li><a href="../main/" class="changePage">장바구니</a></li> 
+    	<li><a href="../cart/view_cart" class="changePage">장바구니</a></li> 
     <c:if test="${!empty sessionScope.member.memnick}">
 		<li><a href="#">${sessionScope.member.memnick }</a></li>
 		<li><a href="../main/" class="changePage">로그아웃</a></li>
