@@ -24,6 +24,17 @@ RequestMappingHandlerMapping, RequestMappingHandlerAdapter 두 클래스를 Bean
 이외에도 JSON, XML 등 요청/응답 처리를 위해 필요한 변환 모듈이나 데이터 바인딩 처리를 위한 ConversionService 등을 빈으로 등록.
 -->
 <mvc:annotation-driven />
+<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" /> 
+ <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+      <property name="favorPathExtension" value="false" />
+      <property name="favorParameter" value="true" />
+      <property name="mediaTypes" >
+           <value>
+                json=application/json
+                xml=application/xml
+           </value>
+      </property>
+ </bean>
 
 <!-- contextPath다음의 mapping이 /Ssamtrio/css/**로 시작되면 /WEB-INF/css/폴더에서 해당하는 파일을 실행. -->
 <mvc:resources mapping="/css/*" location="/WEB-INF/css/" />

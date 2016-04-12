@@ -119,7 +119,7 @@ body {
 */
 .menuStyle {
 /* 	float: left; */
-  margin-left: 50px;
+  margin: 0px 50px 50px 50px;
   display: inline-block; 
   background-color:#080808;
   color: #3D9D26;
@@ -136,11 +136,41 @@ body {
   float: left;
 }
 
-.menuStyle::first-letter {
-  color: #96D24B;
-  font-size: medium;
+.mapCtgrDesc, .mapFileDesc {
+  color: silver;
+  font-size: 25px;
 }
 
+.mapCtgr {
+  width: 420px;
+  height: 200px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  border: 3px groove #781706;
+  border-radius: 5px;
+}
+
+.mapCtgr ul li {
+  list-style-type: none;
+  display: block;
+  font-size: 20px;
+}
+
+.mapCtgr ul li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e118";
+    font-family: 'Glyphicons Halflings';
+    font-size: 13px;
+    float: left;
+    margin-top: 6px;
+    margin-left: -17px;
+    color: #EBAA2A;
+}
+
+/*
+** Animation
+*/
+/* 공통 사항 */
 .openLeftSide, .closeLeftSide, .openRightSide, .closeRightSide {
   position: relative;
   -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
@@ -148,11 +178,12 @@ body {
   animation-duration: 0.5s;
   animation-fill-mode:both;
 }
-
-/*
-** Animation
-*/
 /* 왼쪽 메뉴 애니메이션 시작 */
+.openLeftSide, .closeLeftSide {
+  clear: left;
+  float: left;
+}
+
 .openLeftSide {
     -webkit-animation-name: openLeftSideMenu; /* Chrome, Safari, Opera */
     -moz-animation-name: openLeftSideMenu;
@@ -188,6 +219,11 @@ body {
 /* 왼쪽 메뉴 애니메이션 끝 */
 
 /* 오른쪽 메뉴 애니메이션 시작 */
+.openRightSide, .closeRightSide {
+  clear: right;
+  float: right;
+}
+
 .openRightSide {
     -webkit-animation-name: openRightSideMenu; /* Chrome, Safari, Opera */
     -moz-animation-name: openRightSidemenu;
@@ -221,3 +257,18 @@ body {
     100% {right:-120%;}
 }
 /* 오른쪽 메뉴 애니메이션 끝 */
+
+/*
+** jScrollPane
+*/
+.jspVerticalBar {
+   width: 8px;
+}
+.jspTrack {
+   width: 8px;
+   background-color: silver;
+}
+.jspDrag {
+   width: 18px;
+   background-color: #781706;
+}

@@ -8,8 +8,16 @@
 <meta charset="UTF-8">
 <title>쌈박한트리오 - <sitemesh:write property='title'/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- jQuery_google -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="/Ssamtrio/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="/Ssamtrio/js/jquery.jscrollpane.min.js"></script>
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="/Ssamtrio/js/jquery.mousewheel.js"></script>
 <link rel="stylesheet" type="text/css" href="/Ssamtrio/css/str.css" />
 <sitemesh:write property='head'/>
 </head>

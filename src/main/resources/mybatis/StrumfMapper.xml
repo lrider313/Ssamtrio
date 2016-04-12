@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.genius.mapper.StrumfMapper">
+<select id="selectByStrid" parameterType="Integer" resultType="com.genius.model.Strumf">
+<![CDATA[
+	SELECT MAPID,
+		   MAPNAME,
+		   MAPCOUNT,
+		   MAPMINN,
+		   MAPMAXN,
+		   MAPVER,
+		   MAPCRT,
+		   MAPMANA,
+		   STRID
+	  FROM STRUMF
+	 WHERE STRID=#{strid}
+]]>
+</select>
+<insert id="uploadSMF" parameterType="com.genius.model.Strumf">
+<![CDATA[
+	INSERT INTO STRUMF(
+						MAPNAME,
+						MAPMINN,
+						MAPMAXN,
+						MAPVER,
+						MAPCRT,
+						MAPMANA,
+						STRID
+					  )
+				VALUES(
+						#{mapname},
+						#{mapminn},
+						#{mapmaxn},
+						#{mapver},
+						#{mapcrt jdbcType=VARCHAR},
+						#{mapmana},
+						#{strid}
+					  )
+]]>
+</insert>
 </mapper>
