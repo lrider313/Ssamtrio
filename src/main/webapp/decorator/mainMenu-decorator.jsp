@@ -8,8 +8,16 @@
 <meta charset="UTF-8">
 <title>쌈박한트리오 - <sitemesh:write property='title'/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- jQuery_google -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- styles needed by jScrollPane -->
+<link type="text/css" href="/Ssamtrio/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="/Ssamtrio/js/jquery.jscrollpane.min.js"></script>
+<!-- the mousewheel plugin - optional to provide mousewheel support -->
+<script type="text/javascript" src="/Ssamtrio/js/jquery.mousewheel.js"></script>
 <link rel="stylesheet" type="text/css" href="/Ssamtrio/css/str.css" />
 <sitemesh:write property='head'/>
 </head>
@@ -23,9 +31,9 @@
 <!--       <li class="active"><a href="../strboard/list.str">Home</a></li> -->
       <li><a href="../main/" class="changePage">공지사항</a></li> 
       <li><a href="../strboard/list.str" class="changePage">맵자료실</a></li> 
-      <li><a href="../gallery/view_gallery" class="changePage">프리보드</a></li> 
-      <li><a href="../gallery/view_igallery" class="changePage">포토보드</a></li> 
-      <li><a href="../main/" class="changePage">고객센터</a></li>
+      <li><a href="../gallery/view_gallery.str" class="changePage">프리보드</a></li> 
+      <li><a href="../gallery/view_igallery.str" class="changePage">포토보드</a></li> 
+      <li><a href="../main/" class="changePage.str">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<li><a href="../cart/view_cart" class="changePage">장바구니</a></li> 

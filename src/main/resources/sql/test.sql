@@ -1,18 +1,18 @@
-INSERT INTO CSBOARD (
-						CSTYPE,
-						CSTITLE,
-						CSCONT,
-						CSIP,
-						CSFILE,
-						BOARDID,
-						MEMID
-					)
-			 VALUES (
-			 			'1',
-			 			'title',
-			 			'content',
-			 			'123.123.123.123',
-			 			'file',
-			 			'2',
-			 			'5'
-			 		)
+	INSERT INTO STRUMF(
+						MAPNAME,
+						MAPMINN,
+						MAPMAXN,
+						MAPVER,
+						MAPCRT,
+						MAPMANA,
+						STRID
+					  )
+				VALUES(
+						'벌처컨트롤 신의 난이도',
+						2,
+						6,
+						'1.2.3',
+						null,
+						'n',
+						1
+					  )

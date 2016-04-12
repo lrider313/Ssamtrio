@@ -23,4 +23,39 @@ INSERT INTO CSBOARD (
 			 		)
 ]]>
 </insert>
+<select id="selectCs" resultType="com.genius.model.Csb">
+SELECT CSID,
+		CSTITLE,
+		MEMID,
+		CSCONT,
+		CSDATE,
+		CSTYPE
+		FROM CSBOARD
+</select>
+
+<select id="selectById" resultType="com.genius.model.Csb" parameterType="Integer">
+SELECT 					CSID,
+						CSTYPE,
+						CSTITLE,
+						CSCONT,
+						CSIP,
+						CSFILE,
+						BOARDID,
+						MEMID
+						FROM CSBOARD
+						WHERE CSID= #{csid}
+</select>
+<!-- 여기로 던짐  파라미터 타입이 그거임 --> 
+<update id="updateCs" parameterType="com.genius.model.Csb">
+				
+				
+UPDATE CSBOARD SET 
+						CSTITLE=#{cstitle},
+						CSCONT=#{cscont},
+					 	CSTYPE=#{cstype}
+				WHERE  CSID=#{csid}
+				
+
+
+</update>
 </mapper>
