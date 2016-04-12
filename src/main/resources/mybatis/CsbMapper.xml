@@ -45,15 +45,16 @@ SELECT 					CSID,
 						FROM CSBOARD
 						WHERE CSID= #{csid}
 </select>
-
+<!-- 여기로 던짐  파라미터 타입이 그거임 --> 
 <update id="updateCs" parameterType="com.genius.model.Csb">
+				
+				
 UPDATE CSBOARD SET 
-						CSTYPE=#{cstype},
 						CSTITLE=#{cstitle},
 						CSCONT=#{cscont},
-						CSFILE=#{csfile},
-						BOARDID=#{boardid}
+					 	CSTYPE=#{cstype}
 				WHERE  CSID=#{csid}
+				
 
 
 </update>

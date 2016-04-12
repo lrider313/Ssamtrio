@@ -8,8 +8,14 @@
 <title>serviceForm.jsp</title>
 </head>
 <body>
+<!-- 1번 시작할떄 
+시작할떄부터 csb 라는 모델로 담아서 페이지를 부름(어트르부트) 
+그담에 csb 를 인스턴스해서 객체화시킴 
+그담에 action 으로 서비스update로 던짐  
+ -->
 <% Csb csb = (Csb) request.getAttribute("csb");%>
-<form method="post" action="serviceSelectForm.str?csid=${csid }" enctype="multipart/form-data">
+<form method="post" action="serviceUpdate.str" enctype="multipart/form-data">
+<input type="hidden" name="csid" value="${csb.csid }">
 	<div>
 		<table class="menuStyle">
 			<tr>
@@ -29,11 +35,11 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" style="width: 420px;" value="${csb.cstitle}"></td>
+				<td><input type="text"  name="cstitle" style="width: 420px;" value="${csb.cstitle}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="50" >${csb.cscont}</textarea></td>
+				<td><textarea rows="15" cols="50" name="cscont"> ${csb.cscont}</textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>

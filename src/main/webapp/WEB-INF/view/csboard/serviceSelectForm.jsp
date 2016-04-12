@@ -10,7 +10,7 @@
 <title>serviceForm.jsp</title>
 </head>
 <body>
-	<form method="post" action="serviceUpdateForm.str?csid=${csb.csid }">
+	<form method="post" action="serviceUpdateForm.str?csid=${csb.csid}">
 		<div class="openLeftSide" style="display: inline-block;">
 			<table class="menuStyle">
 				<tr>
