@@ -2,6 +2,7 @@ package com.genius.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,5 +34,22 @@ public class CsbService {
 		}
 		return csbmapper.insertCs(csb);
 	}
+	
+	@Transactional
+	public List<Csb> selectCs(){
+		return csbmapper.selectCs();
+	}
+	
+	@Transactional
+	public Csb selectById(Integer csid){
+		return csbmapper.selectById(csid);
+	}
+	
+	@Transactional
+	public int updateCs(Csb csb){
+		return csbmapper.updateCs(csb);
+	}
+	
+	
 
 }

@@ -31,23 +31,30 @@ public class CsController {
 	@RequestMapping(value="/servicePro.str", method=RequestMethod.POST)
 	public String servicePro(MultipartFile file, HttpServletRequest request, Csb csb) {
 		if(csbservice.insertCs(file, request, csb)==1) {
-			return "redirect:/strboard/list.str";
+			return "redirect:/csboard/serviceList.str";
 		}
-		return "redirect:/csboard/serviceList.str";
+		return "redirect:/csboard/serviceForm.str";
+	}
+	
+	@RequestMapping("/serviceUpdateForm.str")
+	public ModelAndView serviceUpdateForm(Integer csid) {
+		return new ModelAndView("csboard/serviceUpdateForm").addObject("csb", csbservice.selectById(csid));
 	}
 	
 	@RequestMapping("/serviceUpdate.str")
-	public String serviceUpdate() {
-		return "csboard/serviceUpdate";
-		
+	public String serviceUpdate(Csb csb, Integer csid) {
+		return "csboard/serviceSelectForm";
 	}
 	
 	@RequestMapping("/serviceList.str")
-	public String serviceList() {
-		return "csboard/serviceList";
+	public ModelAndView serviceList() {
+		return new ModelAndView("csboard/serviceList").addObject("csb", csbservice.selectCs());
 		
 	}
 	
-	
-	
+	@RequestMapping("/serviceSelectForm.str")
+	public ModelAndView serviceSelectForm(int csid) {
+		//System.out.println(csid);
+		return new ModelAndView("csboard/serviceSelectForm").addObject("csb", csbservice.selectById(csid));
+	}
 }
