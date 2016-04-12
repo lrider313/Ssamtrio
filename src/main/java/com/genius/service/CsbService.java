@@ -2,6 +2,7 @@ package com.genius.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,5 +34,38 @@ public class CsbService {
 		}
 		return csbmapper.insertCs(csb);
 	}
+	
+	@Transactional
+	public List<Csb> selectCs(){
+		return csbmapper.selectCs();
+	}
+	
+	@Transactional
+	public Csb selectById(Integer csid){
+		return csbmapper.selectById(csid);
+	}
+	
+	@Transactional
+	public int updateCs(Csb csb){
+		//동일 하게 모델 csb 선언한거로 받음 
+		/*
+		csb.setCsip(request.getRemoteAddr());
+		csb.setCsfile(file.getOriginalFilename());
+		if (file.getSize() > 0) {
+			File saveFile = new File("C:/temp", file.getOriginalFilename());
+			try {
+				file.transferTo(saveFile);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		*/
+		//매퍼인가 먼가 여기에 업데이트cs로 던짐 
+		// 굳이 왜 나눈진 모르겟음...
+		//암튼 위에 임포트 시킨거로 보고 임포트시킨 매퍼에 업데이트cs로 던짐 통쨰로 
+		return csbmapper.updateCs(csb);
+	}
+	
+	
 
 }
