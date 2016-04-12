@@ -20,6 +20,9 @@ public class StrumfService {
 	
 	@Transactional
 	public int uploadSMF(MultipartFile mapFile, Strumf strumf) {
-		return uploadSMF(strumf);
+		if(mapFile.getSize()>0) {
+			mapFile.getOriginalFilename();
+		}
+		return uploadSMF(mapFile, strumf);
 	}
 }
