@@ -25,10 +25,9 @@ $(document).ready(function(){
 <body>
 	<form action="#">
 		<p>
-			<label><input type="checkbox" id="checkAll" /> Check!</label>
+			<label><input type="checkbox" id="checkAll" /> 전체선택/해제</label>
 		</p>
 		<fieldset>
-			<legend>야 된다!</legend>
 			<c:forEach var="i" begin="1" end="10" step="1">
 				<p>
 					<label><input type="checkbox" /> File ${i}</label>

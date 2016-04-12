@@ -78,31 +78,43 @@
 		$('#input_file').setPreview(opt);
 	});
 
-	$(document).ready(function(){
-		$("#writeButton").click(function(){
-			alert($("#container").attr("container"));
-		})
-	})
+	$(document).ready(function() {
+	$(".changePage").click(function() {
+		$(".openLeftSide").attr("class", "closeLeftSide");
+		$(".openRightSide").attr("class", "closeRightSide");
+		$('#insertStrumn').submit();
+	});
+});
+	$(window).load(function(){
+	    $('#fbcont1').on('blur', function() {
+	        $('#fbcont').empty().append($(this).html());
+	    });
+	});
 </script>
 <style>
-table { 
-  width:1200px;
-  border-collapse: collapse; 
-  
+table {
+	width: 1200px;
+	border-collapse: collapse;
+}
+
+div#fbcont1 {
+	text-transform: uppercase;
 }
 /* Zebra striping */
-tr:nth-of-type(odd) { 
-  background: #black; 
+tr:nth-of-type(odd) {
+	background: #black;
 }
-th { 
-  background: #333; 
-  color: white; 
-  font-weight: normal; 
+
+th {
+	background: #333;
+	color: white;
+	font-weight: normal;
 }
-td, th { 
-  padding: 6px; 
-  border: 1px solid red; 
-  text-align: left; 
+
+td, th {
+	padding: 6px;
+	border: 1px solid red;
+	text-align: left;
 }
 
 .a {
@@ -113,41 +125,41 @@ span {
 	margin-left: 270px;
 }
 
-#container {
-	background-color: black;
-	height: 400px;
-	margin: 0 auto;
-	padding: 8px;
-}
 /* textarea {display:none}; */
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="writeTable" action="view_gallery" method="post">
-	<div id="#openLeftSide">
-		<table name="t1">
-			<tr>
-				<td>제목</td>
-				<td><input  type="text" name="title" value="제목"  ></td>
-				<td>${ipaddress}ip</td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-					<div rows="40" cols="15"id="container" contentEditable="true"></div>
-			<tr>
+	<form id="insertFboard" action="insertFboard.str">
+		<div class="openLeftSide">
+			<div class="menuStyle">
+				<table name="t1">
+					<tr>
+						<td>제목</td>
+						<td><div id="fbtitle" contentEditable="true"  style="padding:1 1 1 1; overflow:auto;"></div>
+						<input type="text" name="fbtitle"></input></td>
+						<td>${ipaddress}ip</td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td>
+							<div id="fbcont1"  contentEditable="true" style="height:200px; padding:1 1 1 1;font-size:9pt; overflow:auto;"></div>
+							<textarea name="fbcont"></textarea> <tr>
 				<td>파일첨부</td>
 				<td><input type="file" id="input_file" /> <br /> <img
-					id="img_preview" style="display: none;" /></td>
+							id="img_preview" style="display: none;" /></td>
 			</tr>
 			</td>
 			</tr>
 		</table>
+<!-- <label id="fbtitle"><span>제목</span></label> -->
+<!-- <label id="fbcont"><span>내용</span></label> -->
+<!-- <label id="file">첨부파일<input type="file" id="input_file" /> <br /> <img  -->
+			<!--  					id="img_preview" style="display: none;" /></label> -->
 		</div>
+		</div>
+	<span><input type="submit" value="입력"> &nbsp;&nbsp; </span>
 	</form>
-	<textarea name="hide"></textarea>
 	<button onclick="location='view_gallery'">취소</button>
-	<span><button id="writeButton">글작성</button></span>
 </body>
 </html>

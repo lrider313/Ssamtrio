@@ -1,5 +1,10 @@
 package com.genius.mapper;
 
-public interface FbMapper {
+import java.util.List;
 
+import com.genius.model.Fb;
+
+public interface FbMapper {
+	List<Fb> selectFboard();
+	void insertFb(Fb fb);
 }

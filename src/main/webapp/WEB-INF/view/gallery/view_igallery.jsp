@@ -44,14 +44,8 @@ span {
 <title>wtr</title>
 </head>
 <body>
-	<input type="button" value="장바구니" class="input_button"
-		onclick="location='/Ssamtrio/hbboard/cart/view_cart'">
 	<h1 align="center">이미지게시판</h1>
 	<p align="right">
-		<button type="button"
-			onclick="location='/Ssamtrio/gallery/view_gallery'">자유게시판</button>
-		<button type="button"
-			onclick="location='/Ssamtrio/gallery/view_igallery'">이미지게시판</button>
 	</p>
 	<table>
 	<td>

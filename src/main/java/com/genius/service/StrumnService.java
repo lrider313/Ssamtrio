@@ -24,7 +24,7 @@ public class StrumnService {
 		System.out.println(strumn.getStrtitle());
 		System.out.println(strumn.getStrcont());
 		System.out.println(strumn.getStrip());
-		strumnmapper.insertStr(strumn);
+		state = strumnmapper.insertStr(strumn);
 		return state;
 	}
 	
