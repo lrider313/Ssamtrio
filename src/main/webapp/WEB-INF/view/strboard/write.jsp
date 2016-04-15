@@ -21,14 +21,14 @@ $(document).ready(function() {
 <form action="insertStrumn.str" id="insertStrumn">
 <div class="openLeftSide">
 <div class="menuStyle">
-	<label id="strtitle"><span>맵이름</span><input type="text" name="strtitle" id="strtitle" /></label><br>
-	<label id="strcont"><span>맵설명</span><textarea rows="10" cols="21" name="strcont" id="strcont"></textarea></label><br>
-	<label id="boardid"><span>게시판 선택</span>
+	<label for="strtitle"><span>맵이름</span></label><input type="text" name="strtitle" id="strtitle" /><br>
+	<label for="strcont"><span>맵설명</span></label><textarea rows="10" cols="21" name="strcont" id="strcont"></textarea><br>
+	<label for="boardid"><span>게시판 선택</span></label>
 		<select name="boardid" id="boardid">
 			<c:forEach items="${boardList}" var="bId">
 				<option value="${bId.boardid}">${bId.boardtitle}</option>
 			</c:forEach>
-		</select></label><br>
+		</select><br>
 </div>
 </div>
 <br><br>

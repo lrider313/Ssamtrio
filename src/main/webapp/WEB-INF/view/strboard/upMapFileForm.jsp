@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +62,12 @@ $(document).ready(function() {
 </head>
 <body>
 <form id="mapFileForm" action="/Ssamtrio/strboard/uploadSMF.str" method="post" enctype="multipart/form-data">
+	<label for="strid"><span>맵카테고리 선택</span></label>
+	<select name="strid" id="strid">
+		<c:forEach items="${strumnList}" var="strn">
+			<option value="${strn.strid}">${strn.strtitle }</option>
+		</c:forEach>
+	</select><br>
 	<label for="mapminn">맵최소필요인원 : </label><select id="mapminn" name="mapminn" required ></select><br/>
 	<label for="mapmaxn">맵최대가능인원 : </label><select id="mapmaxn" name="mapmaxn" required ></select>
 		<span id="mapmaxnMessage">Tip: 맵최소필요인원을 선택하고 선택해주세요.</span><br/>

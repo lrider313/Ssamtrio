@@ -1,5 +1,9 @@
 package com.genius.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,15 +18,21 @@ public class StrumfService {
 	StrumfMapper strumfmapper;
 	
 	@Transactional
-	public Strumf getFileInfo(Integer strid) {
+	public List<Strumf> getFileInfo(Integer strid) {
 		return strumfmapper.selectByStrid(strid);
 	}
 	
 	@Transactional
 	public int uploadSMF(MultipartFile mapFile, Strumf strumf) {
 		if(mapFile.getSize()>0) {
-			mapFile.getOriginalFilename();
+			strumf.setMapname(mapFile.getOriginalFilename());
+			File saveFile = new File("D:/pjt/uploads", mapFile.getOriginalFilename());
+			try {
+				mapFile.transferTo(saveFile);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
 		}
-		return uploadSMF(mapFile, strumf);
+		return strumfmapper.uploadSMF(strumf);
 	}
 }

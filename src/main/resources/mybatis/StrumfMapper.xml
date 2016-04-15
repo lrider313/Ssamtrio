@@ -32,7 +32,7 @@
 						#{mapminn},
 						#{mapmaxn},
 						#{mapver},
-						#{mapcrt jdbcType=VARCHAR},
+						#{mapcrt, jdbcType=VARCHAR},
 						#{mapmana},
 						#{strid}
 					  )

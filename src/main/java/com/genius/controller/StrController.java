@@ -1,5 +1,7 @@
 package com.genius.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +56,13 @@ public class StrController {
 	}
 	
 	@RequestMapping("/getFileInfo.str")
-	public @ResponseBody Strumf getFileInfo(Integer strid) {
+	public @ResponseBody List<Strumf> getFileInfo(Integer strid) {
 		return strumfService.getFileInfo(strid);
 	}
 	
 	@RequestMapping("/upMapFileForm.str")
-	public String upMapFile() {
-		return "/strboard/upMapFileForm";
+	public ModelAndView upMapFile() {
+		return new ModelAndView("/strboard/upMapFileForm").addObject("strumnList", strumnService.getList());
 	}
 	
 	@RequestMapping("/uploadSMF.str")
