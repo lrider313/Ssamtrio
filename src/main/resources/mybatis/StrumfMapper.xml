@@ -16,6 +16,13 @@
 	 WHERE STRID=#{strid}
 ]]>
 </select>
+<select id="selectByMapid" parameterType="Integer" resultType="com.genius.model.Strumf">
+<![CDATA[
+	SELECT MAPNAME
+	  FROM STRUMF
+	 WHERE MAPID=#{mapid}
+]]>
+</select>
 <insert id="uploadSMF" parameterType="com.genius.model.Strumf">
 <![CDATA[
 	INSERT INTO STRUMF(

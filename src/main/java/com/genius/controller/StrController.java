@@ -1,11 +1,19 @@
 package com.genius.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -69,5 +77,37 @@ public class StrController {
 	public String uploadSMF(MultipartFile mapFile, Strumf strumf) {
 		if(strumfService.uploadSMF(mapFile, strumf)==1) return "redirect:/strboard/list.str";
 		return "/strboad/upMapFileForm";
+	}
+	
+	@RequestMapping("/downloadSMF.str")
+	public void downlaodSMF(HttpServletRequest request, HttpServletResponse response) {
+		Strumf mapFile =strumfService.selectByMapid(Integer.parseInt(request.getParameter("mapid")));
+		response.setCharacterEncoding("UTF-8");
+		
+		File file = new File("D:/pjt/uploads/"+mapFile.getMapname());
+		String downName = file.getName();
+
+		byte[] bytes;
+		try {
+			bytes = downName.getBytes("euc-kr");
+			downName = new String(bytes, "ISO-8859-1");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+
+		response.setContentType("application/octet-stream"); 
+		response.setHeader("Content-Disposition", "attachment;filename=\"" + downName + "\"");
+
+		FileInputStream in = null;
+		OutputStream out = null;
+		try {
+			in = new FileInputStream(file);
+			out =  response.getOutputStream();
+			FileCopyUtils.copy(in, out);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

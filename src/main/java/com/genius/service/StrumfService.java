@@ -35,4 +35,9 @@ public class StrumfService {
 		}
 		return strumfmapper.uploadSMF(strumf);
 	}
+	
+	@Transactional
+	public Strumf selectByMapid(Integer mapid) {
+		return strumfmapper.selectByMapid(mapid);
+	}
 }
