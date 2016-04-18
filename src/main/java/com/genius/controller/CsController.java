@@ -45,12 +45,14 @@ public class CsController {
 	//이쪽으로 던저서 post 로 request 함 
 	// 그담에 csb 라는 모델에 담아서 받음 .
 	@RequestMapping(value="/serviceUpdate.str", method=RequestMethod.POST)
-	public String serviceUpdate(Csb csb) {
+	public String serviceUpdate(MultipartFile file, HttpServletRequest request, Csb csb) {
 		//System.out.println(csb.getCstitle());
 		//위에 처럼 csb모델에 get 으로 선언해둔걸 호출해봄 프린트로 
 		// 그담에 서비스로 던짐 csb 모델통쨰로 즉 객체화 그대로 던짐 
-		csbservice.updateCs(csb);
-		return "redirect:/csboard/serviceList.str";
+		if(csbservice.updateCs(file, request, csb)==1){
+		return "redirect:/csboard/serviceSelectForm.str?csid="+csb.getCsid();
+		}
+		return "redirect:/csboard/serviceForm.str";
 	}
 	
 	@RequestMapping("/serviceList.str")
@@ -63,5 +65,10 @@ public class CsController {
 	public ModelAndView serviceSelectForm(int csid) {
 		//System.out.println(csid);
 		return new ModelAndView("csboard/serviceSelectForm").addObject("csb", csbservice.selectById(csid));
+	}
+	
+	@RequestMapping("serviceDelete.str")
+	public String serviceDelete(int csid){
+		return "csboard/serviceList.str";
 	}
 }

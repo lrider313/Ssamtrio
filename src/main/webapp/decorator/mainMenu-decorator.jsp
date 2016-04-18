@@ -33,7 +33,7 @@
       <li><a href="../strboard/list.str" class="changePage">맵자료실</a></li> 
       <li><a href="../gallery/view_gallery.str" class="changePage">프리보드</a></li> 
       <li><a href="../gallery/view_igallery.str" class="changePage">포토보드</a></li> 
-      <li><a href="../main/" class="changePage.str">고객센터</a></li>
+      <li><a href="../csboard/serviceList.str" class="changePage">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<li><a href="../cart/view_cart" class="changePage">장바구니</a></li> 
