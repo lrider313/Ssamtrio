@@ -31,6 +31,7 @@ SELECT CSID,
 		CSDATE,
 		CSTYPE
 		FROM CSBOARD
+		ORDER BY CSID ASC
 </select>
 
 <select id="selectById" resultType="com.genius.model.Csb" parameterType="Integer">
@@ -57,7 +58,7 @@ UPDATE CSBOARD SET
 				WHERE  CSID=#{csid}
 
 </update>
-<delete id="deleteCs" parameterType="com.genius.model.Csb" >
+<delete id="deleteCs" parameterType="Integer" >
 DELETE FROM CSBOARD 
 WHERE CSID=#{csid}
 </delete>

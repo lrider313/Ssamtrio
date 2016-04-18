@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="com.genius.model.Csb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -55,6 +56,7 @@
 			<tr>
 				<th>첨부파일</th>
 				<td><input type="file" onchange="readURL(this)" name="file" value="${csb.csfile}"/> ${csb.csfile}<button type="reset">삭제하기</button>
+	
 				<img id="blah" src="#" alt="your image" style="width:200px;"/></td>
 			</tr>
 			<tr>

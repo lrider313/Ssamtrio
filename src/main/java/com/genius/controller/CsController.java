@@ -58,7 +58,6 @@ public class CsController {
 	@RequestMapping("/serviceList.str")
 	public ModelAndView serviceList() {
 		return new ModelAndView("csboard/serviceList").addObject("csb", csbservice.selectCs());
-		
 	}
 	
 	@RequestMapping("/serviceSelectForm.str")
@@ -69,6 +68,7 @@ public class CsController {
 	
 	@RequestMapping("serviceDelete.str")
 	public String serviceDelete(int csid){
-		return "csboard/serviceList.str";
+		csbservice.deleteCs(csid);
+		return "redirect:/csboard/serviceList.str";
 	}
 }

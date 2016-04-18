@@ -26,7 +26,6 @@
 		</tr>
 		<c:forEach items="${csb}" var="cs">
 		<tr>
-			
 			<td>${cs.csid}</td>
 			<td>
 			<c:if test="${cs.cstype==1}">
