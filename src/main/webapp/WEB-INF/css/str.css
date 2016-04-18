@@ -39,6 +39,7 @@ body {
   background-color: black;
   background-position: 50% 0;
   background-size: cover;
+  overflow-x: hidden;
   color: #3D9D26; 
 }
 
@@ -167,6 +168,17 @@ body {
     color: #EBAA2A;
 }
 
+.mapContnr {
+  margin-top: 15px;
+  padding: 20px;
+  width: 420px;
+  height: 200px;
+  overflow:hidden;
+  border: 3px groove #781706;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
 /*
 ** Animation
 */
@@ -272,3 +284,4 @@ body {
    width: 18px;
    background-color: #781706;
 }
+
