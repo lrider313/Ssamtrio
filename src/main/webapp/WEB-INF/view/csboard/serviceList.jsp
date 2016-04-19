@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="menu" uri="/WEB-INF/tlds/menuButton.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,13 @@
 </head>
 <body>
 <form action="serviceForm.str" method="post">
-    <div class="table-responsive" >
-	<table class="openLeftSide table-hover">
+    <div class="table-responsive openLeftSide menuStyle" >
+	<table class="table-hover">
+	<tr>
+	<td width="50"> 전체  /</td>  
+	<td  width="50"> <a href="serviceList.str?gubun=1">버그신고</a>/</td>
+	<td  width="50"> 파일요청 /</td> 
+	<td  width="50">기타</td>
 		<tr>
 			<td width="73">번호</td>
 			<td width="80" style="text-align: inherit;">분류</td>
@@ -20,7 +26,6 @@
 		</tr>
 		<c:forEach items="${csb}" var="cs">
 		<tr>
-			
 			<td>${cs.csid}</td>
 			<td>
 			<c:if test="${cs.cstype==1}">
@@ -38,11 +43,9 @@
 			<td>${cs.csdate}</td>
 		</tr>
 		</c:forEach>
-		<tr>
-			<td colspan="5" style="text-align: right;"><input type="submit" value="글쓰기"></td>
-		</tr>
 	</table>
 	</div>
+	<menu:leftMenuButton01 uri="serviceForm.str" value="글쓰기"/>
 </form>
 </body>
 

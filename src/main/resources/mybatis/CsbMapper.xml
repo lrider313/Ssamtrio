@@ -23,7 +23,7 @@ INSERT INTO CSBOARD (
 			 		)
 ]]>
 </insert>
-<select id="selectCs" resultType="com.genius.model.Csb">
+<select id="selectCs" resultType="com.genius.model.Csb" >
 SELECT CSID,
 		CSTITLE,
 		MEMID,
@@ -31,6 +31,7 @@ SELECT CSID,
 		CSDATE,
 		CSTYPE
 		FROM CSBOARD
+		ORDER BY CSID ASC
 </select>
 
 <select id="selectById" resultType="com.genius.model.Csb" parameterType="Integer">
@@ -52,10 +53,14 @@ SELECT 					CSID,
 UPDATE CSBOARD SET 
 						CSTITLE=#{cstitle},
 						CSCONT=#{cscont},
-					 	CSTYPE=#{cstype}
+					 	CSTYPE=#{cstype},
+					 	CSFILE=#{csfile}
 				WHERE  CSID=#{csid}
-				
-
 
 </update>
+<delete id="deleteCs" parameterType="Integer" >
+DELETE FROM CSBOARD 
+WHERE CSID=#{csid}
+</delete>
+
 </mapper>

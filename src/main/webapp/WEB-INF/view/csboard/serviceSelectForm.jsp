@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>serviceForm.jsp</title>
+
+ 
 </head>
 <body>
 	<form method="post" action="serviceUpdateForm.str?csid=${csb.csid}">
@@ -37,7 +39,8 @@
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td>${csb.csfile}</td>
+					<td><img src="/Ssamtrio/csImage/${csb.csfile}" alt="파일없음" style="width:300px;"/></td>
+					
 				</tr>
 		
 			</table>
@@ -46,6 +49,8 @@
 
 <menu:leftMenuButton01 uri="serviceList.str" value="목록"/>
 <menu:leftMenuButton01 uri="serviceUpdateForm.str?csid=${csb.csid }" value="수정하기"/>
+<menu:leftMenuButton01 uri="serviceDelete.str?csid=${csb.csid }" value="삭제하기"/>
+
 </body>
 
 </html>

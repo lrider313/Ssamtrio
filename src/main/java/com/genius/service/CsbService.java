@@ -25,7 +25,7 @@ public class CsbService {
 		csb.setCsip(request.getRemoteAddr());
 		csb.setCsfile(file.getOriginalFilename());
 		if (file.getSize() > 0) {
-			File saveFile = new File("C:/temp", file.getOriginalFilename());
+			File saveFile = new File("C:/pjt/src/Ssamtrio/src/main/webapp/csImage", file.getOriginalFilename());
 			try {
 				file.transferTo(saveFile);
 			} catch (IllegalStateException | IOException e) {
@@ -46,26 +46,28 @@ public class CsbService {
 	}
 	
 	@Transactional
-	public int updateCs(Csb csb){
-		//동일 하게 모델 csb 선언한거로 받음 
-		/*
+	public int updateCs(MultipartFile file, HttpServletRequest request,Csb csb){
 		csb.setCsip(request.getRemoteAddr());
 		csb.setCsfile(file.getOriginalFilename());
 		if (file.getSize() > 0) {
-			File saveFile = new File("C:/temp", file.getOriginalFilename());
+			File saveFile = new File("C:/pjt/src/Ssamtrio/src/main/webapp/csImage", file.getOriginalFilename());
 			try {
 				file.transferTo(saveFile);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
-		*/
+		return csbmapper.updateCs(csb);
+		//동일 하게 모델 csb 선언한거로 받음 
 		//매퍼인가 먼가 여기에 업데이트cs로 던짐 
 		// 굳이 왜 나눈진 모르겟음...
 		//암튼 위에 임포트 시킨거로 보고 임포트시킨 매퍼에 업데이트cs로 던짐 통쨰로 
-		return csbmapper.updateCs(csb);
 	}
 	
 	
+	@Transactional
+	public int deleteCs(Integer csid){
+		return csbmapper.deleteCs(csid);
+	}
 
 }

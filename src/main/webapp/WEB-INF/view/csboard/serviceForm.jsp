@@ -7,10 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>serviceForm.jsp</title>
+<script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 </head>
 <body>
 <form method="post" action="servicePro.str" enctype="multipart/form-data">
-	<div  class="openLeftSide" style="display: inline-block;">
+	<div  class="openLeftSide menuStyle" style="display: inline-block;">
 		<table >
 			<tr>
 					<td colspan="2"><label id="boardid">게시판 선택</label> <select name="boardid"
@@ -45,7 +56,8 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" name="file"> <button type="button">삭제하기</button></td>
+				<td><input type="file" onchange="readURL(this)" name="file"/> <button type="button">삭제하기</button><img id="blah" src="#" alt="your image" style="width:200px;"/></td>
+       			
 			</tr>
 			<tr>
 			<td colspan="2" style="text-align: right"><button type="submit">문의하기</button> 
@@ -54,8 +66,6 @@
 		</table>
 	</div>
 	</form>
-
- 
 </body>
 
 </html>

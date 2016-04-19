@@ -36,7 +36,7 @@
       <li><a href="../strboard/list.str" class="inToTheMenu">맵자료실</a></li> 
       <li><a href="../gallery/view_gallery.str" class="inToTheMenu">프리보드</a></li> 
       <li><a href="../gallery/view_igallery.str" class="inToTheMenu">포토보드</a></li> 
-      <li><a href="../main/" class="inToTheMenu.str">고객센터</a></li>
+      <li><a href="../csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<li><a href="../cart/view_cart" class="inToTheMenu">장바구니</a></li> 

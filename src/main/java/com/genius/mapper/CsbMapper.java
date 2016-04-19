@@ -9,4 +9,5 @@ public interface CsbMapper {
 	List<Csb> selectCs();
 	Csb selectById (Integer csid);
 	int updateCs(Csb csb);
+	int deleteCs(Integer csid);
 }
