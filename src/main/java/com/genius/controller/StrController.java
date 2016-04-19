@@ -39,11 +39,6 @@ public class StrController {
 	@Autowired
 	StrumfService strumfService;
 	
-//	@RequestMapping("/main.str")
-//	public String mainPage() {
-//		return "strboard/main";
-//	}
-	
 	@RequestMapping("/list.str")
 	public ModelAndView list() {
 		return new ModelAndView("strboard/list").addObject("list", strumnService.getList());
@@ -56,9 +51,6 @@ public class StrController {
 	
 	@RequestMapping("/insertStrumn.str")
 	public String insertStrumn(Strumn strumn, HttpServletRequest request) {
-		System.out.println(strumn.getStrtitle());
-		System.out.println(strumn.getStrcont());
-		System.out.println(strumn.getStrip());
 		strumnService.insertStrumn(strumn, request);
 		return "redirect:/strboard/list.str";
 	}
@@ -80,8 +72,8 @@ public class StrController {
 	}
 	
 	@RequestMapping("/downloadSMF.str")
-	public void downlaodSMF(HttpServletRequest request, HttpServletResponse response) {
-		Strumf mapFile =strumfService.selectByMapid(Integer.parseInt(request.getParameter("mapid")));
+	public void downlaodSMF(Strumf strumf, HttpServletResponse response) {
+		Strumf mapFile =strumfService.selectByMapid(strumf.getMapid());
 		response.setCharacterEncoding("UTF-8");
 		
 		File file = new File("D:/pjt/uploads/"+mapFile.getMapname());
@@ -108,6 +100,8 @@ public class StrController {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			strumfService.mapcountInc(strumf.getMapid());
 		}
 	}
 }

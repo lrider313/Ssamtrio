@@ -132,9 +132,7 @@ body {
 
 .menuStyle label span {
   display: inline-block;
-  width: 100px;
-  clear: left;
-  float: left;
+  width: 120px;
 }
 
 .mapCtgrDesc, .mapFileDesc {
@@ -177,6 +175,10 @@ body {
   border: 3px groove #781706;
   border-radius: 5px;
   font-size: 18px;
+}
+
+.mapid {
+  width: 300px;
 }
 
 /*

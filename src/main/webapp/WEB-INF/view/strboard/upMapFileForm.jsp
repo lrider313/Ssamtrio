@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="menu" uri="/WEB-INF/tlds/menuButton.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,52 +36,62 @@ $(document).ready(function() {
 		}
 	});
 	
-	alert("하이");
-	//유효성 검사.
-// 	$('#mapFileForm').validate({
-// 		rules : {
-// 			mapminn : "required",
-// 			mapmaxn : "required",
-// 			mapver : "required",
-// 			mapmana : "required"
-// 		},
-// 		messages : {
-// 			mapminn : "아래의 항목에서 최소 필요 인원을 선택하세요.",
-// 			mapmaxn : "아래의 항목에서 최대 가능 인원을 선택하세요.",
-// 			mapver : "맵버전을 입력은 필수입니다.",
-// 			mapmana : "마나무한 맵인지 선택하세요."
-// 		},
-// 		submitHandler : function(frm) {
-// 			frm.submit();
-// 		},
-// 		success : function() {
-// 			alert("입력이 완료되었습니다.");
-// 		}
-// 	});
+	$('.changePage').click(function() {
+		if($('#strid').val()=="") {
+			alert("맵 카테로기를 선택하세요.");
+			$('#strid').focus();
+			return false;
+		} else if($('#mapminn').val()=="") {
+			alert("맵최소인원을 선택하세요.");
+			$('#mapminn').focus();
+			return false;
+		} else if($('#mapmaxn').val()=="") {
+			alert("맵최대인원을 선택하세요.");
+			$('#mapmaxn').focus();
+			return false;
+		} else if($('#mapver').val()=="") {
+			alert("맵버전을 적으세요.");
+			$('#mapver').focus();
+			return false;
+		} else if($('#mapmana').val()=="") {
+			alert("맵마나무한여부를 선택하세요.");
+			$('#mapmana').focus();
+			return false;
+		} else if($('#mapFile').val()=="") {
+			alert("맵파일을 선택하세요.");
+			$('#mapFile').focus();
+			return false;
+		}
+		$('#mapFileForm').submit();
+	});
 });
 </script>
 </head>
 <body>
+<div class="openLeftSide">
+<div class="menuStyle">
 <form id="mapFileForm" action="/Ssamtrio/strboard/uploadSMF.str" method="post" enctype="multipart/form-data">
-	<label for="strid"><span>맵카테고리 선택</span></label>
+	<label for="strid"><span>맵카테고리</span></label>
 	<select name="strid" id="strid">
 		<c:forEach items="${strumnList}" var="strn">
 			<option value="${strn.strid}">${strn.strtitle }</option>
 		</c:forEach>
 	</select><br>
-	<label for="mapminn">맵최소필요인원 : </label><select id="mapminn" name="mapminn" required ></select><br/>
-	<label for="mapmaxn">맵최대가능인원 : </label><select id="mapmaxn" name="mapmaxn" required ></select>
+	<label for="mapminn"><span>맵최소인원</span></label><select id="mapminn" name="mapminn" required ></select><br/>
+	<label for="mapmaxn"><span>맵최대인원</span></label><select id="mapmaxn" name="mapmaxn" required ></select>
 		<span id="mapmaxnMessage">Tip: 맵최소필요인원을 선택하고 선택해주세요.</span><br/>
-	<label for="mapver">맵버전 : </label><input type="text" id="mapver" name="mapver" required /><br/>
-	<label for="mapcrt">맵제작자 : </label><input type="text" id="mapcrt" name="mapcrt" /><br/>
-	<label for="mapmana">마나무한여부 : </label>
+	<label for="mapver"><span>맵버전 </span></label><input type="text" id="mapver" name="mapver" maxlength="15" required /><br/>
+	<label for="mapcrt"><span>맵제작자 </span></label><input type="text" id="mapcrt" name="mapcrt" maxlength="20" /><br/>
+	<label for="mapmana"><span>마나무한여부 </span></label>
 	<select id="mapmana" name="mapmana" required >
 		<option value="y">마나무한인 경우</option>
 		<option value="n">마나무한이 아닌 경우</option>
 	</select><br/>
-	<label for="mapFile">맵파일첨부(*.scm, *.scx만 가능합니다) </label><br/>
+	<label for="mapFile"><span>맵파일첨부</span></label>
 	<input type="file" id="mapFile" name="mapFile" accept=".scx, .scm" required /><br/><br/>
-	<input type="submit" value="작성완료" />
 </form>
+</div>
+</div>
+<menu:leftMenuButton01 uri="javascript:void(0)" value="작성 완료"/>
 </body>
 </html>

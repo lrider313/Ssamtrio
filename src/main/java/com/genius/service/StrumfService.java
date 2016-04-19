@@ -40,4 +40,9 @@ public class StrumfService {
 	public Strumf selectByMapid(Integer mapid) {
 		return strumfmapper.selectByMapid(mapid);
 	}
+	
+	@Transactional
+	public int mapcountInc(Integer mapid) {
+		return strumfmapper.mapcountInc(mapid);
+	}
 }

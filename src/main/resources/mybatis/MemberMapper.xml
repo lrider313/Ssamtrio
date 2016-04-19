@@ -4,7 +4,8 @@
 <select id="signinCheck" parameterType="com.genius.model.Member" resultType="com.genius.model.Member">
 <![CDATA[
 	SELECT MEMNICK,
-		   MEMPW
+		   MEMAUTH,
+		   MEMLVL
 	  FROM MEMBER
 	 WHERE MEMID=#{memid}
 	   AND MEMPW=#{mempw}
@@ -32,4 +33,11 @@
 						)
 ]]>
 </insert>
+<select id="checkExistId" resultType="Integer" parameterType="String">
+<![CDATA[
+	SELECT COUNT(*)
+	  FROM MEMBER
+	 WHERE MEMID=#{memid}
+]]>
+</select>
 </mapper>

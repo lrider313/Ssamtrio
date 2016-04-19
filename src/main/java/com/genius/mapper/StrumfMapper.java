@@ -8,4 +8,5 @@ public interface StrumfMapper {
 	List<Strumf> selectByStrid(Integer strid);
 	int uploadSMF(Strumf strumf);
 	Strumf selectByMapid(Integer mapid);
+	int mapcountInc(Integer mapid);
 }

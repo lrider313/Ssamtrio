@@ -8,6 +8,7 @@
 <title>loginForm.jsp</title>
 <script>
 $(document).ready(function() {
+	$("#id").focus();
 	$(".changePage").click(function() {
 		$(".openLeftSide").attr("class", "closeLeftSide");
 		$(".openRightSide").attr("class", "closeRightSide");
@@ -25,7 +26,7 @@ $(document).ready(function() {
 	</div>
 </div>
 <br>
-<menu:leftMenuButton02 uri="#" value="로그인"/>
+<menu:leftMenuButton02 uri="javascript:void(0)" value="로그인"/>
 </form>
 </body>
 </html>

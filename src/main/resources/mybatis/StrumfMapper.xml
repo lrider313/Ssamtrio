@@ -45,4 +45,11 @@
 					  )
 ]]>
 </insert>
+<update id="mapcountInc" parameterType="Integer">
+<![CDATA[
+	UPDATE STRUMF
+	   SET MAPCOUNT=MAPCOUNT+1
+	 WHERE MAPID=#{mapid}
+]]>
+</update>
 </mapper>

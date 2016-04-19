@@ -27,4 +27,14 @@ public class SignProService {
 //		System.out.println("memaddr" + member.getMemaddr());
 		return membermapper.signupPro(member);
 	}
+	
+	@Transactional
+	public String checkExistId(String memid) {
+		System.out.println(memid);
+		if(membermapper.checkExistId(memid)==1){
+			return "false";	//중복되는 값이 있으므로 false
+		} else {
+			return "true";	//중복되는 값이 없을때 true
+		}
+	}
 }

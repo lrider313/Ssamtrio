@@ -14,6 +14,7 @@ $(document).ready(function() {
 		$(".openRightSide").attr("class", "closeRightSide");
 		$('#insertStrumn').submit();
 	});
+	$("#boardid>option[value='2']").attr("selected","selected");
 });
 </script>
 </head>
@@ -32,7 +33,7 @@ $(document).ready(function() {
 </div>
 </div>
 <br><br>
-<menu:leftMenuButton01 uri="#" value="작성 완료"/>
+<menu:leftMenuButton01 uri="javascript:void(0)" value="작성 완료"/>
 </form>
 </body>
 </html>

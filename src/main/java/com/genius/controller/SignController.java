@@ -1,11 +1,15 @@
 package com.genius.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genius.model.Member;
@@ -31,7 +35,7 @@ public class SignController {
 		member = signProService.checkSignin(member);
 		if(member!=null) {
 			session.setAttribute("member", member);
-			return new ModelAndView("redirect:/strboard/list.str");
+			return new ModelAndView("redirect:/main/");
 		}
 		return new ModelAndView("/sign/signinForm");
 	}
@@ -49,16 +53,23 @@ public class SignController {
 	
 	@RequestMapping("/signupPro.str")
 	public String signupPro(Member member) {
-//		System.out.println("memid" + member.getMemid());
-//		System.out.println("mempw" + member.getMempw());
-//		System.out.println("memname" + member.getMemname());
-//		System.out.println("memnick" + member.getMemnick());
-//		System.out.println("memphone" + member.getMemphone());
-//		System.out.println("memaddr" + member.getMemaddr());
 		if(signProService.signupPro(member)==1) {
 			System.out.println("Member signup success!!");
 			return "redirect:/strboard/list.str";
 		}
 		return "redirect:/sign/signupForm.str";
+	}
+	
+	@RequestMapping("/signOut.str")
+	public String signOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main/";
+	}
+	
+	@RequestMapping("/checkExistId.str")
+	public @ResponseBody Map<String, String> checkExistId(Member member) {
+		Map<String,String> uableId = new HashMap<String,String>();
+		uableId.put("usableId", signProService.checkExistId(member.getMemid()));
+		return uableId;
 	}
 }
