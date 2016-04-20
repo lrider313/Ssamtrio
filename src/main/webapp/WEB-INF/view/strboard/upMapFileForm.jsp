@@ -41,6 +41,14 @@ $(document).ready(function() {
 			alert("맵 카테로기를 선택하세요.");
 			$('#strid').focus();
 			return false;
+		} else if($('#maplod').val()=="") {
+			alert("난이도를 선택하세요.");
+			$('#maplod').focus();
+			return false;
+		} else if($('#maptime').val()=="") {
+			alert("맵시간을 선택하세요.");
+			$('#maptime').focus();
+			return false;
 		} else if($('#mapminn').val()=="") {
 			alert("맵최소인원을 선택하세요.");
 			$('#mapminn').focus();
@@ -76,11 +84,28 @@ $(document).ready(function() {
 		<c:forEach items="${strumnList}" var="strn">
 			<option value="${strn.strid}">${strn.strtitle }</option>
 		</c:forEach>
-	</select><br>
+	</select><br/>
+	<label for="maplod"><span>난이도</span></label>
+	<select name="maplod" id="maplod">
+		<option value="">select</option>
+		<option value="veryEasy">매우쉬움</option>
+		<option value="easy">쉬움</option>
+		<option value="normal">보통</option>
+		<option value="hard">어려움</option>
+		<option value="hardcore">매우어려움</option>
+	</select><br/>
+	<label for="maptime"><span>총시간</span></label>
+	<select name="maptime" id="maptime">
+		<option value="">select</option>
+		<option value="half">약30분</option>
+		<option value="aHour">약1시간</option>
+		<option value="twoHour">약2시간</option>
+		<option value="soLong">2시간이상</option>
+	</select><br/>
 	<label for="mapminn"><span>맵최소인원</span></label><select id="mapminn" name="mapminn" required ></select><br/>
 	<label for="mapmaxn"><span>맵최대인원</span></label><select id="mapmaxn" name="mapmaxn" required ></select>
 		<span id="mapmaxnMessage">Tip: 맵최소필요인원을 선택하고 선택해주세요.</span><br/>
-	<label for="mapver"><span>맵버전 </span></label><input type="text" id="mapver" name="mapver" maxlength="15" required /><br/>
+	<label for="mapver"><span>맵버전 </span></label><input type="text" id="mapver" name="mapver" maxlength="15" required/><br/>
 	<label for="mapcrt"><span>맵제작자 </span></label><input type="text" id="mapcrt" name="mapcrt" maxlength="20" /><br/>
 	<label for="mapmana"><span>마나무한여부 </span></label>
 	<select id="mapmana" name="mapmana" required >
@@ -88,7 +113,7 @@ $(document).ready(function() {
 		<option value="n">마나무한이 아닌 경우</option>
 	</select><br/>
 	<label for="mapFile"><span>맵파일첨부</span></label>
-	<input type="file" id="mapFile" name="mapFile" accept=".scx, .scm" required /><br/><br/>
+	<input type="file" id="mapFile" name="mapFile" accept=".scx, .scm" required/><br/><br/>
 </form>
 </div>
 </div>

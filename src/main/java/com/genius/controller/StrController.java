@@ -5,11 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,9 +52,24 @@ public class StrController {
 	}
 	
 	@RequestMapping("/insertStrumn.str")
-	public String insertStrumn(Strumn strumn, HttpServletRequest request) {
-		strumnService.insertStrumn(strumn, request);
-		return "redirect:/strboard/list.str";
+	public void insertStrumn(Strumn strumn, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException {
+		int state = strumnService.insertStrumn(strumn, request, session);
+		response.setCharacterEncoding("EUC-KR");
+		PrintWriter writer = response.getWriter();
+		writer.println("<script type='text/javascript'>");
+		if(state==1) {
+			writer.println("alert('맵카테고리를 추가하였습니다.');");
+			writer.println("location.href='/Ssamtrio/strboard/list.str';");
+
+		} else if(state==-1){
+			writer.println("alert('해당 서비스는 로그인이 필요합니다.');");
+			writer.println("location.href='/Ssamtrio/sign/signinForm.str';");
+		} else {
+			writer.println("alert('맵카테고리를 추가하지 못했습니다.');");
+			writer.println("location.href='/Ssamtrio/strboard/list.str';");
+		}
+		writer.println("</script>");
+		writer.flush();
 	}
 	
 	@RequestMapping("/getFileInfo.str")
@@ -66,9 +83,23 @@ public class StrController {
 	}
 	
 	@RequestMapping("/uploadSMF.str")
-	public String uploadSMF(MultipartFile mapFile, Strumf strumf) {
-		if(strumfService.uploadSMF(mapFile, strumf)==1) return "redirect:/strboard/list.str";
-		return "/strboad/upMapFileForm";
+	public void uploadSMF(MultipartFile mapFile, Strumf strumf, HttpServletResponse response) throws IOException {
+		int state = strumfService.uploadSMF(mapFile, strumf);
+		response.setCharacterEncoding("EUC-KR");
+		PrintWriter writer = response.getWriter();
+		writer.println("<script type='text/javascript'>");
+		if(state==1) {
+			writer.println("alert('맵파일을 추가하였습니다.');");
+			writer.println("location.href='/Ssamtrio/strboard/list.str';");
+		} else if(state==-1){
+			writer.println("alert('해당 서비스는 로그인이 필요합니다.');");
+			writer.println("location.href='/Ssamtrio/sign/signinForm.str';");
+		} else {
+			writer.println("alert('맵파일을 추가하지 못했습니다.');");
+			writer.println("location.href='/Ssamtrio/strboard/list.str';");
+		}
+		writer.println("</script>");
+		writer.flush();
 	}
 	
 	@RequestMapping("/downloadSMF.str")

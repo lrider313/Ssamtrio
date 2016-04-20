@@ -6,6 +6,8 @@
 	SELECT MAPID,
 		   MAPNAME,
 		   MAPCOUNT,
+		   MAPLOD,
+		   MAPTIME,
 		   MAPMINN,
 		   MAPMAXN,
 		   MAPVER,
@@ -27,6 +29,8 @@
 <![CDATA[
 	INSERT INTO STRUMF(
 						MAPNAME,
+						MAPLOD,
+						MAPTIME,
 						MAPMINN,
 						MAPMAXN,
 						MAPVER,
@@ -36,6 +40,8 @@
 					  )
 				VALUES(
 						#{mapname},
+						#{maplod},
+						#{maptime},
 						#{mapminn},
 						#{mapmaxn},
 						#{mapver},

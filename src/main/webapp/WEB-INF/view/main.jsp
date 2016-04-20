@@ -86,8 +86,8 @@ $(document).ready(function() {
 <div class="searchOptions">
 <img alt="menu07" src="/Ssamtrio/image/menu07.png">
 <div class="searchItems">
-<label for="mapType"><span class="glyphicon glyphicon-list-alt"></span>맵타입</label>
-<select id="mapType">
+<label for="strtype"><span class="glyphicon glyphicon-list-alt"></span>맵타입</label>
+<select id="strtype">
 	<option value="all">전체</option>
 	<option value="controll">컨트롤</option>
 	<option value="depence">디펜스</option>
@@ -99,8 +99,8 @@ $(document).ready(function() {
 <div class="searchOptions">
 <img alt="menu07" src="/Ssamtrio/image/menu07.png">
 <div class="searchItems">
-<label for="mapLoD"><span class="glyphicon glyphicon-dashboard">난이도</span></label>
-<select id="mapLoD">
+<label for="maplod"><span class="glyphicon glyphicon-dashboard"></span>난이도</label>
+<select id="maplod">
 	<option value="all">상관없음</option>
 	<option value="veryEasy">매우쉬움</option>
 	<option value="easy">쉬움</option>
@@ -113,8 +113,8 @@ $(document).ready(function() {
 <div class="searchOptions">
 <img alt="menu07" src="/Ssamtrio/image/menu07.png">
 <div class="searchItems">
-<label for="mapMana"><span class="glyphicon glyphicon-oil"></span>맵마나</label>
-<select id="mapMana">
+<label for="mapmana"><span class="glyphicon glyphicon-oil"></span>맵마나</label>
+<select id="mapmana">
 	<option value="all">상관없음</option>
 	<option value="infMana">마나무한</option>
 	<option value="finMana">마나유한</option>
@@ -124,8 +124,8 @@ $(document).ready(function() {
 <div class="searchOptions">
 <img alt="menu07" src="/Ssamtrio/image/menu07.png">
 <div class="searchItems">
-<label for="mapTime"><span class="glyphicon glyphicon-time"></span>총시간</label>
-<select id="mapTime">
+<label for="maptime"><span class="glyphicon glyphicon-time"></span>총시간</label>
+<select id="maptime">
 	<option value="all">상관없음</option>
 	<option value="half">약30분</option>
 	<option value="aHour">약1시간</option>

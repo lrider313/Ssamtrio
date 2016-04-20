@@ -28,18 +28,18 @@
 <nav class="navbar navbar-inverse" id="mainMenu">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand inToTheMenu" href="../main/"><img alt="starcraftLogo" src="/Ssamtrio/image/StarCraft_Logo.png" id="mainLogo" /></a>
+      <a class="navbar-brand inToTheMenu" href="/Ssamtrio/main/"><img alt="starcraftLogo" src="/Ssamtrio/image/StarCraft_Logo.png" id="mainLogo" /></a>
     </div>
     <ul class="nav navbar-nav">
-<!--       <li class="active"><a href="../strboard/list.str">Home</a></li> -->
-      <li><a href="../main/" class="inToTheMenu">공지사항</a></li> 
-      <li><a href="../strboard/list.str" class="inToTheMenu">맵자료실</a></li> 
-      <li><a href="../gallery/view_gallery.str" class="inToTheMenu">프리보드</a></li> 
-      <li><a href="../gallery/view_igallery.str" class="inToTheMenu">포토보드</a></li> 
-      <li><a href="../csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
+<!--       <li class="active"><a href="/Ssamtrio/strboard/list.str">Home</a></li> -->
+      <li><a href="/Ssamtrio/main/" class="inToTheMenu">공지사항</a></li> 
+      <li><a href="/Ssamtrio/strboard/list.str" class="inToTheMenu">맵자료실</a></li> 
+      <li><a href="/Ssamtrio/gallery/view_gallery.str" class="inToTheMenu">프리보드</a></li> 
+      <li><a href="/Ssamtrio/gallery/view_igallery.str" class="inToTheMenu">포토보드</a></li> 
+      <li><a href="/Ssamtrio/csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    	<li><a href="../cart/view_cart" class="inToTheMenu">장바구니</a></li> 
+    	<li><a href="/Ssamtrio/cart/view_cart" class="inToTheMenu">장바구니</a></li> 
     <c:if test="${sessionScope.member.memauth==1 }">
 	    <li><a href="javascript:void(0)">회원 관리</a>
     </c:if>

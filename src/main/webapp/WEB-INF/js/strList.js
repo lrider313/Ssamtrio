@@ -17,6 +17,16 @@ $(document).ready(function() {
 				for(var i=0; i<strumf.length; i++) {
 					$('.mapid').append("<option value='"+ strumf[i].mapid + "'>"+ strumf[i].mapname + "</option>");
 				}
+				var blinkSel = setInterval(function(){
+					if($(".mapid").css("color")=="rgb(255, 0, 0)") {
+						$(".mapid").css("color","#3D9D26");
+					} else {
+						$(".mapid").css("color","red");
+					}
+					}, 200);
+				setTimeout(function() {
+					clearInterval(blinkSel);
+				}, 1600)
 				
 				//.downButton이 보인다면 제거
 				if(isThereDownButton==true) {
@@ -63,7 +73,32 @@ $(document).ready(function() {
 				$("#mapCrt").show();
 				$("#mapCrt").text("맵제작자: "+strf[this.selectedIndex-1].mapcrt);
 			}
-			$("#mapMana").text("마나무한여부: "+strf[this.selectedIndex-1].mapmana);
+			var maplod="";
+			if(strf[this.selectedIndex-1].maplod=="veryEasy") {
+				maplod="매우쉬움";
+			} else if(strf[this.selectedIndex-1].maplod=="easy") {
+				maplod="쉬움";
+			} else if(strf[this.selectedIndex-1].maplod=="normal") {
+				maplod="보통";
+			} else if(strf[this.selectedIndex-1].maplod=="hard") {
+				maplod="어려움";
+			} else if(strf[this.selectedIndex-1].maplod=="hardcore") {
+				maplod="매우어려움";
+			} 
+			$("#mapLod").text("난이도: "+maplod);
+			
+			var maptime="";
+			if(strf[this.selectedIndex-1].maptime=="half") {
+				maptime="약30분";
+			} else if(strf[this.selectedIndex-1].maptime=="aHour") {
+				maptime="약1시간";
+			} else if(strf[this.selectedIndex-1].maptime=="twoHour") {
+				maptime="약2시간";
+			} else if(strf[this.selectedIndex-1].maptime=="soLong") {
+				maptime="2시간이상";
+			} 
+			$("#mapTime").text("총시간: "+maptime);
+			$("#mapMana").text("마나무한여부: "+(strf[this.selectedIndex-1].mapmana=="y"?"無":"有"));
 			$('div.downButton>div.openRightSide>div.menu04>div.text>a').attr("href","/Ssamtrio/strboard/downloadSMF.str?mapid="+$(this).val());
 		}
 	});

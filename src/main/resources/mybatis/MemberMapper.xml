@@ -3,7 +3,8 @@
 <mapper namespace="com.genius.mapper.MemberMapper">
 <select id="signinCheck" parameterType="com.genius.model.Member" resultType="com.genius.model.Member">
 <![CDATA[
-	SELECT MEMNICK,
+	SELECT MEMID,
+		   MEMNICK,
 		   MEMAUTH,
 		   MEMLVL
 	  FROM MEMBER

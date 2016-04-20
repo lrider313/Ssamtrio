@@ -4,6 +4,8 @@ public class Strumf {
 	private Integer mapid;
 	private String mapname;
 	private Integer mapcount;
+	private String maplod;
+	private String maptime;
 	private Integer mapminn;
 	private Integer mapmaxn;
 	private String mapver;
@@ -27,6 +29,18 @@ public class Strumf {
 	}
 	public void setMapcount(Integer mapcount) {
 		this.mapcount = mapcount;
+	}
+	public String getMaplod() {
+		return maplod;
+	}
+	public void setMaplod(String maplod) {
+		this.maplod = maplod;
+	}
+	public String getMaptime() {
+		return maptime;
+	}
+	public void setMaptime(String maptime) {
+		this.maptime = maptime;
 	}
 	public Integer getMapminn() {
 		return mapminn;
@@ -64,4 +78,5 @@ public class Strumf {
 	public void setStrid(Integer strid) {
 		this.strid = strid;
 	}
+	
 }
