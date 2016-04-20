@@ -13,9 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.genius.mapper.CsbMapper;
 import com.genius.model.Csb;
+import com.genius.model.Csrp;
 
 @Service
 public class CsbService {
+
+	
 	
 	@Autowired
 	CsbMapper csbmapper;
@@ -75,5 +78,4 @@ public class CsbService {
 	public int deleteCs(Integer csid){
 		return csbmapper.deleteCs(csid);
 	}
-
 }

@@ -1,6 +1,7 @@
 package com.genius.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +11,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genius.model.Csb;
+import com.genius.model.Csrp;
 import com.genius.service.BoardService;
 import com.genius.service.CsbService;
+import com.genius.service.CsrpService;
 
 @Controller
 @RequestMapping("/csboard")
 public class CsController {
+	
+	@Autowired
+	CsrpService csrpservice;
 	
 	@Autowired
 	CsbService csbservice;
@@ -69,7 +75,7 @@ public class CsController {
 	@RequestMapping("/serviceSelectForm.str")
 	public ModelAndView serviceSelectForm(int csid) {
 		//System.out.println(csid);
-		return new ModelAndView("csboard/serviceSelectForm").addObject("csb", csbservice.selectById(csid));
+		return new ModelAndView("csboard/serviceSelectForm").addObject("csb", csbservice.selectById(csid)).addObject("csrp", csrpservice.selectRe(csid));
 	}
 	
 	@RequestMapping("serviceDelete.str")
@@ -77,4 +83,12 @@ public class CsController {
 		csbservice.deleteCs(csid);
 		return "redirect:/csboard/serviceList.str";
 	}
+	
+	@RequestMapping("serviceRe.str")
+	public String serviceRe(Csrp csrp, HttpSession session){
+		csrpservice.insertRe(csrp, session);
+		return "redirect:/csboard/serviceSelectForm.str?csid="+csrp.getCsid();
+	}
+	
+	
 }

@@ -45,26 +45,28 @@
 			</table>
 			<div>
 			</div>
-			<table class="menuStyle openLeftSide">
-			<tr>
-			<th>고객센터</th>
-			<td></td>
-			</tr>
+			<table class="menuStyle openLeftSide" style="display: inline-block;">
+			<c:forEach items="${csrp }" var="rp">
+				<tr>
+					<th>${rp.memid}  &nbsp;&nbsp;&nbsp;</th>
+					<td>${rp.csrpcont}</td>
+				</tr>
+			</c:forEach>
 			</table>
 		</div>
-		
+	</form>
+		<form method="post" action="serviceRe.str">
 		<div>
 			</div>
-			<table class="menuStyle openLeftSide">
+			<table class="menuStyle openLeftSide" style="display: inline-block;  ">
 			<tr>
 			<th>고객센터</th>
-			<td><input type="text" /></td>
-			<td><button onclick="">입력</button></td>
+			<td><input type="text" name="csrpcont" /><input type="hidden" name="csid" value="${csb.csid}"/></td>
+			<td><button >입력</button></td>
 			</tr>
 			</table>
 		</div>
-			
-	</form>
+			</form>
 
 <menu:leftMenuButton01 uri="serviceList.str" value="목록"/>
 <menu:leftMenuButton01 uri="serviceUpdateForm.str?csid=${csb.csid }" value="수정하기"/>
