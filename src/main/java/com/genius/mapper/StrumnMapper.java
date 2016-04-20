@@ -7,4 +7,5 @@ import com.genius.model.Strumn;
 public interface StrumnMapper {
 	List<Strumn> selectAll();
 	int insertStr(Strumn strumn);
+	List<Strumn> getListBySW(String sw);
 }

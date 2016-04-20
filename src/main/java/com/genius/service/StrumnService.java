@@ -36,4 +36,9 @@ public class StrumnService {
 	public List<Strumn> getList() {
 		return strumnmapper.selectAll();
 	}
+	
+	@Transactional
+	public List<Strumn> getListBySW(String sw) {
+		return strumnmapper.getListBySW("%"+sw+"%");
+	}
 }

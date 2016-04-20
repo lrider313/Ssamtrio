@@ -14,6 +14,20 @@
 	  FROM STRUMN
 ]]>
 </select>
+<select id="getListBySW" parameterType="String" resultType="com.genius.model.Strumn">
+<![CDATA[
+	SELECT STRID,
+		   STRTITLE,
+		   STRCONT,
+		   STRIP,
+		   STRCOUNT,
+		   STRDATE,
+		   BOARDID,
+		   MEMID
+	  FROM STRUMN
+	 WHERE STRTITLE LIKE #{sw}
+]]>
+</select>
 
 <insert id="insertStr" parameterType="com.genius.model.Strumn">
 <![CDATA[

@@ -181,6 +181,56 @@ body {
   width: 300px;
 }
 
+div.searchBar{
+  margin-right: 75px;
+  position: relative;
+  display: inline-block;
+  width: 540px;
+  height: 176px;
+  font-size: xx-large;
+  color: silver;
+  opacity: 0.95;
+}
+div.searchBar img {
+  width: 540px;
+}
+
+div.searchOptions {
+  margin-left: 50px;
+  position: relative;
+  display: inline-block;
+  width: 270px;
+  height: 88px;
+  font-size: large;
+  color: silver;
+  opacity: 0.95;
+}
+div.searchOptions img {
+  width: 270px;
+}
+div.searchOptions label {
+  width: 80px;
+}
+div.searchOptions select {
+  width: 150px;
+}
+
+div.searchItems {
+  position: absolute;
+  top: 13px;
+  left: 50px;
+  width: 170px;
+  text-align: center; 
+}
+
+div.searchBarModule {
+  position: absolute;
+  top: 26px;
+  left: 85px;
+  width: 340px;
+  text-align: center; 
+}
+
 /*
 ** Animation
 */

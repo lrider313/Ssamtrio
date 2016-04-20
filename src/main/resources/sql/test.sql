@@ -1,18 +1,10 @@
-	INSERT INTO STRUMF(
-						MAPNAME,
-						MAPMINN,
-						MAPMAXN,
-						MAPVER,
-						MAPCRT,
-						MAPMANA,
-						STRID
-					  )
-				VALUES(
-						'벌처컨트롤 신의 난이도',
-						2,
-						6,
-						'1.2.3',
-						null,
-						'n',
-						1
-					  )
+	SELECT STRID,
+		   STRTITLE,
+		   STRCONT,
+		   STRIP,
+		   STRCOUNT,
+		   STRDATE,
+		   BOARDID,
+		   MEMID
+	  FROM STRUMN
+	 WHERE STRTITLE LIKE '%무%'

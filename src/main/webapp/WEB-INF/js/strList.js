@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('.mapFile,.mapFileInfo,.downButton').hide();
 	$('.getFileInfo').click(function(){
 		$.ajax({
-			url:'getFileInfo.str?strid='+$(this).attr("id"),
+			url:'/Ssamtrio/strboard/getFileInfo.str?strid='+$(this).attr("id"),
 			dataType:'json',
 			success:function(strumf) {
 				strf = strumf;
@@ -26,7 +26,8 @@ $(document).ready(function() {
 					}, 200);
 				setTimeout(function() {
 					clearInterval(blinkSel);
-				}, 1600)
+					$(".mapid").css("color","#3D9D26");
+				}, 1000)
 				
 				//.downButton이 보인다면 제거
 				if(isThereDownButton==true) {
