@@ -17,6 +17,36 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    	$(document).ready(function() {
+            $('#delBtn').click(function() {
+            	//delBtn 클릭시 
+            	// blah 의 경로 (src 를 #으로 바꿈 )
+    			$('#blah').attr('src', '#');
+            	// file 의 value 값을 빈값으로 바꿈 
+    			$('#file').val("");
+    		});
+            
+            
+            $('#submitBtn').click(function() {
+	            //1. file을 지울때
+	            //submitBtn 클릭 즉 수정하기 눌렀을때 blah 가 # 값이면 구분값으로 사용하는 hidInput 을 del 로  
+	      
+	            if($('#blah').attr("src")=="#") {
+	            	$('#hidInput').attr("value", "del");
+	            //2. file을 유지할때
+	            //submitBtn 클릭 즉 수정하기 눌렀을때 blah 가 # 값이면 구분값으로 사용하는 hidInput 을 keep으로 
+	            } else if($('#file').val()=="") {
+	            	$('#hidInput').attr("value", "keep");
+	            //3. file을 바꿀때
+	            } else {
+		            //submitBtn 클릭 즉 수정하기 눌렀을때 blah 가 # 값이면 구분값으로 사용하는 hidInput 을 yes로
+	            	$('#hidInput').attr("value", "yes");
+	            }
+	           	$('#csUpdtForm').submit();
+			})
+    	});
+    		
+    	
 </script>
 </head>
 <body>
@@ -26,7 +56,7 @@
 그담에 action 으로 서비스update로 던짐  
  -->
 <% Csb csb = (Csb) request.getAttribute("csb");%>
-<form method="post" action="serviceUpdate.str" enctype="multipart/form-data">
+<form id="csUpdtForm" method="post" action="serviceUpdate.str" enctype="multipart/form-data">
 <input type="hidden" name="csid" value="${csb.csid }">
 	<div>
 		<table class="menuStyle">
@@ -55,12 +85,14 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" onchange="readURL(this)" name="file" value="${csb.csfile}"/> ${csb.csfile}<button type="reset">삭제하기</button>
-	
-				<img id="blah" src="#" alt="your image" style="width:200px;"/></td>
+				<td><input type="file" onchange="readURL(this)" id ="file" name="file"  /> 
+				<button id="delBtn"  type="button">삭제하기</button>	
+				<img id="blah" src="http://localhost:8082/Ssamtrio/csImage/${csb.csfile}" alt="your image" style="width:200px;"/>
+				<input type="hidden" id="hidInput" name="needChg"/>
+				</td>
 			</tr>
 			<tr>
-			<td colspan="2" style="text-align: right"><button type="submit">수정하기</button> 
+			<td colspan="2" style="text-align: right"><button type="submit" id="submitBtn">수정하기</button> 
 			<button type="reset">취소하기</button></td>
 			</tr>
 		</table>

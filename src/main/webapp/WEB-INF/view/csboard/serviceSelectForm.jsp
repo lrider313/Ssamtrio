@@ -39,12 +39,31 @@
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td><img src="/Ssamtrio/csImage/${csb.csfile}" alt="파일없음" style="width:300px;"/></td>
-					
+					<td><img src="/Ssamtrio/csImage/${csb.csfile}" alt="파일없음" style="width:300px;"/></td>					
 				</tr>
 		
 			</table>
+			<div>
+			</div>
+			<table class="menuStyle openLeftSide">
+			<tr>
+			<th>고객센터</th>
+			<td></td>
+			</tr>
+			</table>
 		</div>
+		
+		<div>
+			</div>
+			<table class="menuStyle openLeftSide">
+			<tr>
+			<th>고객센터</th>
+			<td><input type="text" /></td>
+			<td><button onclick="">입력</button></td>
+			</tr>
+			</table>
+		</div>
+			
 	</form>
 
 <menu:leftMenuButton01 uri="serviceList.str" value="목록"/>

@@ -12,12 +12,6 @@
 <form action="serviceForm.str" method="post">
     <div class="table-responsive openLeftSide menuStyle" >
 	<table class="table-hover">
-	<tr>
-	<td width="50"> 전체  /</td>  
-	<td  width="50"> <a href="serviceList.str?gubun=1">버그신고</a>/</td>
-	<td  width="50"> 파일요청 /</td> 
-	<td  width="50">기타</td>
-		<tr>
 			<td width="73">번호</td>
 			<td width="80" style="text-align: inherit;">분류</td>
 			<td width="379">제목</td>

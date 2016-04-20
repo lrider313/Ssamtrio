@@ -54,7 +54,7 @@ UPDATE CSBOARD SET
 						CSTITLE=#{cstitle},
 						CSCONT=#{cscont},
 					 	CSTYPE=#{cstype},
-					 	CSFILE=#{csfile}
+					 	CSFILE=#{csfile,jdbcType=VARCHAR}
 				WHERE  CSID=#{csid}
 
 </update>
