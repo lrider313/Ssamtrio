@@ -17,6 +17,13 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        
+	$(document).ready(function() {
+        $('#delBtn').click(function() {
+			$('#blah').attr('src', '#');
+			$('#file').val("");
+		});
+	});
 </script>
 </head>
 <body>
@@ -56,7 +63,8 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" onchange="readURL(this)" name="file"/> <button type="button">삭제하기</button><img id="blah" src="#" alt="your image" style="width:200px;"/></td>
+				<td><input type="file" onchange="readURL(this)" id="file" name="file"/> <button id="delBtn" type="button">삭제하기</button>
+				<img id="blah" src="#" alt="your image" style="width:200px;"/></td>
        			
 			</tr>
 			<tr>

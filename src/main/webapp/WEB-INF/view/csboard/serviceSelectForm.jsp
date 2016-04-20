@@ -39,13 +39,34 @@
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td><img src="/Ssamtrio/csImage/${csb.csfile}" alt="파일없음" style="width:300px;"/></td>
-					
+					<td><img src="/Ssamtrio/csImage/${csb.csfile}" alt="파일없음" style="width:300px;"/></td>					
 				</tr>
 		
 			</table>
+			<div>
+			</div>
+			<table class="menuStyle openLeftSide" style="display: inline-block;">
+			<c:forEach items="${csrp }" var="rp">
+				<tr>
+					<th>${rp.memid}  &nbsp;&nbsp;&nbsp;</th>
+					<td>${rp.csrpcont}</td>
+				</tr>
+			</c:forEach>
+			</table>
 		</div>
 	</form>
+		<form method="post" action="serviceRe.str">
+		<div>
+			</div>
+			<table class="menuStyle openLeftSide" style="display: inline-block;  ">
+			<tr>
+			<th>고객센터</th>
+			<td><input type="text" name="csrpcont" /><input type="hidden" name="csid" value="${csb.csid}"/></td>
+			<td><button >입력</button></td>
+			</tr>
+			</table>
+		</div>
+			</form>
 
 <menu:leftMenuButton01 uri="serviceList.str" value="목록"/>
 <menu:leftMenuButton01 uri="serviceUpdateForm.str?csid=${csb.csid }" value="수정하기"/>

@@ -13,9 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.genius.mapper.CsbMapper;
 import com.genius.model.Csb;
+import com.genius.model.Csrp;
 
 @Service
 public class CsbService {
+
+	
 	
 	@Autowired
 	CsbMapper csbmapper;
@@ -29,6 +32,7 @@ public class CsbService {
 			try {
 				file.transferTo(saveFile);
 			} catch (IllegalStateException | IOException e) {
+				System.out.println("파일이없다");
 				e.printStackTrace();
 			}
 		}
@@ -48,7 +52,12 @@ public class CsbService {
 	@Transactional
 	public int updateCs(MultipartFile file, HttpServletRequest request,Csb csb){
 		csb.setCsip(request.getRemoteAddr());
-		csb.setCsfile(file.getOriginalFilename());
+		String needChg = request.getParameter("needChg");
+		if(needChg.equals("keep")){
+			csb.setCsfile(csbmapper.selectById(csb.getCsid()).getCsfile());
+		} else {
+			csb.setCsfile(file.getOriginalFilename());
+		}
 		if (file.getSize() > 0) {
 			File saveFile = new File("C:/pjt/src/Ssamtrio/src/main/webapp/csImage", file.getOriginalFilename());
 			try {
@@ -69,5 +78,4 @@ public class CsbService {
 	public int deleteCs(Integer csid){
 		return csbmapper.deleteCs(csid);
 	}
-
 }

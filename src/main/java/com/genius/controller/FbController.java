@@ -34,7 +34,6 @@ public class FbController {
 	@RequestMapping("/write_gallery.str")
 	public ModelAndView writeGallery(Model model) {
 		
-		
 		return new ModelAndView("gallery/write_gallery").addObject("boardList", boardService.getBoardList());
 	}
 	@RequestMapping("/view_igallery")

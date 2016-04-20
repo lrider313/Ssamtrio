@@ -76,6 +76,11 @@
 		<property name="mapperInterface" value="com.genius.mapper.CsbMapper" />
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
 	</bean>
+	<!-- CsrpMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.CsrpMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
 		<!-- FbMapper -->
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.genius.mapper.FbMapper" />
