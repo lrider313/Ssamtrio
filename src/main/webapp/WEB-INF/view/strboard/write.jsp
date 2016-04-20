@@ -22,6 +22,14 @@ $(document).ready(function() {
 <form action="insertStrumn.str" id="insertStrumn">
 <div class="openLeftSide">
 <div class="menuStyle">
+	<label for="strtype"><span>맵타입</span></label>
+	<select id="strtype" name="strtype">
+		<option value="">선택하세요</option>
+		<option value="controll">컨트롤</option>
+		<option value="depence">디펜스</option>
+		<option value="operation">운영</option>
+		<option value="etc">기타</option>
+	</select><br/>
 	<label for="strtitle"><span>맵이름</span></label><input type="text" name="strtitle" id="strtitle" /><br>
 	<label for="strcont"><span>맵설명</span></label><textarea rows="10" cols="21" name="strcont" id="strcont"></textarea><br>
 	<label for="boardid"><span>게시판 선택</span></label>

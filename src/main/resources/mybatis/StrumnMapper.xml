@@ -21,17 +21,17 @@
 							STRTITLE, 
 							STRCONT, 
 							STRIP, 
-							STRCOUNT, 
 							BOARDID, 
-							MEMID
+							MEMID,
+							STRTYPE
 						) 
                 VALUES (
 	                		#{strtitle}, 
 	                		#{strcont}, 
 	                		#{strip}, 
-	                		0, 
 	                		#{boardid}, 
-	                		'lrider'
+	                		#{memid},
+	                		#{strtype}
                 		)
 ]]>
 </insert>

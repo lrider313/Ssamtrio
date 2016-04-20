@@ -35,6 +35,8 @@
 			<li id="mapNumber"></li>
 			<li id="mapVersion"></li>
 			<li id="mapCrt"></li>
+			<li id="mapLod"></li>
+			<li id="mapTime"></li>
 			<li id="mapMana"></li>
 		</ul>
 	</div>

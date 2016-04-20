@@ -1,8 +1,14 @@
 package com.genius.model;
 
+import java.security.Timestamp;
+
 public class Strp {
 	private Integer strpid;
 	private String strpcont;
+	private Integer strpref;
+	private Integer strplvl;
+	private Integer strpstep;
+	private Timestamp strpdate;
 	private Integer strprec;
 	private Integer strprej;
 	private Integer strid;
@@ -18,6 +24,30 @@ public class Strp {
 	}
 	public void setStrpcont(String strpcont) {
 		this.strpcont = strpcont;
+	}
+	public Integer getStrpref() {
+		return strpref;
+	}
+	public void setStrpref(Integer strpref) {
+		this.strpref = strpref;
+	}
+	public Integer getStrplvl() {
+		return strplvl;
+	}
+	public void setStrplvl(Integer strplvl) {
+		this.strplvl = strplvl;
+	}
+	public Integer getStrpstep() {
+		return strpstep;
+	}
+	public void setStrpstep(Integer strpstep) {
+		this.strpstep = strpstep;
+	}
+	public Timestamp getStrpdate() {
+		return strpdate;
+	}
+	public void setStrpdate(Timestamp strpdate) {
+		this.strpdate = strpdate;
 	}
 	public Integer getStrprec() {
 		return strprec;

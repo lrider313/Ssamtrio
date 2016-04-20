@@ -6,6 +6,7 @@ public class Strumn {
 	private Integer strid;
 	private String strtitle;
 	private String strcont;
+	private String strtype;
 	private String strip;
 	private Integer strcount;
 	private Timestamp strdate;
@@ -28,6 +29,12 @@ public class Strumn {
 	}
 	public void setStrcont(String strcont) {
 		this.strcont = strcont;
+	}
+	public String getStrtype() {
+		return strtype;
+	}
+	public void setStrtype(String strtype) {
+		this.strtype = strtype;
 	}
 	public String getStrip() {
 		return strip;

@@ -168,13 +168,13 @@ body {
 
 .mapContnr {
   margin-top: 15px;
-  padding: 20px;
+  padding: 5px;
   width: 420px;
   height: 200px;
   overflow:hidden;
   border: 3px groove #781706;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .mapid {
