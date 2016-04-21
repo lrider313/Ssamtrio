@@ -34,7 +34,7 @@
 <!--       <li class="active"><a href="/Ssamtrio/strboard/list.str">Home</a></li> -->
       <li><a href="/Ssamtrio/main/" class="inToTheMenu">공지사항</a></li> 
       <li><a href="/Ssamtrio/strboard/list.str" class="inToTheMenu">맵자료실</a></li> 
-      <li><a href="/Ssamtrio/gallery/view_gallery.str" class="inToTheMenu">프리보드</a></li> 
+      <li><a href="/Ssamtrio/freeboard/freeBoardList.str" class="inToTheMenu">프리보드</a></li> 
       <li><a href="/Ssamtrio/gallery/view_igallery.str" class="inToTheMenu">포토보드</a></li> 
       <li><a href="/Ssamtrio/csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
     </ul>
