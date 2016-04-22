@@ -24,14 +24,14 @@ table {
 </style>
 </head>
 <body>
+
 <div  class="menuStyleHDH openLeftSide">
 <table >
 <tr>
-<th width="73">아이디</th>
-<td>1234</td>
-<th width="500" style="text-align: center">제목</th>
-<th width="70">조회</th>
-<th width="70">추천</th>
+<th width="73" name="memid">${fb.memid }</th>
+<th width="500" style="text-align: center" name="fbtitle">${fb.fbtitle }</th>
+<th width="70" name="fbcount">${fb.fbcount}</th>
+<th width="70" name="fbrec">${fb.fbrec}</th>
 <th>
 </tr>
 </table>
@@ -40,7 +40,7 @@ table {
 <table width="710" >
 <tr>
 					<th>내용</th>
-				<td>글쓴거 DB로나오게</td>
+				<td name="fbcont">${fb.fbcont }</td>
 				</tr>
 				<tr>
 				<td colspan="2"><a href=""><img src="/Ssamtrio/image/heart.png" style="width:70px;" /></a></td>

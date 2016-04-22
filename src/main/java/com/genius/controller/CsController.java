@@ -35,13 +35,13 @@ public class CsController {
 	}
 	
 	@RequestMapping(value="/servicePro.str", method=RequestMethod.POST)
-	public String servicePro(MultipartFile file, HttpServletRequest request, Csb csb) {
+	public String servicePro(MultipartFile file, HttpServletRequest request, Csb csb, HttpSession session) {
 	/*	System.out.println(csb.getCstitle());
 		System.out.println(csb.getMemid());
 		System.out.println(csb.getCscont());
 		System.out.println(csb.getCstype());
 		System.out.println(csb.getCsfile());*/
-		if(csbservice.insertCs(file, request, csb)==1) {
+		if(csbservice.insertCs(file, request, csb, session)==1) {
 			return "redirect:/csboard/serviceList.str";
 		}
 		return "redirect:/csboard/serviceForm.str";
@@ -74,7 +74,6 @@ public class CsController {
 	
 	@RequestMapping("/serviceSelectForm.str")
 	public ModelAndView serviceSelectForm(int csid) {
-		//System.out.println(csid);
 		return new ModelAndView("csboard/serviceSelectForm").addObject("csb", csbservice.selectById(csid)).addObject("csrp", csrpservice.selectRe(csid));
 	}
 	

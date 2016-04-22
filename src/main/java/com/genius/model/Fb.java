@@ -11,10 +11,10 @@ public class Fb {
 	private String fbip;
 	private String memid;
 	private Integer boardid;
+	private Integer fbrec;
 	public Integer getFbid() {
 		return fbid;
 	}
-	
 	public void setFbid(Integer fbid) {
 		this.fbid = fbid;
 	}
@@ -59,5 +59,11 @@ public class Fb {
 	}
 	public void setBoardid(Integer boardid) {
 		this.boardid = boardid;
+	}
+	public Integer getFbrec() {
+		return fbrec;
+	}
+	public void setFbrec(Integer fbrec) {
+		this.fbrec = fbrec;
 	}
 }

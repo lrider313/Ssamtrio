@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.genius.mapper.CsbMapper;
 import com.genius.model.Csb;
-import com.genius.model.Csrp;
+import com.genius.model.Member;
 
 @Service
 public class CsbService {
@@ -24,9 +25,11 @@ public class CsbService {
 	CsbMapper csbmapper;
 	
 	@Transactional
-	public int insertCs(MultipartFile file, HttpServletRequest request, Csb csb) {
+	public int insertCs(MultipartFile file, HttpServletRequest request, Csb csb, HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
 		csb.setCsip(request.getRemoteAddr());
 		csb.setCsfile(file.getOriginalFilename());
+		csb.setMemid(member.getMemid());
 		if (file.getSize() > 0) {
 			File saveFile = new File("C:/pjt/src/Ssamtrio/src/main/webapp/csImage", file.getOriginalFilename());
 			try {

@@ -7,9 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<script>
+	function needSignin() {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href='/Ssamtrio/sign/signinForm.str';
+	}
+</script>
 </head>
 <body>
-<form action="serviceForm.str" method="post">
     <div class="table-responsive openLeftSide menuStyle" >
 	<table class="table-hover">
 			<td width="73">번호</td>
@@ -39,8 +44,12 @@
 		</c:forEach>
 	</table>
 	</div>
+	<c:if test="${empty sessionScope.member.memid }">
+	<menu:leftMenuButton01 uri="javascript:void(0)\' onclick=\'javascript:needSignin()" value="글쓰기"/>
+	</c:if>
+	<c:if test="${!empty sessionScope.member.memid }">
 	<menu:leftMenuButton01 uri="serviceForm.str" value="글쓰기"/>
-</form>
+	</c:if>
 </body>
 
 </html>
