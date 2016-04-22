@@ -14,20 +14,6 @@
 	  FROM STRUMN
 ]]>
 </select>
-<select id="getListBySW" parameterType="String" resultType="com.genius.model.Strumn">
-<![CDATA[
-	SELECT STRID,
-		   STRTITLE,
-		   STRCONT,
-		   STRIP,
-		   STRCOUNT,
-		   STRDATE,
-		   BOARDID,
-		   MEMID
-	  FROM STRUMN
-	 WHERE STRTITLE LIKE #{sw}
-]]>
-</select>
 
 <insert id="insertStr" parameterType="com.genius.model.Strumn">
 <![CDATA[
@@ -49,4 +35,62 @@
                 		)
 ]]>
 </insert>
+<resultMap type="com.genius.model.Strumn" id="resultSearch">
+	<id column="N_STRID" property="strid"/>
+	<result column="N_STRTITLE" property="strtitle"/>
+	<result column="N_STRCONT" property="strcont"/>
+	<result column="N_STRTYPE" property="strtype"/>
+	<result column="N_STRCOUNT" property="strcount"/>
+	<collection property="strumf" ofType="com.genius.model.Strumf">
+		<id column="F_MAPID" property="mapid"/>
+		<result column="F_MAPNAME" property="mapname"/>
+		<result column="F_MAPCOUNT" property="mapcount"/>
+		<result column="F_MAPLOD" property="maplod"/>
+		<result column="F_MAPTIME" property="maptime"/>
+		<result column="F_MAPMINN" property="mapminn"/>
+		<result column="F_MAPMAXN" property="mapmaxn"/>
+		<result column="F_MAPVER" property="mapver"/>
+		<result column="F_MAPCRP" property="mapcrp"/>
+		<result column="F_MAPMANA" property="mapmana"/>
+		<result column="F_STRID" property="strid"/>
+	</collection>
+</resultMap>
+<select id="getListBySW" resultType="com.genius.model.Strumn" resultMap="resultSearch" parameterType="com.genius.command.Searchword">
+	SELECT N.STRID AS N_STRID, 
+		   N.STRTITLE AS N_STRTITLE,
+		   N.STRCONT AS N_STRCONT,
+		   N.STRTYPE AS N_STRTYPE,
+		   N.STRCOUNT AS N_STRCOUNT,
+		   F.MAPID AS F_MAPID,
+		   F.MAPNAME AS F_MAPNAME,
+		   F.MAPCOUNT AS F_MAPCOUNT,
+		   F.MAPLOD AS F_MAPLOD,
+		   F.MAPTIME AS F_MAPTIME,
+		   F.MAPMINN AS F_MAPMINN,
+		   F.MAPMAXN AS F_MAPMAXN,
+		   F.MAPVER AS F_MAPVER,
+		   F.MAPCRT AS F_MAPCRT,
+		   F.MAPMANA AS F_MAPMANA,
+		   F.STRID AS F_STRID
+	  FROM STRUMN N LEFT JOIN STRUMF F
+	    ON N.STRID = F.STRID
+	 <where>
+	   N.STRTITLE LIKE CONCAT('%', #{searchWordBar}, '%')
+	 <if test="headcount != 'all'">
+<![CDATA[	   AND F.MAPMINN<=#{headcount} AND F.MAPMAXN>=#{headcount} ]]>
+     </if>
+	 <if test="strtype != 'all'">
+	   AND N.STRTYPE LIKE CONCAT('%', #{strtype}, '%')
+	 </if>
+	 <if test="maplod != 'all'"> 
+	   AND F.MAPLOD LIKE CONCAT('%', #{maplod}, '%') 
+	 </if>
+ 	 <if test="mapmana != 'all'">
+	   AND F.MAPMANA LIKE CONCAT('%', #{mapmana}, '%') 
+	 </if>
+ 	 <if test="maptime != 'all'">
+	   AND F.MAPTIME LIKE CONCAT('%', #{maptime}, '%') 
+     </if>
+     </where>
+</select>
 </mapper>

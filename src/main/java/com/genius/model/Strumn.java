@@ -1,6 +1,10 @@
 package com.genius.model;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Strumn {
 	private Integer strid;
@@ -12,6 +16,21 @@ public class Strumn {
 	private Timestamp strdate;
 	private Integer boardid;
 	private String memid;
+	private List<Strumf> strumf;
+	
+	@Override
+	public String toString() {
+		//JsonMapper
+		ObjectMapper mapper = new ObjectMapper();
+		String value=null;
+		try{
+			value = mapper.writeValueAsString(this);
+			System.out.println(value);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
 	public Integer getStrid() {
 		return strid;
 	}
@@ -65,5 +84,11 @@ public class Strumn {
 	}
 	public void setMemid(String memid) {
 		this.memid = memid;
+	}
+	public List<Strumf> getStrumf() {
+		return strumf;
+	}
+	public void setStrumf(List<Strumf> strumf) {
+		this.strumf = strumf;
 	}
 }

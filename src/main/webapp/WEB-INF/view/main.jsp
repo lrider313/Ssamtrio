@@ -9,8 +9,66 @@
 <title>main.jsp</title>
 <script>
 $(document).ready(function() {
-	$("body>div.searchBtn>div.openRightSide>div.menu04>div.text>a.changePage").click(function() {
-		$('#searchForm').submit();
+	/* jScrollPane */
+	var api = $('.resultOfTheMaps').jScrollPane({maintainPosition: false}).data('main.jsp');
+	
+	$("body>div.searchBtn>div.openRightSide>div.menu04>div.text>a.changePage").attr("class","searchListBtn");
+	$('#searchResultOut').hide();
+	$(".searchListBtn").click(function() {
+		$.ajax({
+			url:'/Ssamtrio/main/list.str?searchWordBar='+$('#searchWordBar').val()
+									  +"&headcount="+$('#headcount').val()
+									  +"&strtype="+$('#strtype').val()
+									  +"&maplod="+$('#maplod').val()
+									  +"&mapmana="+$('#mapmana').val()
+									  +"&maptime="+$('#maptime').val(),
+			dataType:'json',
+			success:function(data) {
+				$('div.openRightSide').attr("class","closeRightSide");
+				setTimeout(function() {
+					$('div.closeRightSide').hide();
+					$('#searchResultOut').attr("class","openRightSide").show();
+				}, 250);
+				$('.resultOfTheMaps').empty();
+				var list="";
+				for(var i=0; i<data.length;i++) {
+					for(var j=0; j<data[i].strumf.length; j++) {
+// 						list+="<li><input type='checkbox' id='"+data[i].strumf[j].mapname+"'/><label for='"+data[i].strumf[j].mapname+"'>"
+// 								+data[i].strtitle+"|"
+// 								+data[i].strtype+"|"
+// 								+data[i].strumf[j].mapname+"|"
+// 								+data[i].strumf[j].mapcount+"|"
+// 								+data[i].strumf[j].maplod+"|"
+// 								+data[i].strumf[j].maptime+"|"
+// 								+data[i].strumf[j].mapminn+"~"+data[i].strumf[j].mapmaxn+"|"
+// 								+data[i].strumf[j].mapver+"|"
+// 								+data[i].strumf[j].mapmana
+// 								+"</label></li>";
+						list+="<td>"+data[i].strtitle+"</td>"
+							 +"<td>"+data[i].strtype+"</td>"
+							 +"<td>"+data[i].strumf[j].mapname+"</td>"
+							 +"<td>"+data[i].strumf[j].mapcount+"</td>"
+							 +"<td>"+data[i].strumf[j].maplod+"</td>"
+							 +"<td>"+data[i].strumf[j].maptime+"</td>"
+							 +"<td>"+data[i].strumf[j].mapminn+"~"+data[i].strumf[j].mapmaxn+"</td>"
+							 +"<td>"+data[i].strumf[j].mapver+"</td>"
+							 +"<td>"+data[i].strumf[j].mapmana+"</td>";
+					}
+					list="<tr>"+list+"</tr>";
+				}
+				$('.resultOfTheMaps').append("<table><thead><tr><th>맵카테고리</th>"
+															  +"<th>맵타입</th>"
+															  +"<th>맵이름</th>"
+															  +"<th>다운로드수</th>"
+															  +"<th>난이도</th>"
+															  +"<th>총시간</th>"
+															  +"<th>인원수</th>"
+															  +"<th>맵버전</th>"
+															  +"<th>맵마나</th></tr></thead><tbody>"+list+"</tbody></table>");
+				api.reinitialise();
+				
+			}
+		})
 	});
 	$(".changePage").click(function() {
 		$(".openRightSide").attr("class", "closeRightSide");
@@ -35,12 +93,24 @@ $(document).ready(function() {
 </div>
 </div>
 </div>
+<table>
+	<thead></thead>
+	<tfoot></tfoot>
+	<tbody></tbody>
+</table>
+<div id="searchResultOut" class="openRightSide">
+<div class="searchResult">
+<div class="resultDesc"><span class="glyphicon glyphicon-th-list">검색결과리스트</span></div><br/><br/>
+<div class="resultOfTheMaps">
+</div>
+</div>
+</div>
 <div class="openLeftSide">
 <div class="searchOptions">
 <img alt="menu07" src="/Ssamtrio/image/menu07.png">
 <div class="searchItems">
-<label for="headCount"><span class="glyphicon glyphicon-user"></span>인원수</label>
-<select id="headCount" name="headcount">
+<label for="headcount"><span class="glyphicon glyphicon-user"></span>인원수</label>
+<select id="headcount" name="headcount">
 	<option value="all">전체</option>
 	<option value="1">1인</option>
 	<option value="2">2인</option>
@@ -114,6 +184,7 @@ $(document).ready(function() {
 </div>
 </div>
 </form>
+
 <div class="searchBtn"><menu:rightMenuButton01 uri="javascript:void(0)" value="검색"/></div>
 <menu:rightMenuButton02 uri="/Ssamtrio/strboard/list.str" value="전체보기"/>
 </body>

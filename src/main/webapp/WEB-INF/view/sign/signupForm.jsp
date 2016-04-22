@@ -11,7 +11,7 @@
 <script>
 $(document).ready(function() {
 	var wasIdchecked=false;
-	var idPwPattern = /^[a-z0-9_]{4,15}$/;
+	var idPwPattern = /^[a-zA-Z0-9_]{4,15}$/;
 	var emailPattern =  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	var phonePattern =  /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 	var namePattern = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
@@ -39,7 +39,8 @@ $(document).ready(function() {
 			$('#memnickDiv').text("2글자이상 15글자이하로 작성해주세요.");
 			$('#memnick').val("").focus();
 			return false;
-		} else if(!phonePattern.test($('#memphone').val())) {
+		} else if(!phonePattern.test($('#memphone').val())&&$('#memphone').val()!="") {
+			alert("전화번호");
 			$('#memphoneDiv').text("휴대폰 번호를 정확히 입력하세요. ex) 010-1234-1234");
 			$('#memphone').val("").focus();
 			return false;
@@ -52,6 +53,7 @@ $(document).ready(function() {
 			$('#checkExistId').focus();
 			return false;
 		}
+		alert("성공");
 		$(".openLeftSide").attr("class", "closeLeftSide");
 		$(".openRightSide").attr("class", "closeRightSide");
 		$('#signupPro').submit();

@@ -1,12 +1,15 @@
 package com.genius.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.genius.command.Searchword;
+import com.genius.model.Strumn;
 import com.genius.service.StrumnService;
 
 @Controller
@@ -22,16 +25,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/list.str")
-	public ModelAndView list(HttpServletRequest request) {
-		String searchWordBar = request.getParameter("searchWordBar");
-		String headcount = request.getParameter("headcount");
-		String strtype = request.getParameter("strtype");
-		String maplod = request.getParameter("maplod");
-		String mapmana = request.getParameter("mapmana");
-		String maptime = request.getParameter("maptime");
-		if(searchWordBar!=null&&headcount.equals("all")&&strtype.equals("all")&&maplod.equals("all")&&mapmana.equals("all")&&maptime.equals("all")){
-			return new ModelAndView("strboard/list").addObject("list", strumnservice.getListBySW(request.getParameter("searchWordBar")));
-		}
-		return new ModelAndView("/main");
+	public @ResponseBody List<Strumn> list(Searchword searchword) {
+		return strumnservice.getListBySW(searchword);
 	}
 }
