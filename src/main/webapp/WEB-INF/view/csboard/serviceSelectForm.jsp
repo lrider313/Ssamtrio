@@ -55,22 +55,26 @@
 			</table>
 		</div>
 	</form>
+<c:if test="${sessionScope.member.memauth<=2 }">
 		<form method="post" action="serviceRe.str">
 		<div>
 			</div>
 			<table class="menuStyle openLeftSide" style="display: inline-block;  ">
 			<tr>
-			<th>고객센터</th>
+			<th>${rp.memid}</th>
 			<td><input type="text" name="csrpcont" /><input type="hidden" name="csid" value="${csb.csid}"/></td>
 			<td><button >입력</button></td>
 			</tr>
 			</table>
 		</div>
 			</form>
-
+			</c:if>
+			
 <menu:leftMenuButton01 uri="serviceList.str" value="목록"/>
+<c:if test="${sessionScope.member.memid==csb.memid }">
 <menu:leftMenuButton01 uri="serviceUpdateForm.str?csid=${csb.csid }" value="수정하기"/>
 <menu:leftMenuButton01 uri="serviceDelete.str?csid=${csb.csid }" value="삭제하기"/>
+</c:if>
 
 </body>
 
