@@ -2,46 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.genius.mapper.FbMapper">
 <insert id="insertFb" parameterType="com.genius.model.Fb">
-<![CDATA[
+
 	INSERT INTO FREEBOARD(
 						FBTITLE,
 						FBCONT,
-						FBCOUNT,
 						FBIP,
 						MEMID,
 						BOARDID
 					 )
 			   VALUES(
-			   			
 						#{fbtitle},
 						#{fbcont},
-						0,
 						#{fbip},
-						'david4343',
-						1
-
+						#{memid},
+						#{boardid}
 					 )
-]]>
 </insert>
-<select id="selectFboard" resultType="com.genius.model.Fb">
-				SELECT FBID, 
-					MEMID,
-					FBTITLE, 
-					FBDATE,
-					FBCOUNT
-					FROM FREEBOARD
-	   ORDER BY FBID DESC
-</select>
-<delete id="deleteFborad" parameterType="com.genius.model.Fb">
-	DELETE FROM FB WHERE MEMID = #{memid}
-</delete>
-<update id="updateFboard" parameterType="com.genius.model.Fb">
-	UPDATE FB SET FBTITLE = #{fbtitle},
-					FBCONT= #{fbcont},
-				WHERE MEMID = #{memid}
 
-</update>
-<!-- <select id="FbCount" resultType="int" > -->
-<!--       SELECT FBCOUNT(*) FROM FREEBBOARD -->
-<!-- </select> -->
+<select id="selectformfb" resultType="com.genius.model.Fb" parameterType="integer">
+ SELECT FBID,
+		FBTITLE,
+		FBCONT,
+		FBCONT,
+		FBIP,
+		BOARDID,
+		MEMID,
+		FBREC
+   FROM FREEBOARD
+  WHERE FBID= #{fbid}
+
+
+
+</select>
 </mapper>

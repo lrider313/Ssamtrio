@@ -28,6 +28,20 @@
             
             
             $('#submitBtn').click(function() {
+            		 if ($("#cstype").val() == "") {
+            	         alert("문의유형을 선택해주세요.");	
+            	         return false;
+            		} else
+            		if($('#cstitle').val()==""){
+            			alert("제목을 입력해주세요.");
+            	         $('#cstitle').focus();
+            			return false;
+            		}else 
+            			if($("#cscont").val()==""){
+            				alert("내용을 입력해주세요.")
+            				$('#cscont').focus();
+            				return false;
+            			}
 	            //1. file을 지울때
 	            //submitBtn 클릭 즉 수정하기 눌렀을때 blah 가 # 값이면 구분값으로 사용하는 hidInput 을 del 로  
 	      
@@ -45,8 +59,6 @@
 	           	$('#csUpdtForm').submit();
 			})
     	});
-    		
-    	
 </script>
 </head>
 <body>
@@ -63,7 +75,7 @@
 			<tr>
 				<th>문의유형</th>
 				<td>
-					<select name="cstype" >
+					<select name="cstype" id="cstype" value="">
 						<option value="" > 선택 </option>
 						<option value="1" <%if(csb.getCstype()==1) out.println("selected"); %>> 버그신고 </option>
 						<option value="2" <%if(csb.getCstype()==2) out.println("selected"); %>> 파일요청 </option>
@@ -72,16 +84,12 @@
 				</td>
 			</tr>	
 			<tr>
-				<th>ID </th>
-				<td><input type="text" value="${csb.memid }"></td>
-			</tr>
-			<tr>
 				<th>제목</th>
-				<td><input type="text"  name="cstitle" style="width: 420px;" value="${csb.cstitle}"></td>
+				<td><input type="text"  name="cstitle" id="cstitle" style="width: 420px;" value="${csb.cstitle}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="50" name="cscont"> ${csb.cscont}</textarea></td>
+				<td><textarea rows="15" cols="50" name="cscont" id="cscont"> ${csb.cscont}</textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
@@ -92,7 +100,7 @@
 				</td>
 			</tr>
 			<tr>
-			<td colspan="2" style="text-align: right"><button type="submit" id="submitBtn">수정하기</button> 
+			<td colspan="2" style="text-align: right"><button type="submit" id="submitBtn"">수정하기</button> 
 			<button type="reset">취소하기</button></td>
 			</tr>
 		</table>

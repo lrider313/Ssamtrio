@@ -6,6 +6,7 @@
 	SELECT BOARDID,
 		   BOARDTITLE
 	  FROM BOARD
+  ORDER BY BOARDID 
 ]]>
 </select>
 <insert id="makeBoard" parameterType="com.genius.model.Board">
