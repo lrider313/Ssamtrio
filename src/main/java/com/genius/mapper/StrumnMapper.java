@@ -9,4 +9,5 @@ public interface StrumnMapper {
 	List<Strumn> selectAll();
 	int insertStr(Strumn strumn);
 	List<Strumn> getListBySW(Searchword searchword);
+	Strumn getListByMI(Integer mapid);
 }

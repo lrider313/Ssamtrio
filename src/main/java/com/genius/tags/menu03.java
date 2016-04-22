@@ -28,7 +28,7 @@ public class menu03 extends SimpleTagSupport {
 
 		tag.append("<div class='openLeftSide'>");
 		tag.append("<div class='menu03'>");
-		tag.append("<img alt='menu01.jsp' src='../image/menu03.png' />");
+		tag.append("<img alt='menu03.jsp' src='../image/menu03.png' />");
 		tag.append("<div class='text'>");
 		tag.append("<a href='"+ uri +"'class='changePage'>"+value+"</a>");
 		tag.append("</div>");

@@ -242,7 +242,7 @@ div.searchResult {
   padding: 15px;
 }
 div.resultOfTheMaps {
-  width: 700px;
+  width: 850px;
   height: 300px;
   overflow-x:hidden;
   overflow-y:scroll;
@@ -253,6 +253,15 @@ div.resultOfTheMaps ul li {
   list-style-type: none;
   display: block;
   font-size: 13px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table, td, th {    
+  border: 1px solid #781706;
+  text-align: center;
 }
 
 /*

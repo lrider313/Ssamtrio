@@ -39,7 +39,7 @@
       <li><a href="/Ssamtrio/csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    	<li><a href="/Ssamtrio/cart/view_cart" class="inToTheMenu">장바구니</a></li> 
+    	<li><a href="/Ssamtrio/cart/cartList.str" class="inToTheMenu">장바구니</a></li> 
     <c:if test="${sessionScope.member.memauth==1 }">
 	    <li><a href="javascript:void(0)">회원 관리</a>
     </c:if>

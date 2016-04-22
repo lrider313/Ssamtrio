@@ -40,13 +40,12 @@ public class StrumnService {
 	
 	@Transactional
 	public List<Strumn> getListBySW(Searchword searchword) {
-		System.out.println("searchWordBar:"+searchword.getSearchWordBar());
-		System.out.println("headcount:"+searchword.getHeadcount());
-		System.out.println("maplod:"+searchword.getMaplod());
-		System.out.println("mapmana:"+searchword.getMapmana());
-		System.out.println("maptime:"+searchword.getMaptime());
-		System.out.println("strtype:"+searchword.getStrtype());
-		
+//		System.out.println("searchWordBar:"+searchword.getSearchWordBar());
+//		System.out.println("headcount:"+searchword.getHeadcount());
+//		System.out.println("maplod:"+searchword.getMaplod());
+//		System.out.println("mapmana:"+searchword.getMapmana());
+//		System.out.println("maptime:"+searchword.getMaptime());
+//		System.out.println("strtype:"+searchword.getStrtype());
 		return strumnmapper.getListBySW(searchword);
 	}
 }

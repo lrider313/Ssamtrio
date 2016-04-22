@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.genius.mapper.CartMapper">
-<!-- <select id="selectAll" resultType="com.genius.model.Cart"> -->
-<!-- <![CDATA[ -->
-<!-- 	SELECT CARTID, -->
-<!-- 			MAPID, -->
-<!-- 			MEMID, -->
-<!-- 		FROM CART -->
-<!-- ]]> -->
-<!-- </select> -->
+<insert id="addCart" parameterType="com.genius.model.Cart">
+<![CDATA[
+	INSERT INTO CART(
+						MAPID,
+						MEMID
+					)
+			  VALUES(
+			  			#{mapid},
+			  			#{memid}
+			  		)
+]]>
+</insert>
+<select id="getCartList" parameterType="String" resultType="com.genius.model.Cart">
+<![CDATA[
+	SELECT MAPID
+	  FROM CART
+	 WHERE MEMID = #{memid}
+  ORDER BY MAPID
+]]>
+</select>
 </mapper>
