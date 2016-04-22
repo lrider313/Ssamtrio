@@ -135,7 +135,7 @@ body {
   width: 120px;
 }
 
-.mapCtgrDesc, .mapFileDesc {
+.mapCtgrDesc, .mapFileDesc, .resultDesc {
   color: silver;
   font-size: 25px;
 }
@@ -229,6 +229,30 @@ div.searchBarModule {
   left: 85px;
   width: 340px;
   text-align: center; 
+}
+
+div.searchResult {
+  margin: 0px 50px 50px 50px;
+  display: inline-block; 
+  background-color:#080808;
+  color: #3D9D26;
+  opacity: 0.95;
+  border: 3px groove #781706;
+  border-radius: 5px;
+  padding: 15px;
+}
+div.resultOfTheMaps {
+  width: 700px;
+  height: 300px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  border: 3px groove #781706;
+  border-radius: 5px; 
+}
+div.resultOfTheMaps ul li {
+  list-style-type: none;
+  display: block;
+  font-size: 13px;
 }
 
 /*
