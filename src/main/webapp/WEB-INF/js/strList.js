@@ -3,8 +3,11 @@ $(document).ready(function() {
 	var scrollBlock = $('.mapCtgr').jScrollPane({mousewheelspeed:50});
 	var api = scrollBlock.data('jsp');
 	var strf;
+	var mapid;
 	var isThereDownButton = false;
-	$('.mapFile,.mapFileInfo,.downButton').hide();
+	$('div.addCartBtn>div.openRightSide>div.menu05>div.text>a').attr("class","addCartButton");
+	$('.mapFile,.mapFileInfo,.downButton,.addCartBtn').hide();
+	
 	$('.getFileInfo').click(function(){
 		$.ajax({
 			url:'/Ssamtrio/strboard/getFileInfo.str?strid='+$(this).attr("id"),
@@ -23,18 +26,18 @@ $(document).ready(function() {
 					} else {
 						$(".mapid").css("color","red");
 					}
-					}, 200);
+				}, 200);
 				setTimeout(function() {
 					clearInterval(blinkSel);
 					$(".mapid").css("color","#3D9D26");
 				}, 1000)
 				
-				//.downButton이 보인다면 제거
+				//.downButton, .addCartBtn이 보인다면 제거
 				if(isThereDownButton==true) {
-					$('div.downButton>div.openRightSide').attr("class","closeRightSide");
+					$('div.downButton>div.openRightSide,div.addCartBtn>div.openRightSide').attr("class","closeRightSide");
 					setTimeout(function() {
-						$('.downButton,.mapFileInfo').hide();
-						$('div.downButton>div.closeRightSide').attr("class","openRightSide");
+						$('.downButton,.addCartBtn,.mapFileInfo').hide();
+						$('div.downButton>div.closeRightSide,div.addCartBtn>div.closeRightSide').attr("class","openRightSide");
 					}, 250);
 					isThereDownButton=false;
 				}
@@ -48,14 +51,14 @@ $(document).ready(function() {
 	});
 
 	$('.mapid').change(function(){
-		//downButton, mapFileInfo가 존재하면 제거
+		//downButton, addCartBtn, mapFileInfo가 존재하면 제거
 		if(isThereDownButton==true) {
-			$('div.downButton>div.openRightSide').attr("class","closeRightSide");
+			$('div.downButton>div.openRightSide,div.addCartBtn>div.openRightSide').attr("class","closeRightSide");
 			setTimeout(function() {
 				if($('.mapid').val()=="") {
-					$('.downButton,.mapFileInfo').hide();
+					$('.downButton,.addCartBtn,.mapFileInfo').hide();
 				}
-				$('div.downButton>div.closeRightSide').attr("class","openRightSide");
+				$('div.downButton>div.closeRightSide,div.addCartBtn>div.closeRightSide').attr("class","openRightSide");
 			}, 250);
 			isThereDownButton=false;
 		}
@@ -63,7 +66,7 @@ $(document).ready(function() {
 		//선택한 select의 value의 값이 존재한다면(mapid가 선택된다면)
 		if($('.mapid').val() != "") {
 			isThereDownButton=true;
-			if($('.mapFileInfo,.downButton').attr("style")=="display: none;")	$('.mapFileInfo,.downButton').show();
+			if($('.mapFileInfo,.downButton,.addCartBtn').attr("style")=="display: none;")	$('.mapFileInfo,.downButton,.addCartBtn').show();
 			$("#mapName").text("맵이름: "+strf[this.selectedIndex-1].mapname);
 			$("#mapCount").text("맵다운로드수: "+strf[this.selectedIndex-1].mapcount);
 			$("#mapNumber").text("맵인원수: "+strf[this.selectedIndex-1].mapminn+" ~ "+strf[this.selectedIndex-1].mapmaxn);
@@ -101,6 +104,19 @@ $(document).ready(function() {
 			$("#mapTime").text("총시간: "+maptime);
 			$("#mapMana").text("마나무한여부: "+(strf[this.selectedIndex-1].mapmana=="y"?"無":"有"));
 			$('div.downButton>div.openRightSide>div.menu04>div.text>a').attr("href","/Ssamtrio/strboard/downloadSMF.str?mapid="+$(this).val());
+			mapid=strf[this.selectedIndex-1].mapid;
 		}
+	});
+	
+	$('.addCartButton').click(function() {
+		$.ajax({
+			url:'/Ssamtrio/cart/addCart.str',
+			type:'GET',
+			data:{"mapid": mapid},
+			dataType:'json',
+			success:function(msg) {
+				alert(msg.state);
+			}
+		});
 	});
 });

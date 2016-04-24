@@ -135,7 +135,7 @@ body {
   width: 120px;
 }
 
-.mapCtgrDesc, .mapFileDesc, .resultDesc {
+.mapCtgrDesc, .mapFileDesc, .resultDesc, .hisDesc {
   color: silver;
   font-size: 25px;
 }

@@ -96,4 +96,9 @@
 		<property name="mapperInterface" value="com.genius.mapper.CartMapper" />
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
 	</bean>
+	<!-- HistoryMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.genius.mapper.HistoryMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>	
+	</bean>
 </beans>

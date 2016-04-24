@@ -25,6 +25,16 @@
 	 WHERE MAPID=#{mapid}
 ]]>
 </select>
+<select id="getMapnameListByMapid" parameterType="java.util.List" resultType="String">
+<![CDATA[
+	SELECT MAPNAME
+	  FROM STRUMF
+	 WHERE
+]]>
+<foreach collection="list" item="mapidList" separator="OR">
+	MAPID=#{mapidList}
+</foreach>
+</select>
 <insert id="uploadSMF" parameterType="com.genius.model.Strumf">
 <![CDATA[
 	INSERT INTO STRUMF(

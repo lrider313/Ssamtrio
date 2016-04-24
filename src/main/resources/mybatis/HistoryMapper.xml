@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.genius.mapper.HistoryMapper">
+<insert id="addHistoryList" parameterType="java.util.List">
+<![CDATA[
+	INSERT INTO HISTORY(
+							MAPID,
+							MEMID
+					   )
+				VALUES 
+]]>
+<foreach collection="list" item="historyList" open="(" separator="),(" close=")">
+							#{historyList.mapid}, #{historyList.memid}
+</foreach>
+</insert>
+<select id="getHistoryList" resultType="com.genius.model.History">
+<![CDATA[
+	SELECT HISTORYID,
+		   HISDATE,
+		   MAPID,
+		   MEMID
+	  FROM HISTORY
+  ORDER BY HISDATE DESC
+]]>
+</select>
+<delete id="delHistoryById" parameterType="java.util.List">
+<![CDATA[
+	DELETE FROM HISTORY
+]]>
+<where>
+<foreach collection="list" item="historyList" separator="OR">
+		   HISTORYID = #{historyList}
+</foreach>
+</where>
+</delete>
 </mapper>

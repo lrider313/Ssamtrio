@@ -13,7 +13,23 @@
 			  		)
 ]]>
 </insert>
-<select id="getCartList" parameterType="String" resultType="com.genius.model.Cart">
+
+<insert id="addCartList" parameterType="java.util.List">
+<![CDATA[
+	INSERT INTO CART(
+						MAPID,
+						MEMID
+					)
+			  VALUES
+]]>
+<foreach collection="list" item="cartList" open="(" separator="),(" close=")">
+					#{cartList.mapid},
+					#{cartList.memid}
+</foreach>	
+</insert>
+
+<!-- List<Integer>으로 반환값을 설정했는데 TreeSet으로 비교하기 위함(객체끼리 중복 비교가 안됨) -->
+<select id="getCartList" parameterType="String" resultType="Integer">
 <![CDATA[
 	SELECT MAPID
 	  FROM CART
@@ -21,4 +37,20 @@
   ORDER BY MAPID
 ]]>
 </select>
+
+<delete id="deleteAllCartListByMemid" parameterType="String">
+<![CDATA[
+	DELETE FROM CART
+		  WHERE MEMID = #{memid}
+]]>
+</delete>
+<delete id="deleteCartByMapid" parameterType="java.util.List">
+<![CDATA[
+	DELETE FROM CART
+		  WHERE
+]]>
+<foreach collection="list" item="mapidList" separator="OR">
+				MAPID = #{mapidList}
+</foreach>
+</delete>
 </mapper>

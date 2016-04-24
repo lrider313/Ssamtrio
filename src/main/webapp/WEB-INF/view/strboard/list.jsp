@@ -47,5 +47,6 @@
 	<menu:rightMenuButton01 uri="upMapFileForm.str" value="맵 업로드"/>
 </c:if>
 <div class="downButton"><menu:rightMenuButton01 uri="javascript:void(0)" value="맵 다운로드"/></div>
+<div class="addCartBtn"><menu:rightMenuButton02 uri="javascript:void(0)" value="장바구니에 추가"/></div>
 </body>
 </html>

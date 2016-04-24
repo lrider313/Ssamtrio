@@ -35,7 +35,6 @@
       <li><a href="/Ssamtrio/main/" class="inToTheMenu">공지사항</a></li> 
       <li><a href="/Ssamtrio/strboard/list.str" class="inToTheMenu">맵자료실</a></li> 
       <li><a href="/Ssamtrio/freeboard/freeBoardList.str" class="inToTheMenu">프리보드</a></li> 
-      <li><a href="/Ssamtrio/gallery/view_igallery.str" class="inToTheMenu">포토보드</a></li> 
       <li><a href="/Ssamtrio/csboard/serviceList.str" class="inToTheMenu.str">고객센터</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -44,7 +43,7 @@
 	    <li><a href="javascript:void(0)">회원 관리</a>
     </c:if>
     <c:if test="${!empty sessionScope.member.memnick}">
-		<li><a href="javascript:void(0)">${sessionScope.member.memnick }</a></li>
+		<li><a href="/Ssamtrio/member/memberInfo.str">${sessionScope.member.memnick }</a></li>
 		<li><a href="/Ssamtrio/sign/signOut.str" class="inToTheMenu">Sign Out</a></li>
 	</c:if>
     <c:if test="${empty sessionScope.member.memnick}">

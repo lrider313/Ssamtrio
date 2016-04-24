@@ -93,7 +93,7 @@
      </if>
      </where>
 </select>
-<select id="getListByMI" resultType="com.genius.model.Strumn" resultMap="resultSearch" parameterType="Integer">
+<select id="getListByMapList" resultType="com.genius.model.Strumn" resultMap="resultSearch" parameterType="java.util.List">
 <![CDATA[
 	SELECT N.STRID AS N_STRID, 
 		   N.STRTITLE AS N_STRTITLE,
@@ -113,8 +113,12 @@
 		   F.STRID AS F_STRID
 	  FROM STRUMN N LEFT JOIN STRUMF F
 	    ON N.STRID = F.STRID
-	 WHERE F.MAPID = #{mapid}
-  ORDER BY F.MAPID
+	 WHERE
 ]]>
+<foreach collection="list" item="mapidList" separator="OR">
+	  F.MAPID = #{mapidList}
+</foreach>
+  ORDER BY F.MAPID
+
 </select>
 </mapper>

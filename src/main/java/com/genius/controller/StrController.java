@@ -7,23 +7,31 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.genius.model.History;
+import com.genius.model.Member;
 import com.genius.model.Strumf;
 import com.genius.model.Strumn;
 import com.genius.service.BoardService;
+import com.genius.service.HistoryService;
 import com.genius.service.StrumfService;
 import com.genius.service.StrumnService;
 
@@ -40,6 +48,9 @@ public class StrController {
 	
 	@Autowired
 	StrumfService strumfService;
+	
+	@Autowired
+	HistoryService historyService;
 	
 	@RequestMapping("/list.str")
 	public ModelAndView list() {
@@ -103,7 +114,7 @@ public class StrController {
 	}
 	
 	@RequestMapping("/downloadSMF.str")
-	public void downlaodSMF(Strumf strumf, HttpServletResponse response) {
+	public void downlaodSMF(Strumf strumf, HttpServletResponse response, HttpSession session) {
 		Strumf mapFile =strumfService.selectByMapid(strumf.getMapid());
 		response.setCharacterEncoding("UTF-8");
 		
@@ -133,6 +144,69 @@ public class StrController {
 			e.printStackTrace();
 		} finally {
 			strumfService.mapcountInc(strumf.getMapid());
+			if(session.getAttribute("member") != null) {
+				List<History> historyList = new ArrayList<History>();
+				Member member = (Member) session.getAttribute("member");
+				String memid = member.getMemid();
+				Integer mapid = strumf.getMapid();
+				History history = new History();
+				history.setMapid(mapid);
+				history.setMemid(memid);
+				historyList.add(history);
+				historyService.addHistoryList(historyList);
+			}
+		}
+	}
+	
+	@RequestMapping("/downloadSMFList.str")
+	public void downloadSMFList(@RequestParam(value="list") List<Integer> mapidList, HttpServletResponse response, HttpSession session) {
+		List<File> filelist = new ArrayList<File>();
+		List<String> mapnameList = strumfService.getMapnameListByMapid(mapidList);
+		String dir = "D:/pjt/uploads/";
+		//downloadSMF.str 복붙 시작
+		response.setCharacterEncoding("UTF-8");
+		
+		String downName = new String("StarMaps.zip");
+		byte[] bytes;
+		try {
+			bytes = downName.getBytes("euc-kr");
+			downName = new String(bytes, "ISO-8859-1");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+
+		response.setContentType("application/octet-stream"); 
+		response.setHeader("Content-Disposition", "attachment;filename=\"" + downName + "\"");
+		//downloadSMF.str 복붙 끝
+		try {
+			for(String file : mapnameList) {
+				filelist.add(new File(dir+file));
+			}
+			OutputStream out = response.getOutputStream();
+			ZipArchiveOutputStream zos = new ZipArchiveOutputStream(out);
+			zos.setEncoding(Charset.defaultCharset().name());
+			FileInputStream in = null;
+			int length;
+			ZipArchiveEntry ze;
+			byte[] buf = new byte[8 * 1024];
+
+			if (filelist.size() > 0) {
+				for (int i = 0; i < filelist.size(); i++) {
+					System.out.println("name: " + filelist.get(i).getName());
+					ze = new ZipArchiveEntry(filelist.get(i).getName());
+					zos.putArchiveEntry(ze);
+					in = new FileInputStream(filelist.get(i));
+					while ((length = in.read(buf, 0, buf.length)) >= 0) {
+						zos.write(buf, 0, length);
+					}
+				}
+				in.close();
+				zos.closeArchiveEntry();
+			}
+			zos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
+

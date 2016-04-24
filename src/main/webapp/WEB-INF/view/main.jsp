@@ -12,6 +12,7 @@ $(document).ready(function() {
 	/* jScrollPane */
 // 	var api = $('.resultOfTheMaps').jScrollPane({maintainPosition: false}).data('jsp');
 	$("body>div.goSearch>div.openLeftSide>div.menu02>div.text>a.changePage").attr("class", "addCartBtn");
+	$("body>div.goSearch>div.openLeftSide>div.menu03>div.text>a.changePage").attr("class","downloadBtn");
 	$("body>div.searchBtn>div.openRightSide>div.menu04>div.text>a.changePage").attr("class","searchListBtn");
 	$('#searchResultOut,.goSearch').hide();
 	$(".searchListBtn").click(function() {
@@ -39,7 +40,7 @@ $(document).ready(function() {
 				for(var i=0; i<data.length;i++) {
 					var list="";
 					for(var j=0; j<data[i].strumf.length; j++) {
-						list="<tr><td>"+"<input type='checkbox' name='cartList' value='"+data[i].strumf[j].mapid+"' /></td>"
+						list="<tr><td>"+"<input type='checkbox' name='list' value='"+data[i].strumf[j].mapid+"' /></td>"
 							 +"<td>"+data[i].strtitle+"</td>"
 							 +"<td>"+(data[i].strtype=="operation"?"운영":(data[i].strtype=="controll"?"컨트롤":(data[i].strtype=="depence"?"디펜스":"기타")))+"</td>"
 							 +"<td>"+data[i].strumf[j].mapname+"</td>"
@@ -53,7 +54,7 @@ $(document).ready(function() {
 						listAll+=list;
 					}
 				}
-				$('.resultOfTheMaps').append("<table id='mapList'><thead><tr><th><input type='checkbox' name='cartList'/></th>"
+				$('.resultOfTheMaps').append("<table id='mapList'><thead><tr><th><input type='checkbox' id='checkAll'/></th>"
 															  +"<th>맵분류</th>"
 															  +"<th>맵타입</th>"
 															  +"<th>맵이름</th>"
@@ -65,32 +66,49 @@ $(document).ready(function() {
 															  +"<th>맵마나</th>"
 															  +"<th>다운</th></tr></thead><tbody>"+listAll+"</tbody></table>");
 // 				api.reinitialise();
-				
+				$("#checkAll").change(function(){
+					$("input:checkbox").prop('checked', $(this).prop("checked"));
+				});
 			}
 		});
 	});
-	$(".changePage").click(function() {
+	$('.changePage').click(function() {
 		$(".openRightSide").attr("class", "closeRightSide");
 		$(".openLeftSide").attr("class", "closeLeftSide");
 	});
 	
 	$('.addCartBtn').click(function() {
-		var checkedCartList = [];
-		$('input[name="cartList"]:checked').each(function() {
-			checkedCartList.push($(this).val());
-			alert($(this).val());
-		});
-		
-		alert(checkedCartList);
-		$.ajax({
-			url: '/Ssamtrio/cart/addCart.str',
-			type: 'GET',
-			data: {'checkedCartList':checkedCartList},
-			dataType: 'json',
-			success:function(msg) {
-				alert(msg.state);
-			}
-		});
+		var cnt = $('input[name="list"]:checkbox:checked').length;
+		if(cnt < 1){
+			alert("한 개 이상을 선택하셔야 합니다");
+		}else{
+			var checkedCartList = [];
+			$('input[name="list"]:checked').each(function() {
+				checkedCartList.push($(this).val());
+			});
+			
+			$.ajax({
+				url: '/Ssamtrio/cart/addCartList.str',
+				type: 'GET',
+				data: {'checkedCartList':checkedCartList},
+				dataType: 'json',
+				success:function(msg) {
+					alert(cnt + "개의 파일이 " + msg.state);
+				}
+			});
+		}
+	});
+	
+	$('.downloadBtn').click(function(){
+		var cnt = $('input[name="list"]:checkbox:checked').length;
+		var url = "/Ssamtrio/strboard/downloadSMFList.str?";
+		if(cnt < 1){
+			alert("한 개 이상을 선택하셔야 합니다");
+		}else{
+			alert(cnt+"개의 파일을 다운로드합니다.");
+			var querystring = $('input[name="list"]:checkbox:checked').serialize();
+			location.href=url+querystring;
+		}
 	});
 });
 </script>
@@ -204,7 +222,7 @@ $(document).ready(function() {
 <div class="goSearch">
 	<menu:leftMenuButton01 uri="/Ssamtrio/main/" value="다시 검색으로"/>
 	<menu:leftMenuButton02 uri="javascript:void(0)" value="장바구니에 추가"/>
-	<menu:leftMenuButton03 uri="javascript:void(0)" value="다운로드"/>
+	<menu:leftMenuButton03 uri="javascript:void(0)" value="선택한 파일 다운로드"/>
 </div>
 </body>
 </html>
