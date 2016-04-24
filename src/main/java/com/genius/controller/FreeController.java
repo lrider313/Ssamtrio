@@ -39,12 +39,15 @@ public class FreeController {
 	
 	@RequestMapping("freeSelectForm.str")
 	public ModelAndView freeSlectFrom(int fbid){
+		fbservice.updatefb(fbid);
+		fbservice.updateRec(fbid);
 		return new ModelAndView("freeboard/freeSelectForm").addObject("fb", fbservice.selectformfb(fbid));
 	}
 	
+	
 	@RequestMapping("freeBoardList.str")
-	public String freeBoardList(){
-		return "freeboard/freeBoardList";
+	public ModelAndView freeBoardList(){
+		return new ModelAndView("freeboard/freeBoardList").addObject("fb", fbservice.selectListfb());
 	}
 }
 	

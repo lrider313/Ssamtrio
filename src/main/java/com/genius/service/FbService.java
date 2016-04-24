@@ -1,5 +1,7 @@
 package com.genius.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,5 +28,20 @@ public class FbService {
 	@Transactional
 	public Fb selectformfb(Integer fbid){
 		return fbmapper.selectformfb(fbid);
+	}
+	
+	@Transactional
+	public List<Fb> selectListfb(){
+		return fbmapper.selectListfb();
+	}
+	
+	@Transactional
+	public int updatefb(int fbid){
+		return fbmapper.updateFb(fbid);
+	}
+	
+	@Transactional
+	public int updateRec(int fbid){
+		return fbmapper.updateRec(fbid);
 	}
 }

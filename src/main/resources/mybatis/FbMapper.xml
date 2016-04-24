@@ -23,15 +23,44 @@
  SELECT FBID,
 		FBTITLE,
 		FBCONT,
-		FBCONT,
+		FBCOUNT,
 		FBIP,
 		BOARDID,
 		MEMID,
 		FBREC
    FROM FREEBOARD
   WHERE FBID= #{fbid}
-
-
-
 </select>
+  
+
+<!--  <update id="updatefb" parameterType="com.genius.model.Fb">
+UPDATE FREEBOARD SET 
+  FBCOUNT = FBCOUNT + 1 
+  WHERE FBID= #{fbid}
+</update>
+-->
+
+<update id="updateFb"    parameterType="integer">
+UPDATE FREEBOARD SET 
+  FBCOUNT = FBCOUNT + 1 
+  WHERE FBID= #{fbid}
+</update>
+
+<update id="updateRec"    parameterType="integer">
+UPDATE FREEBOARD SET 
+  FBREC = FBREC + 1 
+  WHERE FBID= #{fbid}
+</update>
+
+
+<select id="selectListfb" resultType="com.genius.model.Fb">
+SELECT  FBID,
+		FBTITLE,
+		MEMID,
+		FBDATE,
+		FBCOUNT,
+		FBREC
+		FROM FREEBOARD
+		ORDER BY FBID ASC
+		</select>
 </mapper>
