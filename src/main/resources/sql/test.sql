@@ -1,14 +1,8 @@
-	INSERT INTO FREEBOARD(
-						FBTITLE,
-						FBCONT,
-						FBIP,
-						MEMID,
-						BOARDID
-					 )
-			   VALUES(
-						'title',
-						'1234',
-						'fbip',
-						'siven',
-						'3'
-					 )
+SELECT  FBID,
+		FBTITLE,
+		MEMID,
+		FBDATE,
+		FBCOUNT,
+		FBREC
+		FROM FREEBOARD
+		ORDER BY FBID ASC

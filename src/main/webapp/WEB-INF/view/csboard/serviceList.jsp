@@ -28,7 +28,6 @@
 			<td>${cs.csid}</td>
 			<td>
 			<c:if test="${cs.cstype==1}">
-				버그신고
 			</c:if>
 			<c:if test="${cs.cstype==2}">
 				파일요청
