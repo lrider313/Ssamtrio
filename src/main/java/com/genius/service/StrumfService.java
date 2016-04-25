@@ -50,4 +50,10 @@ public class StrumfService {
 	public List<String> getMapnameListByMapid(List<Integer> mapidList) {
 		return strumfmapper.getMapnameListByMapid(mapidList);
 	}
+
+	@Transactional
+	public int mapcountListInc(List<Integer> mapidList) {
+		return strumfmapper.mapcountListInc(mapidList);
+		
+	}
 }

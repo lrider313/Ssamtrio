@@ -13,16 +13,7 @@
 							#{historyList.mapid}, #{historyList.memid}
 </foreach>
 </insert>
-<select id="getHistoryList" resultType="com.genius.model.History">
-<![CDATA[
-	SELECT HISTORYID,
-		   HISDATE,
-		   MAPID,
-		   MEMID
-	  FROM HISTORY
-  ORDER BY HISDATE DESC
-]]>
-</select>
+
 <delete id="delHistoryById" parameterType="java.util.List">
 <![CDATA[
 	DELETE FROM HISTORY
@@ -33,4 +24,47 @@
 </foreach>
 </where>
 </delete>
+
+<resultMap type="com.genius.model.History" id="resultHistory">
+	<id column="H_HISTORYID" property="historyid"/>
+	<result column="H_HISDATE" property="hisdate"/>
+	<result column="H_MAPID" property="mapid"/>
+	<result column="H_MEMID" property="memid"/>
+	<collection property="strumf" ofType="com.genius.model.Strumf">
+		<id column="F_MAPID" property="mapid"/>
+		<result column="F_MAPNAME" property="mapname"/>
+		<result column="F_MAPCOUNT" property="mapcount"/>
+		<result column="F_MAPLOD" property="maplod"/>
+		<result column="F_MAPTIME" property="maptime"/>
+		<result column="F_MAPMINN" property="mapminn"/>
+		<result column="F_MAPMAXN" property="mapmaxn"/>
+		<result column="F_MAPVER" property="mapver"/>
+		<result column="F_MAPCRP" property="mapcrp"/>
+		<result column="F_MAPMANA" property="mapmana"/>
+		<result column="F_STRID" property="strid"/>
+	</collection>
+</resultMap>
+<select id="getHistoryList" resultType="com.genius.model.History" resultMap="resultHistory" parameterType="java.util.List">
+<![CDATA[
+	SELECT H.HISTORYID AS H_HISTORY,
+		   H.HISDATE AS H_HISDATE,
+		   H.MAPID AS H_MAPID,
+		   H.MEMID AS H_MEMID,
+		   F.MAPID AS F_MAPID,
+		   F.MAPNAME AS F_MAPNAME,
+		   F.MAPCOUNT AS F_MAPCOUNT,
+		   F.MAPLOD AS F_MAPLOD,
+		   F.MAPTIME AS F_MAPTIME,
+		   F.MAPMINN AS F_MAPMINN,
+		   F.MAPMAXN AS F_MAPMAXN,
+		   F.MAPVER AS F_MAPVER,
+		   F.MAPCRT AS F_MAPCRT,
+		   F.MAPMANA AS F_MAPMANA,
+		   F.STRID AS F_STRID
+	  FROM HISTORY H LEFT JOIN STRUMF F
+	    ON H.MAPID = F.MAPID
+	 WHERE H.MEMID = #{memid}
+	 ORDER BY H.HISDATE DESC, F.MAPID ASC
+]]>
+</select>
 </mapper>

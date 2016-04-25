@@ -77,7 +77,7 @@ public class StrController {
 	@RequestMapping("/insertStrumn.str")
 	public void insertStrumn(Strumn strumn, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException {
 		int state = strumnService.insertStrumn(strumn, request, session);
-		response.setCharacterEncoding("EUC-KR");
+		response.setContentType ("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		writer.println("<script type='text/javascript'>");
 		if(state==1) {
@@ -108,7 +108,7 @@ public class StrController {
 	@RequestMapping("/uploadSMF.str")
 	public void uploadSMF(MultipartFile mapFile, Strumf strumf, HttpServletResponse response) throws IOException {
 		int state = strumfService.uploadSMF(mapFile, strumf);
-		response.setCharacterEncoding("EUC-KR");
+		response.setContentType ("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		writer.println("<script type='text/javascript'>");
 		if(state==1) {
@@ -135,7 +135,7 @@ public class StrController {
 
 		byte[] bytes;
 		try {
-			bytes = downName.getBytes("euc-kr");
+			bytes = downName.getBytes("EUC-KR");
 			downName = new String(bytes, "ISO-8859-1");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
@@ -181,7 +181,7 @@ public class StrController {
 		String downName = new String("StarMaps.zip");
 		byte[] bytes;
 		try {
-			bytes = downName.getBytes("euc-kr");
+			bytes = downName.getBytes("EUC-KR");
 			downName = new String(bytes, "ISO-8859-1");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
@@ -218,6 +218,20 @@ public class StrController {
 			zos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			strumfService.mapcountListInc(mapidList);
+			if(session.getAttribute("member") != null) {
+				List<History> historyList = new ArrayList<History>();
+				Member member = (Member) session.getAttribute("member");
+				String memid = member.getMemid();
+				for(Integer i : mapidList) {
+					History history = new History();
+					history.setMapid(i);
+					history.setMemid(memid);
+					historyList.add(history);
+				}
+				historyService.addHistoryList(historyList);
+			}
 		}
 	}
 	

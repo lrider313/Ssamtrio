@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.genius.mapper.StrumfMapper">
+<insert id="uploadSMF" parameterType="com.genius.model.Strumf">
+<![CDATA[
+	INSERT INTO STRUMF(
+						MAPNAME,
+						MAPLOD,
+						MAPTIME,
+						MAPMINN,
+						MAPMAXN,
+						MAPVER,
+						MAPCRT,
+						MAPMANA,
+						STRID
+					  )
+				VALUES(
+						#{mapname},
+						#{maplod},
+						#{maptime},
+						#{mapminn},
+						#{mapmaxn},
+						#{mapver},
+						#{mapcrt, jdbcType=VARCHAR},
+						#{mapmana},
+						#{strid}
+					  )
+]]>
+</insert>
 <select id="selectByStrid" parameterType="Integer" resultType="com.genius.model.Strumf">
 <![CDATA[
 	SELECT MAPID,
@@ -35,32 +61,6 @@
 	MAPID=#{mapidList}
 </foreach>
 </select>
-<insert id="uploadSMF" parameterType="com.genius.model.Strumf">
-<![CDATA[
-	INSERT INTO STRUMF(
-						MAPNAME,
-						MAPLOD,
-						MAPTIME,
-						MAPMINN,
-						MAPMAXN,
-						MAPVER,
-						MAPCRT,
-						MAPMANA,
-						STRID
-					  )
-				VALUES(
-						#{mapname},
-						#{maplod},
-						#{maptime},
-						#{mapminn},
-						#{mapmaxn},
-						#{mapver},
-						#{mapcrt, jdbcType=VARCHAR},
-						#{mapmana},
-						#{strid}
-					  )
-]]>
-</insert>
 <update id="mapcountInc" parameterType="Integer">
 <![CDATA[
 	UPDATE STRUMF
@@ -68,4 +68,23 @@
 	 WHERE MAPID=#{mapid}
 ]]>
 </update>
+<update id="mapcountListInc" parameterType="java.util.List">
+<![CDATA[
+	UPDATE STRUMF
+	   SET MAPCOUNT=MAPCOUNT+1
+	 WHERE 
+]]>
+<foreach collection="list" item="mapidList" separator="OR">
+	 MAPID = #{mapidList}
+</foreach>
+</update>
+<delete id="deleteList" parameterType="java.util.List">
+<![CDATA[
+	DELETE FROM STRUMF
+		  WHERE
+]]>
+<foreach collection="list" item="mapidList" separator="OR">
+		  MAPID = #{mapidList}
+</foreach>
+</delete>
 </mapper>

@@ -10,4 +10,6 @@ public interface StrumfMapper {
 	Strumf selectByMapid(Integer mapid);
 	int mapcountInc(Integer mapid);
 	List<String> getMapnameListByMapid(List<Integer> mapidList);
+	int deleteList(List<Integer> mapidList);
+	int mapcountListInc(List<Integer> mapidList);
 }

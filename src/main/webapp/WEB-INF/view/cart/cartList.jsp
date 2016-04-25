@@ -9,6 +9,8 @@
 <title>cartList.jsp</title>
 <script>
 $(document).ready(function() {
+	var scrollBlock = $('.cartContnr').jScrollPane({mousewheelspeed:50});
+	var api = scrollBlock.data('jsp');
 	$("body>div.goDown>div.openLeftSide>div.menu03>div.text>a.changePage").attr("class","downloadBtn");
 	$("body>div.goDown>div.openLeftSide>div.menu02>div.text>a.changePage").attr("class","delCartListBtn");
 	$("#checkAll").change(function(){
@@ -43,6 +45,7 @@ $(document).ready(function() {
 				success:function(msg) {
 					alert(cnt + "개의 목록이 " + msg.state);
 					location.reload();
+					api.reinitialise();
 				}
 			});
 		}
@@ -52,6 +55,8 @@ $(document).ready(function() {
 </head>
 <body>
 <div class="openLeftSide">
+<div class="menuStyle">
+<div class="cartDesc"><span class="glyphicon glyphicon-shopping-cart"></span> 장바구니</div>
 <div class="cartContnr">
 <table id='mapList'>
 	<thead>
@@ -96,6 +101,7 @@ $(document).ready(function() {
 	</c:if>
 	</tbody>
 </table>
+</div>
 </div>
 </div>
 <c:if test="${!empty mapListInCart }">

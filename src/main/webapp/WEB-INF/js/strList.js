@@ -6,6 +6,7 @@ $(document).ready(function() {
 	var mapid;
 	var isThereDownButton = false;
 	$('div.addCartBtn>div.openRightSide>div.menu05>div.text>a').attr("class","addCartButton");
+	$('div.downButton>div.openRightSide>div.menu04>div.text>a').attr("class","downBtn");
 	$('.mapFile,.mapFileInfo,.downButton,.addCartBtn').hide();
 	
 	$('.getFileInfo').click(function(){
@@ -103,7 +104,7 @@ $(document).ready(function() {
 			} 
 			$("#mapTime").text("총시간: "+maptime);
 			$("#mapMana").text("마나무한여부: "+(strf[this.selectedIndex-1].mapmana=="y"?"無":"有"));
-			$('div.downButton>div.openRightSide>div.menu04>div.text>a').attr("href","/Ssamtrio/strboard/downloadSMF.str?mapid="+$(this).val());
+			$('.downBtn').attr("href","/Ssamtrio/strboard/downloadSMF.str?mapid="+$('.mapid').val());
 			mapid=strf[this.selectedIndex-1].mapid;
 		}
 	});
