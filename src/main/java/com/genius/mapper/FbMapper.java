@@ -10,4 +10,6 @@ public interface FbMapper {
 	List<Fb> selectListfb();
 	int updateFb(int fbid);
 	int updateRec(int fbid);
+	int updateFbWrite(Fb fb);
+	int deleteFb(Integer fbid);
 }

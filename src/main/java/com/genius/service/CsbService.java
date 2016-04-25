@@ -54,7 +54,6 @@ public class CsbService {
 	
 	@Transactional
 	public int updateCs(MultipartFile file, HttpServletRequest request,Csb csb){
-		csb.setCsip(request.getRemoteAddr());
 		String needChg = request.getParameter("needChg");
 		if(needChg.equals("keep")){
 			csb.setCsfile(csbmapper.selectById(csb.getCsid()).getCsfile());

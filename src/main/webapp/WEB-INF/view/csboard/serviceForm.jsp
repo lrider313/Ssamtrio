@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>serviceForm.jsp</title>
+<style type="text/css">
+.leftcss{
+text-align: left;
+}
+</style>
 <script type="text/javascript" src="/Ssamtrio/js/btnSend.js"></script>
 <script type="text/javascript">
         function readURL(input) {
@@ -33,7 +38,7 @@
 <body>
 <form method="post" action="servicePro.str" enctype="multipart/form-data">
 	<div  class="openLeftSide menuStyle" style="display: inline-block;">
-		<table >
+		<table class="leftcss">
 			<tr>
 					<td colspan="2"><label id="boardid">게시판 선택</label> <select name="boardid"
 						id="boardid">

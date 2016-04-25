@@ -44,4 +44,15 @@ public class FbService {
 	public int updateRec(int fbid){
 		return fbmapper.updateRec(fbid);
 	}
+	
+	@Transactional
+	public int updateFbWrite(Fb fb){
+		return fbmapper.updateFbWrite(fb);
+		
+	}
+	
+	@Transactional
+	public int deleteFb(int fbid){
+		return fbmapper.deleteFb(fbid);
+	}
 }
