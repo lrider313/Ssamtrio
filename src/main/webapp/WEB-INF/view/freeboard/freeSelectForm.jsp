@@ -26,9 +26,11 @@ $(document).ready(function() {
     	        type:"post",
     	        url:"freeSelectRec.str",  
     	        data: {"fbid": fbid}, 
-    	        success: function (data) {       	 
-    	        		
-    	        		$("#reca").text(data);    	          	    	  
+    	        success: function (data) {
+    	        	//$('#reca').prepend('<img src="/Ssamtrio/image/heart.png" />')
+    	        	var text_data
+    	        	text_data = '<img src="/Ssamtrio/image/heart.png" width="30px" />' + data ; 	          
+	        		$("#reca").html(text_data);    	          	    	  
     	        }
     	        ,
     	    	  error:function(){
@@ -104,7 +106,7 @@ id varchar 없을시 text (이건 db 마다 다름 )
 <th width="73" name="memid">${fb.memid }</th>
 <th width="500" style="text-align: center" name="fbtitle">${fb.fbtitle }</th>
 <th width="70" name="fbcount">${fb.fbcount}</th>
-<th width="70" name="fbrec"><div id="reca">${fb.fbrec}</div></th>
+<th width="70" name="fbrec"><div id="reca"><img src="/Ssamtrio/image/heart.png" width="30px" />${fb.fbrec}</div></th>
 <th>
 </tr>
 </table>
@@ -118,18 +120,31 @@ id varchar 없을시 text (이건 db 마다 다름 )
 	</tr>
 </table>
 </div>
+<!-- 댓글리스트 -->
+<!-- 
+<form name="form" method="post" action="freeSelectForm.str">
+	<div class="menuStyleHDH openLeftSide">
+		<c:if test="${!empty sessionScope.member.memnick}">
+			<input type="hidden" name="user_id" value="${sessionScope.member.memnick }">
+			<table width="710">
+				<tr>
+					<th>${sessionScope.member.memnick }</th>
+					<td><input type="text" name="FB_RP_CONT" value=""><a href="#" onclick="save_dg()">저장하기</a></td>
+				</tr>
+			</table>
+		</c:if>
+		<c:if test="${empty sessionScope.member.memnick}">
+			<table width="710">
+				<tr>
+					<th>로그인후 작성가능</th>
+				</tr>
+			</table>
+		</c:if>
+	</div>
+</form>
+ -->
 
-<!-- <div class="menuStyleHDH openLeftSide">
-<table width="710">
-<tr>
-<th>아이디 , (date)</th>
-<td> 댓글내용 </td>
-</tr>
-</table>
-</div>
-
-		<div >
-			</div>
+<!--  
 				<table class="menuStyle openLeftSide" style="display: inline-block ;  ">
 			<tr>
 				<th>로그인한 아이디</th>
@@ -137,6 +152,7 @@ id varchar 없을시 text (이건 db 마다 다름 )
 				<td><button>입력</button></td>
 			</tr>
 			</table> -->
+			
 		<c:if test="${sessionScope.member.memid==fb.memid }">
 <menu:leftMenuButton03 uri="freeBoardUpdate.str?fbid=${fb.fbid }" value="수정"/>
 <menu:leftMenuButton03 uri="freeBoardDelete.str?fbid=${fb.fbid }" value="삭제"/>
@@ -146,6 +162,14 @@ id varchar 없을시 text (이건 db 마다 다름 )
 <menu:leftMenuButton02 uri="freeBoardWrite.str" value="글쓰기"/>
 </c:if>
 <%-- 	</form> --%>
+
+<script type="text/javascript">
+
+function save_dg(){
+	alert('a');
+	return;
+	}
+</script>
 	
 </body>
 </html>
