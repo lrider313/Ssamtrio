@@ -22,9 +22,9 @@
 			<td width="73" name="fbid">번호</td>
 			<td width="379" style="text-align: inherit;">제목</td>
 			<td width="73">글쓴이</td>
-				<td width="73">등록일</td>
-				<td width="163">조회</td>
-			<td width="163">추천</td>
+			<td width="163">등록일</td>
+			<td width="73">조회</td>
+			<td width="73">추천</td>
 		</tr>
 		<c:forEach items="${fb }" var="fbb">
 		<tr>

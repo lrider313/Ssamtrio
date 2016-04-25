@@ -1,6 +1,6 @@
 package com.genius.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Fb {
 	private Integer fbid;

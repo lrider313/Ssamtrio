@@ -1,28 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="menu" uri="/WEB-INF/tlds/menuButton.tld" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+  img { cursor:pointer  }
+</style>
+<meta http-equiv="Content-Type" content="text/h	tml; charset=UTF-8">
 <title>freeSelectForm.jsp</title>
-<script type="text/javascript">
-function Rec() {
-	document.from.rec.value="1";
-	document.form.submit();
-}
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script  type="text/javascript">
+// function Rec() {
+// 	document.from.rec.value="1";
+// 	document.form.submit();
+// }
+
+var fbid = ${fb.fbid};
+
+$(document).ready(function() {
+    $('#rec').click(function() {    
+    	 $.ajax({
+    	        type:"post",
+    	        url:"freeSelectRec.str",  
+    	        data: {"fbid": fbid}, 
+    	        success: function (data) {       	 
+    	        		
+    	        		$("#reca").text(data);    	          	    	  
+    	        }
+    	        ,
+    	    	  error:function(){
+    	    		  alert("data error");
+    	    	  }
+    	      });//$.ajax
+	});
+});
+
 </script>
 <style type="text/css">
 .menuStyleHDH{
-margin: 0px 50px 10px 50px;
+  margin: 0px 50px 10px 50px;
   display: inline-block; 
   background-color:#080808;
   color: #3D9D26;
   opacity: 0.95;
-  border: 3px groove #781706;
+  border: 3px groove #781706; 	
   border-radius: 5px;
   padding: 15px;
 }
+
+.menuStyleHDH11{
+  margin: 0px 50px 10px 50px;
+  display: inline-block; 
+  background-color:#080808;
+  color: #3D9D26;
+  opacity: 0.95;
+  border: 3px groove #781706; 	
+  border-radius: 5px;
+  padding: 15px;
+  width: 710px;
+  
+}
+
 table {
   text-align: center;
 }
@@ -55,7 +96,7 @@ id varchar 없을시 text (이건 db 마다 다름 )
 
  -->
 
-	<form name="form" method="post" action="freeSelectForm.str">
+	<%-- <form name="form" method="post" action="freeSelectForm.str"> --%>
 	<input type="hidden" name="rec" value="0">
 <div  class="menuStyleHDH openLeftSide">
 <table >
@@ -63,24 +104,22 @@ id varchar 없을시 text (이건 db 마다 다름 )
 <th width="73" name="memid">${fb.memid }</th>
 <th width="500" style="text-align: center" name="fbtitle">${fb.fbtitle }</th>
 <th width="70" name="fbcount">${fb.fbcount}</th>
-<th width="70" name="fbrec">${fb.fbrec}</th>
+<th width="70" name="fbrec"><div id="reca">${fb.fbrec}</div></th>
 <th>
 </tr>
 </table>
 </div>
-<div class="menuStyleHDH openLeftSide">
-<table width="710" >
-<tr>
-					<th>내용</th>
-				<td name="fbcont">${fb.fbcont }</td>
-				</tr>
-				<tr>
-				<td colspan="2" onclick="Rec()" id="name"><a href=""><img src="/Ssamtrio/image/heart.png" style="width:70px;" /></a></td>
-				</tr>
+<div class="menuStyleHDH11 openLeftSide">
+<table >
+	<tr>
+		<th width="73">내용</th>
+			<td name="fbcont" colspan="2">${fb.fbcont }<br>
+			<img src="/Ssamtrio/image/heart.png" style="width:70px;" id="rec" /></td>
+	</tr>
 </table>
 </div>
 
-<div class="menuStyleHDH openLeftSide">
+<!-- <div class="menuStyleHDH openLeftSide">
 <table width="710">
 <tr>
 <th>아이디 , (date)</th>
@@ -97,14 +136,16 @@ id varchar 없을시 text (이건 db 마다 다름 )
 				<td><input type="text" style="width: 200px"/></td>
 				<td><button>입력</button></td>
 			</tr>
-			</table>
-		</div>
-<menu:leftMenuButton03 uri="javascript:void(0)" value="수정"/>
-<menu:leftMenuButton03 uri="javascript:void(0)" value="삭제"/>
+			</table> -->
+		<c:if test="${sessionScope.member.memid==fb.memid }">
+<menu:leftMenuButton03 uri="freeBoardUpdate.str?fbid=${fb.fbid }" value="수정"/>
+<menu:leftMenuButton03 uri="freeBoardDelete.str?fbid=${fb.fbid }" value="삭제"/>
+		</c:if>
 <menu:leftMenuButton02 uri="freeBoardList.str" value="목록"/>
+<c:if test="${!empty sessionScope.member.memid}">
 <menu:leftMenuButton02 uri="freeBoardWrite.str" value="글쓰기"/>
-
-	</form>
+</c:if>
+<%-- 	</form> --%>
 	
 </body>
 </html>

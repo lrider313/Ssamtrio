@@ -27,6 +27,7 @@
 		FBIP,
 		BOARDID,
 		MEMID,
+		FBDATE,
 		FBREC
    FROM FREEBOARD
   WHERE FBID= #{fbid}
@@ -63,4 +64,18 @@ SELECT  FBID,
 		FROM FREEBOARD
 		ORDER BY FBID ASC
 		</select>
+		
+<update id="updateFbWrite" parameterType="com.genius.model.Fb" >
+UPDATE FREEBOARD SET 
+						FBTITLE=#{fbtitle},
+						FBCONT=#{fbcont}
+				WHERE  FBID=#{fbid}
+
+</update>
+
+
+<delete id="deleteFb" parameterType="Integer" >
+DELETE FROM FREEBOARD 
+WHERE FBID=#{fbid}
+</delete>
 </mapper>

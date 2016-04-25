@@ -1,12 +1,17 @@
 package com.genius.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genius.model.Fb;
@@ -36,11 +41,23 @@ public class FreeController {
 		return "redirect:/freeboard/freeBoardWrite.str";
 	}
 	
+	@RequestMapping("freeSelectRec.str")
+	public void freeSelectRec (@RequestParam("fbid") int fbid,HttpServletResponse response) throws Exception {		
+		PrintWriter out=response.getWriter();
+		fbservice.updateRec(fbid);      // 추천수 증가
+	    Fb fb = fbservice.selectformfb(fbid);
+	    int cnt = fb.getFbrec();    
+	   
+	    out.println(cnt);
+    }
+	
 	
 	@RequestMapping("freeSelectForm.str")
-	public ModelAndView freeSlectFrom(int fbid){
-		fbservice.updatefb(fbid);
-		fbservice.updateRec(fbid);
+	public ModelAndView freeSlectFrom(int fbid) {
+		
+		fbservice.updatefb(fbid);		// 조회수 증가
+//		fbservice.updateRec(fbid);      // 추천수 증가
+		
 		return new ModelAndView("freeboard/freeSelectForm").addObject("fb", fbservice.selectformfb(fbid));
 	}
 	
@@ -48,6 +65,23 @@ public class FreeController {
 	@RequestMapping("freeBoardList.str")
 	public ModelAndView freeBoardList(){
 		return new ModelAndView("freeboard/freeBoardList").addObject("fb", fbservice.selectListfb());
+	}
+	
+	@RequestMapping("freeBoardUpdate.str")
+	public ModelAndView freeBoardUpdate(Integer fbid){
+		return new ModelAndView("freeboard/freeBoardUpdate").addObject("fb", fbservice.selectformfb(fbid));
+	}
+		
+	@RequestMapping(value= "freeUpdatepro.str" , method=RequestMethod.POST)
+	public ModelAndView freeUpdatepro(Fb fb){
+		fbservice.updateFbWrite(fb);
+		return new ModelAndView ("freeboard/freeSelectForm").addObject("fb", fbservice.selectformfb(fb.getFbid()));
+	}
+	
+	@RequestMapping("freeBoardDelete.str")
+	public String freeBoardDelete(int fbid){
+		fbservice.deleteFb(fbid);
+		return "redirect:/freeboard/freeBoardList.str";
 	}
 }
 	
