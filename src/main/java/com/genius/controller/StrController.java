@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,9 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +54,15 @@ public class StrController {
 	
 	@Autowired
 	HistoryService historyService;
+	
+	@RequestMapping(value="/updateOne.str",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> updateOne(@RequestBody Strumn strumn) {
+		System.out.println(strumn.getStrid());
+		System.out.println(strumn.getStrtitle());
+		System.out.println(strumn.getStrcont());
+		return strumnService.updateOne(strumn);
+//		return null;
+	}
 	
 	@RequestMapping("/list.str")
 	public ModelAndView list() {
@@ -207,6 +219,11 @@ public class StrController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("/deleteOne.str")
+	public @ResponseBody Map<String,String> deleteOne(@RequestParam(value="strid") Integer strid) {
+		return strumnService.deleteOne(strid);
 	}
 }
 

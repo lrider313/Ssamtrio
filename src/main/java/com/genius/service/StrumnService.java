@@ -1,6 +1,8 @@
 package com.genius.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,18 @@ import com.genius.model.Strumn;
 public class StrumnService {
 	@Autowired
 	StrumnMapper strumnmapper;
+	
+	@Transactional
+	public Map<String,String> updateOne(Strumn strumn) {
+		Map<String,String> message = new HashMap<String,String>();
+		String temp = strumn.getStrtitle()+"로 ";
+		if(strumnmapper.updateOne(strumn)==1) {
+			message.put("state", temp+"수정하였습니다.");
+		} else {
+			message.put("state", temp+"수정하는데 실패했습니다.");
+		}
+		return message;
+	}
 	
 	@Transactional
 	public int insertStrumn(Strumn strumn, HttpServletRequest request, HttpSession session) {
@@ -47,5 +61,15 @@ public class StrumnService {
 //		System.out.println("maptime:"+searchword.getMaptime());
 //		System.out.println("strtype:"+searchword.getStrtype());
 		return strumnmapper.getListBySW(searchword);
+	}
+	
+	@Transactional
+	public Map<String,String> deleteOne(Integer strid) {
+		Map<String,String> message = new HashMap<String,String>();
+		message.put("state", "삭제했습니다.");
+		if(strumnmapper.deleteOne(strid)<1){
+			message.put("state", "삭제에 실패했습니다.\n 다시 시도해보세요.");
+		}
+		return message;
 	}
 }

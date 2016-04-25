@@ -18,7 +18,15 @@
 <div class="mapCtgr">
 	<ul>
 		<c:forEach items="${list}" var="l">
-			<li><a href="javascript:void(0)" title="${l.strcont}" class="getFileInfo" id="${l.strid}">${l.strtitle}</a></li>
+			<li>
+				<a href="javascript:void(0)" title="${l.strcont}" class="getFileInfo" id="${l.strid}">${l.strtitle}</a>
+				<c:if test="${!empty member && member.memauth<=2}">
+				<span>
+					<a href="javascript:void(0)" class="mdfyMCtgrBtn btn btn-default btn-xs">수정</a>
+					<a href="javascript:void(0)" class="delMCtgrBtn btn btn-default btn-xs">삭제</a>
+				</span>
+				</c:if>
+			</li>
 		</c:forEach>
 	</ul>
 </div>

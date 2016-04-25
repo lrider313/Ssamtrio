@@ -119,4 +119,90 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$('body').on('click','.mdfyMCtgrBtn',function() {
+		var id = $(this).parent().parent().children("a").attr("id"); //			alert(id);
+		$(this).parent().parent().addClass("hideMenu"+id);
+		setTimeout(function() {
+//			var ctgrText = $('.hideMenu').html(); //			alert(ctgrText);
+			var strtitle = $('.hideMenu'+id+'>a[id='+id+']').text(); //			alert(strtitle);
+			var strcont = $('.hideMenu'+id+'>a[id='+id+']').attr("title"); //		alert(strcont);
+			
+			var mdfyForm1 = "<input type='text' value='"+strtitle+"' class='strtitle"+id+"'/>"+
+						   "<span><a href='javascript:void(0)' class='next"+id+" btn btn-default btn-xs'>다음</a> ";
+			var mdfyForm2 = "<input type='text' value='"+strcont+"' class='strcont"+id+"'/>"+
+							"<span><a href='javascript:void(0)' class='cpltMdfyMCtgrBtn"+id+" btn btn-default btn-xs'>완료</a></span>";
+			
+			$('.hideMenu'+id).removeClass("hideMenu"+id).html(mdfyForm1).addClass("showMenu");
+			
+			$('.next'+id).click(function() {
+				if($('.strtitle'+id).val()==""){
+					alert("값을 입력해야합니다.");
+					return false;
+				}
+				$('input[class=strtitle'+id+']').parent().addClass("hideMenu"+id);
+				setTimeout(function() {
+					var chgdStrtitle = $('.strtitle'+id).val();
+					var chgdStrcont;
+					$('.hideMenu'+id).removeClass("hideMenu"+id).html(mdfyForm2).addClass("showMenu");
+					$('.cpltMdfyMCtgrBtn'+id).click(function() {
+						if($('.strcont'+id).val()=="") {
+							alert("값을 입력해야합니다.");
+							return false;
+						}
+						chgdStrcont = $('.strcont'+id).val();
+						var strumn = {"strid":id,"strtitle":chgdStrtitle,"strcont":chgdStrcont};
+						$.ajax({
+							url: '/Ssamtrio/strboard/updateOne.str',
+							contentType : 'application/json; charset=utf-8',
+							type: 'POST',
+							data: JSON.stringify(strumn),
+							dataType: 'json',
+							success: function(msg) {
+								alert(msg.state);
+							}
+						});
+						$(this).parent().parent().addClass("hideMenu"+id);
+//						alert(chgdStrcont);
+//						alert(chgdStrtitle);
+						setTimeout(function() {
+							var ctgrText = "<a href='javascript:void(0)' title='"+chgdStrcont+"'" +
+										   "class='getFileInfo' id='"+id+"'>"+chgdStrtitle+"</a>" +
+										   "<span><a href='javascript:void(0)' class='mdfyMCtgrBtn btn btn-default btn-xs'>수정</a> " +
+										   "<a href='javascript:void(0)' class='delMCtgrBtn btn btn-default btn-xs'>삭제</a></span>";
+							$('.hideMenu'+id).removeClass("hideMenu"+id).html(ctgrText).addClass("showMenu");
+						}, 250);
+					});
+				}, 250);
+			});
+			
+
+			
+			setTimeout(function() {
+				$('.showMenu').removeClass("showMenu");
+			}, 250);
+		}, 250);
+	});
+	
+	$('body').on('click','.delMCtgrBtn',function() {
+		var del = confirm("삭제하면 하위의 맵파일들도 삭제됩니다.\n계속하시겠습니까?");
+		if(del==true) {
+			var strid = $(this).parent().parent().children('a').attr("id");
+			$.ajax({
+				url:'/Ssamtrio/strboard/deleteOne.str',
+				type:'GET',
+				data: {"strid":strid},
+				dataType:'json',
+				success:function(msg) {
+					alert(msg.state);
+//					alert($('li>a[id='+strid+']').attr("class"));
+					$('li>a[id='+strid+']').parent().attr("class","closeRightSide");
+					setTimeout(function() {
+						$('li[class=closeRightSide]').hide();
+						api.reinitialise();
+					}, 250);
+				}
+			});
+		}
+	});
 });

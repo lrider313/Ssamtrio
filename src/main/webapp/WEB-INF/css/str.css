@@ -155,6 +155,11 @@ body {
   font-size: 20px;
 }
 
+.mapCtgr ul li span {
+  clear: right;
+  float: right;
+}
+
 .mapCtgr ul li:before {
     /*Using a Bootstrap glyphicon as the bullet point*/
     content: "\e118";
@@ -354,6 +359,37 @@ table, td, th {
     100% {right:-120%;}
 }
 /* 오른쪽 메뉴 애니메이션 끝 */
+
+.hideMenu {
+  animation: hideMenu 0.25s;
+  -webkit-animation: hideMenu 0.25s;
+}
+@-webkit-keyframes hideMenu {
+  0% {
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+  }
+  
+  100% {
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+  }
+}
+.showMenu {
+  animation: showMenu 0.25s;
+  -webkit-animation: showMenu 0.25s;
+}
+@-webkit-keyframes showMenu {
+  0% {
+    transform: rotateX(270deg);
+    -webkit-transform: rotateX(270deg);
+  }
+  
+  100% {
+    transform: rotateX(360deg);
+    -webkit-transform: rotateX(360deg);
+  }
+}
 
 /*
 ** jScrollPane
