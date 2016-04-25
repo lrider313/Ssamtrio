@@ -34,6 +34,8 @@ SELECT CSID,
 		ORDER BY CSID ASC
 </select>
 
+
+
 <select id="selectById" resultType="com.genius.model.Csb" parameterType="Integer">
 SELECT 					CSID,
 						CSTYPE,
