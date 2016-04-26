@@ -17,7 +17,55 @@ $(document).ready(function() {
 	var namePattern = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
 	var nickPattern = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
 	$('#memid').focus();
-	
+	$('#memid').keyup(function() {
+		if(!idPwPattern.test($('#memid').val())) {
+			$('#memidDiv').text("아이디의 범위는 4~15자이며, 숫자, 영문, '_'만 입력가능합니다.");
+		} else if(idPwPattern.test($('#memid').val())){
+			$('#memidDiv').text("  ");
+		}
+	});
+	$('#mempw').keyup(function() {
+		if(!idPwPattern.test($('#mempw').val())) {
+			$('#mempwDiv').text("비밀번호의 범위는 4~15자이며, 숫자, 영문, '_'만 입력가능합니다.");
+		} else if(namePattern.test($('#mempw').val())){
+			$('#mempwDiv').text("  ");
+		}
+	});
+	$('#mempwCheck').keyup(function() {
+		if(!idPwPattern.test($('#mempwCheck').val())) {
+			$('#mempwCheckDiv').text("비밀번호가 일치하지 않습니다.");
+		} else if(namePattern.test($('#mempwCheck').val())){
+			$('#mempwCheckDiv').text("비밀번호가 일치합니다.");
+		}
+	});
+	$('#memname').keyup(function() {
+		if(!namePattern.test($('#memname').val())) {
+			$('#memnameDiv').text("이름은 한글 및 영문으로만 작성해주세요(2글자~15글자).");
+		} else if(namePattern.test($('#memname').val())){
+			$('#memnameDiv').text("  ");
+		}
+	});
+	$('#memnick').keyup(function() {
+		if(!nickPattern.test($('#memnick').val())) {
+			$('#memnickDiv').text("2글자이상 15글자이하로 작성해주세요.");
+		} else if(nickPattern.test($('#memnick').val())){
+			$('#memnickDiv').text("  ");
+		}
+	});
+	$('#memphone').keyup(function() {
+		if(!phonePattern.test($('#memphone').val())&&$('#memphone').val()!="") {
+			$('#memphoneDiv').text("휴대폰 번호를 정확히 입력하세요. ex) 010-1234-1234");
+		} else if(phonePattern.test($('#memphone').val())&&$('#memphone').val()!=""){
+			$('#memphoneDiv').text("  ");
+		}
+	});
+	$('#mememail').keyup(function() {
+		if(!emailPattern.test($('#mememail').val())) {
+			$('#mememailDiv').text("올바른 이메일 양식을 작성해주세요.");
+		} else if(emailPattern.test($('#mememail').val())){
+			$('#mememailDiv').text("  ");
+		}
+	});
 	$(".changePage").click(function() {
 		if(!idPwPattern.test($('#memid').val())) {
 			$('#memidDiv').text("아이디의 범위는 4~15자이며, 숫자, 영문, '_'만 입력가능합니다.");
@@ -40,7 +88,6 @@ $(document).ready(function() {
 			$('#memnick').val("").focus();
 			return false;
 		} else if(!phonePattern.test($('#memphone').val())&&$('#memphone').val()!="") {
-			alert("전화번호");
 			$('#memphoneDiv').text("휴대폰 번호를 정확히 입력하세요. ex) 010-1234-1234");
 			$('#memphone').val("").focus();
 			return false;
@@ -53,7 +100,6 @@ $(document).ready(function() {
 			$('#checkExistId').focus();
 			return false;
 		}
-		alert("성공");
 		$(".openLeftSide").attr("class", "closeLeftSide");
 		$(".openRightSide").attr("class", "closeRightSide");
 		$('#signupPro').submit();
@@ -91,33 +137,37 @@ $(document).ready(function() {
 <form action="/Ssamtrio/sign/signupPro.str" id="signupPro">
 <div class="openLeftSide">
 <div class="menuStyle">
+<div class="signupDesc"><span class="glyphicon glyphicon-sort-by-alphabet"></span> 회원가입</div>
+<div class="signupContnr">
 	<label for="memid"><span>아이디</span></label>
-		<input id="memid" type="text" name="memid" maxlength="15" required/><input type="button" value="중복 확인" id="checkExistId"/><br/>
+		<input id="memid" type="text" name="memid" maxlength="15" placeholder="필수입니다." required/><input type="button" value="중복 확인" id="checkExistId"/><br/>
 		<div id="memidDiv"></div><br>
 	<label for="mempw"><span>비밀번호</span></label>
-		<input id="mempw" type="password" name="mempw" maxlength="15" required/>
+		<input id="mempw" type="password" name="mempw" maxlength="15" placeholder="필수입니다." required/>
 		<div id="mempwDiv"></div><br/>
 	<label for="mempwCheck"><span>비밀번호 확인</span></label>
-		<input id="mempwCheck" type="password" maxlength="15" required/>
+		<input id="mempwCheck" type="password" maxlength="15" placeholder="필수입니다." required/>
 		<div id="mempwCheckDiv"></div><br/>
 	<label for="memname"><span>이름</span></label>
-		<input id="memname" type="text" name="memname" maxlength="15" required/>
+		<input id="memname" type="text" name="memname" maxlength="15" placeholder="필수입니다." required/>
 		<div id="memnameDiv"></div><br/>
 	<label for="memnick"><span>닉네임</span></label>
-		<input id="memnick" type="text" name="memnick" maxlength="15" required/>
+		<input id="memnick" type="text" name="memnick" maxlength="15" placeholder="필수입니다." required/>
 		<div id="memnickDiv"></div><br/>
 	<label for="mememail"><span>이메일</span></label>
-		<input id="mememail" type="text" name="mememail" maxlength="30" required/>
+		<input id="mememail" type="text" name="mememail" maxlength="30" placeholder="필수입니다." required/>
 		<div id="mememailDiv"></div><br/>
 	<label for="memphone"><span>전화번호</span></label>
 		<input id="memphone" type="text" name="memphone"  maxlength="13"/><br/>
+		<div id="memphoneDiv"></div><br/>
 	<label for="memaddr"><span>주소</span></label>
 		<input id="memaddr" type="text" name="memaddr"  maxlength="50"/>
 		<input type="button" onclick="searchAddr()" value="주소 검색"><br/>
-		<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div><br/>
+</div>
+</div>
+</div>
+	<div id="map" style="width:400px;height:400px;margin-top:10px;display:none;" class="openRightSide menuStyle"></div><br/>
 	<script type="text/javascript" src="/Ssamtrio/js/searchAddr.js"></script>
-</div>
-</div>
 <br/>
 <menu:leftMenuButton02 uri="javascript:void(0)" value="가입하기"/>
 </form>

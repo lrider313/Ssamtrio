@@ -20,7 +20,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 INSERT INTO BOARD (BOARDID, BOARDTITLE) VALUES
 (1, '공지사항'),
 (2, '맵자료실'),
-(3, '고객센터');
+(3, '프리보드'),
+(4, '고객센터');
 
 
 --

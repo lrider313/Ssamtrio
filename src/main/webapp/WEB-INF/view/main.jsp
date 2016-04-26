@@ -65,10 +65,14 @@ $(document).ready(function() {
 															  +"<th>맵버전</th>"
 															  +"<th>맵마나</th>"
 															  +"<th>다운</th></tr></thead><tbody>"+listAll+"</tbody></table>");
-// 				api.reinitialise();
 				$("#checkAll").change(function(){
 					$("input:checkbox").prop('checked', $(this).prop("checked"));
 				});
+				setTimeout(function() {
+					var scrollBlock = $('.resultOfTheMaps').jScrollPane({mousewheelspeed:50});
+					var api = scrollBlock.data('jsp');
+					api.reinitialise();
+				}, 500);
 			}
 		});
 	});

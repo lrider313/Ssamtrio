@@ -1,9 +1,12 @@
 package com.genius.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -12,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.genius.model.Member;
 import com.genius.service.CartService;
@@ -35,7 +37,10 @@ public class SignController {
 	}
 	
 	@RequestMapping("/signinPro.str")
-	public ModelAndView signinPro(HttpServletRequest request, HttpSession session) {
+	public void signinPro(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+//		response.setCharacterEncoding("UTF-8");
+		response.setContentType ("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
 		Member member = new Member();
 		member.setMemid(request.getParameter("memid"));
 		member.setMempw(request.getParameter("mempw"));
@@ -48,9 +53,17 @@ public class SignController {
 				int state = cartService.addCartListOnSignin(session);
 				log.info("signin 후 session의 장바구니 처리 state: " + state);
 			}
-			return new ModelAndView("redirect:/main/");
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('"+member.getMemnick()+"님 환영합니다.');");
+			writer.println("location.href='/Ssamtrio/main/';");
+		} else {
+			System.out.println("ㅇㅇ");
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('아이디 혹은 비밀번호가 일치하지 않습니다.');");
+			writer.println("location.href='/Ssamtrio/sign/signinForm.str';");
 		}
-		return new ModelAndView("/sign/signinForm");
+		writer.println("</script>");
+		writer.flush();
 	}
 	
 	@RequestMapping("/signoutPro.str")
@@ -65,12 +78,21 @@ public class SignController {
 	}
 	
 	@RequestMapping("/signupPro.str")
-	public String signupPro(Member member) {
+	public void signupPro(Member member, HttpServletResponse response) throws IOException {
+		response.setContentType ("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
 		if(signProService.signupPro(member)==1) {
 			System.out.println("Member signup success!!");
-			return "redirect:/strboard/list.str";
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('"+member.getMemnick()+"님 가입을 축하합니다.');");
+			writer.println("location.href='/Ssamtrio/main/';");
+		} else {
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('회원가입에 실패했습니다.');");
+			writer.println("location.href='/Ssamtrio/sign/signupForm.str';");
 		}
-		return "redirect:/sign/signupForm.str";
+		writer.println("</script>");
+		writer.flush();
 	}
 	
 	@RequestMapping("/signOut.str")
