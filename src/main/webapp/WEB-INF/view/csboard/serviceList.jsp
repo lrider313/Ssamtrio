@@ -14,10 +14,6 @@
 	}
 </script>
 </head>
-<body>
-<a href="serviceList.str?cstype=1">버그신고</a>
-<a href="serviceList.str?cstype=2">파일요청</a>
-<a href="serviceList.str?cstype=3">기타</a>
     <div class="table-responsive openLeftSide menuStyle" >
 	<table class="table-hover">
 			<td width="73">번호</td>
